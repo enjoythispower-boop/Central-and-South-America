@@ -1,0 +1,191 @@
+{
+ "cur": "s8",
+ "upd": 1791921921822,
+ "stops": [
+  {
+   "id": "s1",
+   "n": "Cancún",
+   "c": "Mexiko",
+   "lat": 21.16,
+   "lon": -86.85,
+   "d": "příletový den",
+   "t": "Začátek cesty"
+  },
+  {
+   "id": "s2",
+   "n": "Tulum",
+   "c": "Mexiko",
+   "lat": 20.21,
+   "lon": -87.47,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s3",
+   "n": "Ciudad de México",
+   "c": "Mexiko",
+   "lat": 19.43,
+   "lon": -99.13,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s4",
+   "n": "Antigua",
+   "c": "Guatemala",
+   "lat": 14.56,
+   "lon": -90.73,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s5",
+   "n": "San José",
+   "c": "Kostarika",
+   "lat": 9.93,
+   "lon": -84.08,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s6",
+   "n": "Bogotá",
+   "c": "Kolumbie",
+   "lat": 4.71,
+   "lon": -74.07,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s7",
+   "n": "Quito",
+   "c": "Ekvádor",
+   "lat": -0.18,
+   "lon": -78.47,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s8",
+   "n": "Cusco",
+   "c": "Peru",
+   "lat": -13.53,
+   "lon": -71.97,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s9",
+   "n": "La Paz",
+   "c": "Bolívie",
+   "lat": -16.49,
+   "lon": -68.12,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s10",
+   "n": "Santiago",
+   "c": "Chile",
+   "lat": -33.45,
+   "lon": -70.67,
+   "d": "",
+   "t": ""
+  },
+  {
+   "id": "s11",
+   "n": "Buenos Aires",
+   "c": "Argentina",
+   "lat": -34.6,
+   "lon": -58.38,
+   "d": "cíl cesty",
+   "t": "Konec cesty"
+  }
+ ],
+ "pack": [
+  {
+   "id": "k1",
+   "name": "Doklady a peníze",
+   "items": [
+    {
+     "id": "i1",
+     "t": "Pas",
+     "c": false
+    },
+    {
+     "id": "i2",
+     "t": "Platební karty",
+     "c": false
+    },
+    {
+     "id": "i3",
+     "t": "Hotovost (USD)",
+     "c": false
+    },
+    {
+     "id": "i4",
+     "t": "Pojištění",
+     "c": false
+    }
+   ]
+  },
+  {
+   "id": "k2",
+   "name": "Oblečení",
+   "items": [
+    {
+     "id": "i5",
+     "t": "Lehká bunda",
+     "c": false
+    },
+    {
+     "id": "i6",
+     "t": "Pohodlné boty",
+     "c": false
+    },
+    {
+     "id": "i7",
+     "t": "Plavky",
+     "c": false
+    }
+   ]
+  },
+  {
+   "id": "k3",
+   "name": "Elektronika",
+   "items": [
+    {
+     "id": "i8",
+     "t": "Telefon + nabíječka",
+     "c": false
+    },
+    {
+     "id": "i9",
+     "t": "Powerbanka",
+     "c": false
+    },
+    {
+     "id": "i10",
+     "t": "Univerzální adaptér",
+     "c": false
+    }
+   ]
+  },
+  {
+   "id": "k4",
+   "name": "Ostatní",
+   "items": [
+    {
+     "id": "i11",
+     "t": "Opalovací krém",
+     "c": false
+    },
+    {
+     "id": "i12",
+     "t": "Lékárnička",
+     "c": false
+    }
+   ]
+  }
+ ]
+}
