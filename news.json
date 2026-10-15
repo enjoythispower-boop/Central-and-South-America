@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-14T18:38:58+00:00",
+ "updated": "2026-10-15T05:25:49+00:00",
  "items": [
   {
    "country": "Chile",
@@ -210,6 +210,16 @@
    "date": "2026-10-09",
    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u153",
    "source": "USGS"
+  },
+  {
+   "country": "Mexiko",
+   "category": "Přírodní katastrofa",
+   "severity": "pozor",
+   "title": "Tropický cyklón – Tropical Cyclone SIMON-26",
+   "summary": "Tropický cyklón: výstraha GDACS (oranžová). Tropical Storm (maximum wind speed of 250 km/h). Vzdálenost od tvé aktuální zastávky (Tulum): asi 2210 km. (text ze zdroje v angličtině)",
+   "date": "2026-10-07",
+   "url": "https://www.gdacs.org/report.aspx?eventid=1001335&episodeid=31&eventtype=TC",
+   "source": "GDACS"
   },
   {
    "country": "Mexiko",
