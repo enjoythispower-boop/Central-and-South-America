@@ -1,6 +1,6 @@
 {
- "cur": "s2",
- "upd": 1791966131151,
+ "cur": "s1",
+ "upd": 1792050766624,
  "stops": [
   {
    "id": "s1",
@@ -102,90 +102,15 @@
    "t": "Konec cesty"
   }
  ],
- "pack": [
+ "diary": [],
+ "places": [],
+ "photos": [
   {
-   "id": "k1",
-   "name": "Doklady a peníze",
-   "items": [
-    {
-     "id": "i1",
-     "t": "Pas",
-     "c": false
-    },
-    {
-     "id": "i2",
-     "t": "Platební karty",
-     "c": false
-    },
-    {
-     "id": "i3",
-     "t": "Hotovost (USD)",
-     "c": false
-    },
-    {
-     "id": "i4",
-     "t": "Pojištění",
-     "c": false
-    }
-   ]
-  },
-  {
-   "id": "k2",
-   "name": "Oblečení",
-   "items": [
-    {
-     "id": "i5",
-     "t": "Lehká bunda",
-     "c": false
-    },
-    {
-     "id": "i6",
-     "t": "Pohodlné boty",
-     "c": false
-    },
-    {
-     "id": "i7",
-     "t": "Plavky",
-     "c": false
-    }
-   ]
-  },
-  {
-   "id": "k3",
-   "name": "Elektronika",
-   "items": [
-    {
-     "id": "i8",
-     "t": "Telefon + nabíječka",
-     "c": false
-    },
-    {
-     "id": "i9",
-     "t": "Powerbanka",
-     "c": false
-    },
-    {
-     "id": "i10",
-     "t": "Univerzální adaptér",
-     "c": false
-    }
-   ]
-  },
-  {
-   "id": "k4",
-   "name": "Ostatní",
-   "items": [
-    {
-     "id": "i11",
-     "t": "Opalovací krém",
-     "c": false
-    },
-    {
-     "id": "i12",
-     "t": "Lékárnička",
-     "c": false
-    }
-   ]
+   "id": "po0w50vmv98uu5w",
+   "sid": "s1",
+   "date": "2026-10-15",
+   "cap": "Test",
+   "f": "photos/po0w50vmv98uu5w.jpg"
   }
  ]
 }
