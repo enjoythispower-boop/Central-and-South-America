@@ -7,7 +7,8 @@ import json, math, re, sys, time, unicodedata, urllib.parse, urllib.request
 from datetime import datetime, timezone, timedelta
 
 UA = {"User-Agent": "cesta-zpravy/1.0 (osobni cestovni stranka)"}
-KEEP_DAYS, MAX_ITEMS = 30, 80
+MAX_ITEMS = 60
+TTL = {"eq": 3, "tc": 4, "fl": 4, "vo": 4, "wf": 4, "news": 5}  # po kolika dnech zpráva zmizí (u probíhajících událostí se obnovuje)
 ISO3 = {"MEX": "Mexiko", "GTM": "Guatemala", "SLV": "Salvador", "NIC": "Nikaragua", "CRI": "Kostarika", "PAN": "Panama",
         "COL": "Kolumbie", "PER": "Peru", "BOL": "Bolívie", "CHL": "Chile", "ARG": "Argentina", "PRY": "Paraguay", "URY": "Uruguay"}
 EN = {"Mexico": "Mexiko", "Guatemala": "Guatemala", "El Salvador": "Salvador", "Nicaragua": "Nikaragua", "Costa Rica": "Kostarika",
@@ -30,6 +31,17 @@ def km(a, b):
     dl, dn = t(b[0] - a[0]), t(b[1] - a[1])
     q = math.sin(dl / 2) ** 2 + math.cos(t(a[0])) * math.cos(t(b[0])) * math.sin(dn / 2) ** 2
     return 2 * 6371 * math.asin(math.sqrt(q))
+
+def addd(iso, n):
+    return (datetime.strptime(iso, "%Y-%m-%d") + timedelta(days=n)).strftime("%Y-%m-%d")
+
+def infer(it):
+    """Doplní typ a platnost u starších položek bez těchto údajů."""
+    t = (it.get("title") or "").lower()
+    typ = it.get("type") or ("eq" if t.startswith("zemětřesení") else "tc" if t.startswith("tropick") else "fl" if t.startswith("záplav") else "vo" if t.startswith("sopeč") else "wf" if t.startswith("lesní") else "news")
+    it["type"] = typ
+    it.setdefault("expires", addd(it.get("date") or datetime.now(timezone.utc).strftime("%Y-%m-%d"), TTL.get(typ, 4)))
+    return it
 
 def norm(s):
     return "".join(c for c in unicodedata.normalize("NFD", s.lower()) if unicodedata.category(c) != "Mn")
@@ -65,6 +77,7 @@ def usgs(stops, cur, today):
         mag = p.get("mag")
         if mag is None or len(g) < 2 or mag < 5.0:
             continue
+        _near = nearest(g[1], g[0], stops)
         lon, lat, depth = g[0], g[1], (g[2] if len(g) > 2 else 0)
         place = p.get("place") or ""
         country = EN.get(place.split(",")[-1].strip())
@@ -73,6 +86,8 @@ def usgs(stops, cur, today):
             country = near[1].get("c")
         if country not in NAMES:
             continue
+        if mag < 5.5 and not (_near and _near[0] <= 250):
+            continue  # slabší otřesy daleko od trasy vynecháme
         dcur = km((lat, lon), (cur["lat"], cur["lon"])) if cur else 9999
         sev = "nebezpeci" if (mag >= 6.5 or (mag >= 6.0 and dcur <= 200)) else "pozor" if (mag >= 5.5 or p.get("tsunami")) else "info"
         date = datetime.fromtimestamp(p["time"] / 1000, timezone.utc).strftime("%Y-%m-%d")
@@ -80,7 +95,8 @@ def usgs(stops, cur, today):
                     "title": f"Zemětřesení M{mag:.1f} – {place}"[:120],
                     "summary": f"Zemětřesení o síle M{mag:.1f}, hloubka asi {depth:.0f} km ({place}).{dist_text(lat, lon, cur)}"
                                + (" Bylo vydáno varování před tsunami." if p.get("tsunami") else ""),
-                    "date": date, "url": p.get("url") or "", "source": "USGS"})
+                    "date": date, "url": p.get("url") or "", "source": "USGS",
+                    "type": "eq", "expires": addd(date, TTL["eq"])})
     return out
 
 # ---------- GDACS: cyklóny, záplavy, sopky, požáry ----------
@@ -106,7 +122,8 @@ def gdacs(stops, cur, today):
             end = datetime.fromisoformat(p.get("todate", "")).replace(tzinfo=timezone.utc)
         except Exception:
             end = datetime.now(timezone.utc)
-        if str(p.get("iscurrent", "")).lower() != "true" and end < cutoff:
+        current = str(p.get("iscurrent", "")).lower() == "true"
+        if not current and end < cutoff:
             continue
         level = p.get("alertlevel", "Orange")
         typ = GDACS_TYPES.get(p.get("eventtype"), "Přírodní událost")
@@ -115,7 +132,9 @@ def gdacs(stops, cur, today):
         out.append({"country": country, "category": "Přírodní katastrofa", "severity": "nebezpeci" if level == "Red" else "pozor",
                     "title": f"{typ} – {p.get('name') or country}"[:120],
                     "summary": f"{typ}: výstraha GDACS ({LEVEL_CZ.get(level, level)}). {sev_text}.{dist_text(lat, lon, cur)} (text ze zdroje v angličtině)",
-                    "date": (p.get("fromdate") or today)[:10], "url": url_rep, "source": "GDACS"})
+                    "date": (p.get("fromdate") or today)[:10], "url": url_rep, "source": "GDACS",
+                    "type": p.get("eventtype", "tc").lower(), "ongoing": True,
+                    "expires": addd(today if current else end.strftime("%Y-%m-%d"), TTL.get(p.get("eventtype", "tc").lower(), 4))})
     return out
 
 # ---------- GDELT: protesty, blokády, stávky ----------
@@ -157,9 +176,11 @@ def gdelt(stops, cur, today):
             seen_dom.add(dom)
             sd = a.get("seendate", "")
             date = f"{sd[:4]}-{sd[4:6]}-{sd[6:8]}" if re.match(r"^\d{8}T", sd) else today
-            out.append({"country": cz, "category": "Protesty a stávky", "severity": "pozor" if HEAVY.search(title) else "info",
+            if not HEAVY.search(title):
+                continue  # běžné protesty bez blokád a nepokojů vynecháváme
+            out.append({"country": cz, "category": "Protesty a stávky", "severity": "pozor",
                         "title": title[:120], "summary": f"Zpráva o protestech, blokádách nebo stávce ({'španělsky' if lang == 'spanish' else 'anglicky'}, zdroj {dom}). Otevři zdroj pro podrobnosti.",
-                        "date": date, "url": a["url"], "source": dom})
+                        "date": date, "url": a["url"], "source": dom, "type": "news", "expires": addd(date, TTL["news"])})
             got += 1
             if got >= 2:
                 break
@@ -183,11 +204,10 @@ def main():
         old = json.load(open("news.json", encoding="utf-8")).get("items", [])
     except Exception:
         old = []
-    cutoff = (now - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
     seen, items = set(), []
-    for it in new + [i for i in old if isinstance(i, dict) and i.get("title")]:
+    for it in new + [infer(i) for i in old if isinstance(i, dict) and i.get("title")]:
         key = it.get("url") or (it["country"], it["title"].lower())
-        if key in seen or it.get("date", today) < cutoff:
+        if key in seen or it.get("expires", today) < today:
             continue
         seen.add(key); items.append(it)
     items.sort(key=lambda x: x.get("date", ""), reverse=True)

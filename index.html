@@ -181,6 +181,25 @@ label.l{display:block;font-size:.66rem;font-family:"JetBrains Mono",monospace;le
 .place{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
 .place:last-child{border-bottom:0}
 .place .t{flex:1;min-width:0}
+
+.sevs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.sevb{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;padding:11px 12px;text-align:left;display:block}
+.sevb b{display:block;font-family:"JetBrains Mono",monospace;font-size:1.7rem;color:var(--c);line-height:1.1}
+.sevb.on{box-shadow:0 0 0 2px var(--c)}
+.statusbar{display:flex;gap:12px;align-items:center;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.ncard{display:flex;gap:12px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:14px;padding:12px;margin-bottom:10px}
+.ncard.nebezpeci{border-left-color:var(--bad)}.ncard.pozor{border-left-color:var(--warn)}
+.nic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--c,var(--acc)) 14%,transparent);color:var(--c,var(--acc));flex:none}
+.ncard.nebezpeci .nic{--c:var(--bad)}.ncard.pozor .nic{--c:var(--warn)}
+.nb{flex:1;min-width:0}.nb b{font-size:.94rem;line-height:1.3}
+.nb details summary{cursor:pointer;color:var(--acc);font-size:.78rem;margin-top:8px;list-style:none}
+.nb details summary::-webkit-details-marker{display:none}
+.nb details p{margin:8px 0;font-size:.86rem;color:var(--tx)}
+.tag.sev-nebezpeci{background:color-mix(in srgb,var(--bad) 22%,var(--panel));color:var(--bad)}
+.tag.sev-pozor{background:color-mix(in srgb,var(--warn) 22%,var(--panel));color:var(--warn)}
+.tag.sev-info{background:color-mix(in srgb,var(--acc) 18%,var(--panel));color:var(--acc)}
+.ngrp{display:flex;align-items:center;gap:10px;margin:20px 0 10px}.ngrp .lab{white-space:nowrap}.ngrp i{flex:1;height:1px;background:var(--line)}
+.calm{text-align:center;padding:30px 14px}.calm svg{color:var(--done)}
 </style>
 </head>
 <body>
@@ -237,6 +256,13 @@ vybava:'<path d="M8 8a4 4 0 018 0v12H8z"/><path d="M8 13h8M10 4V3h4v1"/>',
 nast:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',
 more:'<circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/>',
 pin:'<path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+quake:'<path d="M2 12h4l2-6 4 12 2-6h8"/>',
+cyclone:'<circle cx="12" cy="12" r="2"/><path d="M12 3a9 9 0 019 9M21 12a9 9 0 01-9 9M12 21a9 9 0 01-9-9M3 12a9 9 0 019-9"/>',
+flood:'<path d="M3 8c2-2 4 2 6 0s4 2 6 0 4 2 6 0M3 14c2-2 4 2 6 0s4 2 6 0 4 2 6 0M3 20c2-2 4 2 6 0s4 2 6 0 4 2 6 0"/>',
+volcano:'<path d="M3 20l6-11h6l6 11z"/><path d="M10 5l-1-3M14 5l1-3M12 5V2"/>',
+fire:'<path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
+alert:'<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/>',
+check:'<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
 star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>'
 };
 const ico=(k,s=20)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]||''}</svg>`;
@@ -564,6 +590,17 @@ async function loadNews(){
   if(n&&Array.isArray(n.items)){NEWS=n;LS.set('cache_news',n);if(view==='zpravy'||view==='home')refresh()}
 }
 
+const NT={eq:['Zemětřesení','quake',3],tc:['Cyklón / bouře','cyclone',4],fl:['Záplavy','flood',4],vo:['Sopečná aktivita','volcano',4],wf:['Požár','fire',4],news:['Nepokoje a blokády','alert',5]};
+function newsType(i){
+  if(i.type&&NT[i.type])return i.type;
+  const t=(i.title||'').toLowerCase();
+  return t.startsWith('zemětřesení')?'eq':t.startsWith('tropick')?'tc':t.startsWith('záplav')?'fl':t.startsWith('sopeč')?'vo':t.startsWith('lesní')?'wf':'news';
+}
+function activeNews(){
+  const t=todayISO();
+  return (NEWS.items||[]).filter(i=>i&&i.title).map(i=>({...i,type:newsType(i)})).filter(i=>(i.expires||addDays(i.date||t,NT[newsType(i)][2]))>=t);
+}
+
 /* ================= POČASÍ (Open-Meteo) ================= */
 let WXC=LS.get('wxc',{})||{};
 async function fetchWx(s){
@@ -850,7 +887,7 @@ function vHome(){
   const countries=[...new Set(st.map(s=>s.c).filter(Boolean))],doneC=new Set(st.slice(0,ci+1).map(s=>s.c));
   const firstD=st.map(s=>s.a).find(Boolean),lastD=[...st].reverse().map(s=>s.o||s.a).find(Boolean);
   const days=firstD&&firstD<=todayISO()?diffDays(firstD,todayISO())+1:null,pct=tot?Math.round(done/tot*100):0;
-  const al=(NEWS.items||[]).filter(i=>i.country===cur.c&&(i.severity==='nebezpeci'||i.severity==='pozor')).slice(0,2);
+  const al=activeNews().filter(i=>i.country===cur.c&&(i.severity==='nebezpeci'||i.severity==='pozor')).slice(0,2);
   const tiles=[['trasa','Trasa','Mapa, pořadí, deník'],['osa','Časová osa','Dny a kalendář'],['foto','Fotodeník','Fotky z cesty'],['zeme','Země','Historie a tipy'],['pocasi','Počasí','Předpověď a klima'],['zpravy','Zprávy','Aktuální upozornění'],['rozpocet','Rozpočet','Výdaje a grafy',1],['plan','Plán','Úkoly, rezervace',1],['vybava','Výbava','Balení a váha',1]].filter(t=>!t[3]||edit);
   const ev=nextEvents(4);
   let extra='';
@@ -1075,18 +1112,29 @@ function vPocasi(){
 
 /* ================= ZPRÁVY ================= */
 const SEV={nebezpeci:['bad','Nebezpečí'],pozor:['warn','Pozor'],info:['acc','Info']};
+let nSev='Vše';
 function vZpravy(){
-  const items=(NEWS.items||[]).filter(i=>i&&i.title),ks=['Vše',...INFO.map(c=>c.k).filter(k=>items.some(i=>i.country===k))];
-  if(!ks.includes(nSel))nSel='Vše';
-  const ord={nebezpeci:0,pozor:1,info:2};
-  const list=items.filter(i=>nSel==='Vše'||i.country===nSel).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(ord[a.severity]??3)-(ord[b.severity]??3));
+  const all=activeNews(),t=todayISO(),cc=curCountry(),later=new Set(S.stops.slice(curIdx()+1).map(s=>s.c));
+  const rank={nebezpeci:0,pozor:1,info:2},cnt=k=>all.filter(i=>i.severity===k).length;
+  const worst={};all.forEach(i=>{if(!(i.country in worst)||rank[i.severity]<rank[worst[i.country]])worst[i.country]=i.severity});
+  const dotc=c=>worst[c]?`var(--${SEV[worst[c]][0]})`:'var(--done)';
+  const list=all.filter(i=>(nSel==='Vše'||i.country===nSel)&&(nSev==='Vše'||i.severity===nSev)).sort((a,b)=>(rank[a.severity]??3)-(rank[b.severity]??3)||(b.date||'').localeCompare(a.date||''));
+  const when=i=>{if(['tc','fl','vo','wf'].includes(i.type))return 'trvá od '+fdm(i.date);const d=diffDays(i.date||t,t);return d<=0?'dnes':d===1?'včera':'před '+d+' dny'};
+  const mine=all.filter(i=>i.country===cc),worstMine=mine.reduce((w,i)=>rank[i.severity]<rank[w]?i.severity:w,'info');
   const up=NEWS.updated?new Date(NEWS.updated).toLocaleString('cs-CZ',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-  $('v-zpravy').innerHTML=pageHead('Zprávy','Upozornění k zemím na trase')+
-   `<p class="note">Zprávy 1× denně automaticky sbírá skript z veřejných zdrojů (USGS, GDACS, GDELT), bez umělé inteligence. Texty jsou stručné, často anglicky nebo španělsky, a mohou být neúplné – ověř je v původním zdroji a v doporučení MZV ČR.${up?' Naposledy zkontrolováno: '+up+'.':''}</p>
-   <div class="chips">${ks.map(k=>`<button class="chip${k===nSel?' on':''}" data-act="nsel" data-k="${esc(k)}">${k==='Vše'?'':flag(k,18)+' '}${esc(k)}${k==='Vše'?'':' ('+items.filter(i=>i.country===k).length+')'}</button>`).join('')}</div>`+
-   (list.length?list.map(i=>{const s=SEV[i.severity]||SEV.info,u=safeUrl(i.url);
-     return `<div class="card news ${esc(i.severity||'info')}" style="margin-bottom:12px"><b><span class="dotc" style="background:var(--${s[0]})"></span>${esc(i.title)}</b><div class="lab" style="margin-top:4px">${esc(i.country||'')} · ${esc(i.category||'')} · ${esc(i.date||'')}</div><p style="margin:8px 0">${esc(i.summary||'')}</p>${u?`<a href="${esc(u)}" target="_blank" rel="noopener" style="font-size:.85rem">${esc(i.source||'Zdroj')} ↗</a>`:''}</div>`}).join(''):'<div class="card"><p class="note" style="margin:0">Zatím žádné zprávy – skript ještě nebyl spuštěn, nebo nenašel nic významného.</p></div>')+
-   `<div class="card"><h3>Oficiální zdroje</h3><p class="note">Skript nenahrazuje oficiální doporučení. Před cestou do každé země si je ověř.</p><div class="row"><a class="btn sm" href="https://www.mzv.gov.cz/" target="_blank" rel="noopener">MZV ČR ↗</a><a class="btn sm" href="https://travel.state.gov/" target="_blank" rel="noopener">Travel.state.gov (USA) ↗</a><a class="btn sm" href="https://www.gdacs.org/" target="_blank" rel="noopener">GDACS ↗</a><a class="btn sm" href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS ↗</a></div></div>`;
+  const card=i=>{const tp=NT[i.type],sv=SEV[i.severity]||SEV.info,u=safeUrl(i.url),isMine=i.country===cc,isNext=later.has(i.country)&&!isMine;
+    return `<div class="ncard ${esc(i.severity||'info')}"><div class="nic">${ico(tp[1],20)}</div><div class="nb"><div class="row" style="justify-content:space-between;gap:8px;flex-wrap:nowrap;align-items:flex-start"><b>${esc(i.title)}</b><span class="tag sev-${esc(i.severity||'info')}">${sv[1].toUpperCase()}</span></div>
+     <div class="lab" style="margin-top:4px">${flag(i.country,16)} ${esc(i.country)} · ${esc(tp[0])} · ${esc(when(i))}${isMine?' · <b style="color:var(--now)">TVOJE ZEMĚ</b>':isNext?' · DALŠÍ NA TRASE':''}</div>
+     <details><summary>Podrobnosti</summary><p>${esc(i.summary||'')}</p>${u?`<a href="${esc(u)}" target="_blank" rel="noopener" style="font-size:.84rem">${esc(i.source||'Zdroj')} ↗</a>`:''}</details></div></div>`};
+  const groups=[['Právě probíhá',['tc','fl','vo','wf']],['Zemětřesení · posledních 72 hodin',['eq']],['Nepokoje a blokády',['news']]];
+  const body=groups.map(([title,types])=>{const g=list.filter(i=>types.includes(i.type));return g.length?`<div class="ngrp"><span class="lab">${title} · ${g.length}</span><i></i></div>${g.map(card).join('')}`:''}).join('');
+  $('v-zpravy').innerHTML=pageHead('Zprávy',all.length?`${all.length} aktivních upozornění na trase`:'Žádná aktivní upozornění',up?`<span class="lab">zkontrolováno ${esc(up)}</span>`:'')+
+   `<div class="statusbar"><span class="dotc" style="width:12px;height:12px;background:var(--${mine.length?SEV[worstMine][0]:'done'});box-shadow:0 0 10px var(--${mine.length?SEV[worstMine][0]:'done'})"></span><div>${flag(cc,18)} <b>${esc(cc)}</b> <span class="lab">· tvoje aktuální země</span><div style="font-size:.86rem;color:var(--mut)">${mine.length?mine.length+' aktivní upozornění':'Žádné aktivní upozornění'}</div></div></div>
+   <div class="sevs">${[['nebezpeci','Nebezpečí','bad'],['pozor','Pozor','warn'],['info','Info','acc']].map(([k,l,c])=>`<button class="sevb${nSev===k?' on':''}" style="--c:var(--${c})" data-act="nsev" data-k="${k}"><b>${cnt(k)}</b><span class="lab">${l}</span></button>`).join('')}</div>
+   <div class="chips"><button class="chip${nSel==='Vše'?' on':''}" data-act="nsel" data-k="Vše">Všechny země</button>${INFO.map(c=>`<button class="chip${c.k===nSel?' on':''}${c.k===cc?' cur':''}" data-act="nsel" data-k="${esc(c.k)}">${flag(c.k,18)} ${esc(c.k)}<i class="dotc" style="background:${dotc(c.k)};margin:0 0 0 2px"></i></button>`).join('')}</div>`+
+   (list.length?body:`<div class="card calm">${ico('check',44)}<h3 style="margin:10px 0 4px;color:var(--tx);font-size:1.05rem;letter-spacing:0;text-transform:none;font-family:inherit">${all.length?'V tomto výběru nic není':'Na trase je klid'}</h3><p class="note" style="margin:0">${all.length?'Zkus jiný filtr nebo zemi.':'Zemětřesení, bouře ani blokády teď skript nehlásí. Zpráva se po několika dnech sama odstraní.'}</p></div>`)+
+   `<p class="note" style="margin-top:16px">Zprávy 1× denně automaticky sbírá skript z veřejných zdrojů (USGS, GDACS, GDELT), bez umělé inteligence. Dlouhodobé události (cyklóny, záplavy, sopky, požáry) zůstávají, dokud trvají. Zemětřesení mizí po 3 dnech. Texty bývají anglicky nebo španělsky a mohou být neúplné.</p>
+   <div class="card"><h3>Oficiální zdroje</h3><p class="note">Skript nenahrazuje oficiální doporučení. Před cestou do každé země si je ověř.</p><div class="row"><a class="btn sm" href="https://www.mzv.gov.cz/" target="_blank" rel="noopener">MZV ČR ↗</a><a class="btn sm" href="https://travel.state.gov/" target="_blank" rel="noopener">Travel.state.gov (USA) ↗</a><a class="btn sm" href="https://www.gdacs.org/" target="_blank" rel="noopener">GDACS ↗</a><a class="btn sm" href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS ↗</a></div></div>`;
 }
 
 /* ================= ROZPOČET ================= */
@@ -1188,6 +1236,7 @@ const ACT={
   zsel:t=>{zSel=t.dataset.k;refresh()},
   ztab:t=>{zTab=t.dataset.k;refresh()},
   nsel:t=>{nSel=t.dataset.k;refresh()},
+  nsev:t=>{nSev=nSev===t.dataset.k?'Vše':t.dataset.k;refresh()},
   otab:t=>{oTab=t.dataset.k;refresh()},
   calprev:()=>{const [y,m]=calM.split('-').map(Number),d=new Date(y,m-2,1);calM=d.getFullYear()+'-'+pad2(d.getMonth()+1);refresh()},
   calnext:()=>{const [y,m]=calM.split('-').map(Number),d=new Date(y,m,1);calM=d.getFullYear()+'-'+pad2(d.getMonth()+1);refresh()},
