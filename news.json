@@ -1,29 +1,17 @@
 {
- "updated": "2026-10-17T05:22:25+00:00",
+ "updated": "2026-10-18T05:23:04+00:00",
  "items": [
   {
-   "country": "Chile",
+   "country": "Mexiko",
    "category": "Přírodní katastrofa",
    "severity": "info",
-   "title": "Zemětřesení M5.0 – 98 km NW of Coquimbo, Chile",
-   "summary": "Zemětřesení o síle M5.0, hloubka asi 10 km (98 km NW of Coquimbo, Chile). Vzdálenost od tvé aktuální zastávky (Cancún): asi 5830 km.",
-   "date": "2026-10-14",
-   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u26f",
+   "title": "Zemětřesení M5.2 – 86 km SW of Brisas Barra de Suchiate, Mexico",
+   "summary": "Zemětřesení o síle M5.2, hloubka asi 10 km (86 km SW of Brisas Barra de Suchiate, Mexico). Vzdálenost od tvé aktuální zastávky (Cancún): asi 1010 km.",
+   "date": "2026-10-17",
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u309",
    "source": "USGS",
    "type": "eq",
-   "expires": "2026-10-17"
-  },
-  {
-   "country": "Chile",
-   "category": "Přírodní katastrofa",
-   "severity": "info",
-   "title": "Zemětřesení M5.1 – 93 km NNW of Coquimbo, Chile",
-   "summary": "Zemětřesení o síle M5.1, hloubka asi 22 km (93 km NNW of Coquimbo, Chile). Vzdálenost od tvé aktuální zastávky (Cancún): asi 5830 km.",
-   "date": "2026-10-14",
-   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u26c",
-   "source": "USGS",
-   "type": "eq",
-   "expires": "2026-10-17"
+   "expires": "2026-10-20"
   },
   {
    "country": "Mexiko",
@@ -36,7 +24,7 @@
    "source": "GDACS",
    "type": "tc",
    "ongoing": true,
-   "expires": "2026-10-21"
+   "expires": "2026-10-22"
   }
  ]
 }
