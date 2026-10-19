@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T05:23:04+00:00",
+ "updated": "2026-10-19T05:28:48+00:00",
  "items": [
   {
    "country": "Mexiko",
@@ -24,7 +24,7 @@
    "source": "GDACS",
    "type": "tc",
    "ongoing": true,
-   "expires": "2026-10-22"
+   "expires": "2026-10-23"
   }
  ]
 }
