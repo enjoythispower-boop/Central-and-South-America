@@ -104,13 +104,5 @@
  ],
  "diary": [],
  "places": [],
- "photos": [
-  {
-   "id": "po0w50vmv98uu5w",
-   "sid": "s1",
-   "date": "2026-10-15",
-   "cap": "Test",
-   "f": "photos/po0w50vmv98uu5w.jpg"
-  }
- ]
+ "photos": []
 }
