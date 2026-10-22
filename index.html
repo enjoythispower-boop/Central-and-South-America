@@ -657,7 +657,7 @@ let S=JSON.parse(JSON.stringify(SEED));
 S.diary=S.diary||[];S.places=S.places||[];S.photos=S.photos||[];
 let P=Object.assign({limit:10,total:0,rates:{},pack:null,tasks:[],bookings:[],expenses:[],notes:[]},LS.get('priv_local',{})||{});
 let edit=false,view='home',sel=S.cur,mode=null,form=null,moreOpen=false,fabMsg='',saving=false;
-let dirty={pub:false,priv:false};
+let dirty={pub:false,priv:false,shr:false};
 
 function convPack(src){return src.map(k=>({id:k.id||'k'+uid(),name:k.name,items:k.items.map(i=>({id:i.id||'i'+uid(),t:i.t,c:!!i.c,q:i.q||1,w:i.w||0}))}))}
 function ensureP(){
@@ -676,7 +676,7 @@ const curStop=()=>S.stops[curIdx()];
 const rate=c=>P.rates[c]??(CUR.find(x=>x[0]===c)||[0,1])[1];
 
 function mark(k){
-  if(k==='priv'){P._def=false;LS.set('priv_local',P);if(GH.pr)dirty.priv=true}else dirty.pub=true;
+  if(k==='priv'){P._def=false;LS.set('priv_local',P);if(GH.pr)dirty.priv=true;dirty.shr=true}else dirty.pub=true;
   fabMsg='';fab();
 }
 function pubOut(){const o=JSON.parse(JSON.stringify(S));delete o.pack;return o}
@@ -718,6 +718,18 @@ async function loadPublic(){
 async function loadPrivate(){
   if(!edit||!GH.pr)return;
   try{const r=await ghRead(GH.pr,'private.json',true);if(r&&typeof r==='object'&&!dirty.priv){P=Object.assign(P,r);ensureP();LS.set('priv_local',P);refresh()}}catch(e){}
+  checkShared();
+}
+/* rozpočet, úkoly, rezervace a výbava jsou pro návštěvníky ke čtení ve veřejném sdilene.json; kontakty a čísla rezervací se nezveřejňují */
+const SHARED='sdilene.json';
+const sharedOut=()=>({total:P.total||0,limit:P.limit||0,rates:P.rates,expenses:P.expenses,tasks:P.tasks,bookings:P.bookings.map(({ref,...b})=>b),pack:P.pack});
+function checkShared(){if(edit&&JSON.stringify(sharedOut())!==LS.get('shr_last','')){dirty.shr=true;fab()}}
+async function loadShared(){
+  if(edit)return;
+  let r=null;
+  try{if(GH.owner&&GH.repo)r=await ghRead(GH.repo,SHARED,false)}catch(e){}
+  if(!r){try{const x=await fetch(SHARED+'?t='+Date.now(),{cache:'no-store'});if(x.ok)r=await x.json()}catch(e){}}
+  if(r&&typeof r==='object'&&!edit){P=Object.assign(P,r);ensureP();if(['rozpocet','plan','vybava'].includes(view))refresh()}
 }
 async function saveAll(){
   if(!edit||saving)return;
@@ -725,13 +737,14 @@ async function saveAll(){
   try{
     if(dirty.pub){await ghWrite(GH.repo,GH.file,pubOut(),'Aktualizace trasy');dirty.pub=false;LS.set('cache_state',pubOut())}
     if(dirty.priv&&GH.pr){await ghWrite(GH.pr,'private.json',P,'Aktualizace soukromých dat');dirty.priv=false}
+    if(dirty.shr){const o=sharedOut();await ghWrite(GH.repo,SHARED,o,'Aktualizace rozpočtu a plánu');dirty.shr=false;LS.set('shr_last',JSON.stringify(o))}
     fabMsg='Uloženo ✔'
   }catch(e){fabMsg='Selhalo ('+e.message+') – zkontroluj token a repozitář'}
   saving=false;fab();
 }
 function enableEdit(){
   if(!TOKEN||!GH.owner||!GH.repo)return;
-  edit=true;refresh();loadPrivate();
+  edit=true;refresh();loadPrivate();checkShared();
 }
 
 /* ================= FOTKY ================= */
@@ -1052,7 +1065,7 @@ function vFoto(){
 }
 
 /* ================= NAVIGACE ================= */
-const VIEWS=[['home','Přehled'],['trasa','Trasa'],['osa','Časová osa'],['foto','Fotodeník'],['zeme','Země'],['pocasi','Počasí'],['zpravy','Zprávy'],['rozpocet','Rozpočet',1],['plan','Plán',1],['vybava','Výbava',1],['nast','Nastavení']];
+const VIEWS=[['home','Přehled'],['trasa','Trasa'],['osa','Časová osa'],['foto','Fotodeník'],['zeme','Země'],['pocasi','Počasí'],['zpravy','Zprávy'],['rozpocet','Rozpočet'],['plan','Plán'],['vybava','Výbava'],['nast','Nastavení']];
 const viewOk=k=>VIEWS.some(v=>v[0]===k&&(!v[2]||edit));
 function go(v){
   if(!viewOk(v))v='home';
@@ -1081,7 +1094,7 @@ function setAmb(){
 }
 function fab(){
   const b=$('fab');b.classList.toggle('hide',!edit);
-  const d=dirty.pub||dirty.priv;
+  const d=dirty.pub||dirty.priv||dirty.shr;
   b.disabled=!d||saving;
   b.textContent=fabMsg||(d?'Uložit a zveřejnit':'Vše uloženo');
 }
@@ -1105,7 +1118,7 @@ function vHome(){
   const firstD=st.map(s=>s.a).find(Boolean),lastD=[...st].reverse().map(s=>s.o||s.a).find(Boolean);
   const days=firstD&&firstD<=todayISO()?diffDays(firstD,todayISO())+1:null,pct=tot?Math.round(done/tot*100):0;
   const al=activeNews().filter(i=>i.country===cur.c&&(i.severity==='nebezpeci'||i.severity==='pozor')).slice(0,2);
-  const tiles=[['trasa','Trasa','Mapa, pořadí, deník'],['osa','Časová osa','Dny a kalendář'],['foto','Fotodeník','Fotky z cesty'],['zeme','Země','Historie a tipy'],['pocasi','Počasí','Předpověď a klima'],['zpravy','Zprávy','Aktuální upozornění'],['rozpocet','Rozpočet','Výdaje a grafy',1],['plan','Plán','Úkoly, rezervace',1],['vybava','Výbava','Balení a váha',1]].filter(t=>!t[3]||edit);
+  const tiles=[['trasa','Trasa','Mapa, pořadí, deník'],['osa','Časová osa','Dny a kalendář'],['foto','Fotodeník','Fotky z cesty'],['zeme','Země','Historie a tipy'],['pocasi','Počasí','Předpověď a klima'],['zpravy','Zprávy','Aktuální upozornění'],['rozpocet','Rozpočet','Výdaje a grafy'],['plan','Plán','Úkoly, rezervace'],['vybava','Výbava','Balení a váha']];
   const ev=nextEvents(4);
   let extra='';
   if(edit){
@@ -1388,19 +1401,19 @@ function vRozpocet(){
   const kat=group('cat'),byDate={};ex.forEach(e=>{byDate[e.date]=(byDate[e.date]||0)+conv(e)});
   let run=0;const cum=Object.keys(byDate).sort().map(d=>[d,run+=byDate[d]]);
   const body=bTab==='zeme'?bars(group('country'),true):bTab==='kat'?(kat.length?`<div class="row" style="gap:18px;align-items:center">${donut(kat,spent)}<div style="flex:1;min-width:160px">${kat.map(([k,v],i)=>`<div class="row" style="justify-content:space-between;font-size:.86rem;margin:4px 0"><span><i class="dot" style="background:${PAL[i%PAL.length]}"></i>${esc(k)}</span><b class="mono">${czk(v)}</b></div>`).join('')}</div></div>`:'<p class="note">Zatím žádné výdaje.</p>'):
-   (list.length?list.map(e=>`<div class="item"><div class="t"><b>${esc(e.note||e.cat)}</b><br><small>${fd(e.date)} · ${esc(e.country)} · ${esc(e.cat)}</small></div><div style="text-align:right"><b class="mono">${e.amt.toLocaleString('cs-CZ')} ${esc(e.cur)}</b>${e.cur!=='CZK'?`<br><small>≈ ${czk(conv(e))}</small>`:''}</div><button class="x" data-act="expdel" data-id="${e.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Zatím žádné výdaje.</p>');
+   (list.length?list.map(e=>`<div class="item"><div class="t"><b>${esc(e.note||e.cat)}</b><br><small>${fd(e.date)} · ${esc(e.country)} · ${esc(e.cat)}</small></div><div style="text-align:right"><b class="mono">${e.amt.toLocaleString('cs-CZ')} ${esc(e.cur)}</b>${e.cur!=='CZK'?`<br><small>≈ ${czk(conv(e))}</small>`:''}</div>${edit?`<button class="x" data-act="expdel" data-id="${e.id}" aria-label="Smazat">${ico('x',16)}</button>`:''}</div>`).join(''):'<p class="note">Zatím žádné výdaje.</p>');
   $('v-rozpocet').innerHTML=pageHead('Rozpočet','Výdaje na cestě v přepočtu na Kč')+
    `<div class="card"><h3>Celkem utraceno</h3><div class="mono" style="font-size:2rem;font-weight:600;color:var(--acc)">${czk(spent)}</div>
-    ${lim?`<div class="prog ${spent>lim?'bad':spent>lim*.85?'warn':''}" style="margin:10px 0 6px"><i style="width:${Math.min(100,spent/lim*100)}%"></i></div><div class="lab">z ${czk(lim)} · zbývá ${czk(lim-spent)} · ${Math.round(spent/lim*100)} %</div>`:'<p class="note">Nastav celkový rozpočet níže.</p>'}
-    <div class="row" style="margin-top:12px"><input id="blim" type="number" min="0" class="grow" placeholder="Celkový rozpočet (Kč)" value="${lim||''}"><button class="btn sm" data-act="blim">Uložit</button></div></div>
+    ${lim?`<div class="prog ${spent>lim?'bad':spent>lim*.85?'warn':''}" style="margin:10px 0 6px"><i style="width:${Math.min(100,spent/lim*100)}%"></i></div><div class="lab">z ${czk(lim)} · zbývá ${czk(lim-spent)} · ${Math.round(spent/lim*100)} %</div>`:edit?'<p class="note">Nastav celkový rozpočet níže.</p>':''}
+    ${edit?`<div class="row" style="margin-top:12px"><input id="blim" type="number" min="0" class="grow" placeholder="Celkový rozpočet (Kč)" value="${lim||''}"><button class="btn sm" data-act="blim">Uložit</button></div>`:''}</div>
    ${cum.length?`<div class="card"><h3>Vývoj výdajů</h3>${areaChart(cum,lim)}</div>`:''}
    <div class="card">${seg([['zeme','Po zemích'],['kat','Kategorie'],['seznam','Výdaje']],bTab,'btab')}${body}</div>
-   <div class="card"><h3>Přidat výdaj</h3><div class="form">
+   ${edit?`<div class="card"><h3>Přidat výdaj</h3><div class="form">
     <div class="row"><div class="grow"><label class="l">Datum</label><input id="ed" type="date" value="${todayISO()}"></div><div class="grow"><label class="l">Země</label><select id="ec" data-chg="ecsel">${countries.map(c=>`<option${c===cc?' selected':''}>${esc(c)}</option>`).join('')}<option>Ostatní</option></select></div></div>
     <div class="row"><div class="grow"><label class="l">Kategorie</label><select id="ek">${CATS.map(c=>`<option>${c}</option>`).join('')}</select></div><div class="grow"><label class="l">Částka</label><input id="ea" type="number" step="0.01" min="0"></div><div class="grow"><label class="l">Měna</label><select id="ecu">${CUR.map(([c])=>`<option${c===(CCUR[cc]||'CZK')?' selected':''}>${c}</option>`).join('')}</select></div></div>
     <label class="l">Poznámka</label><input id="en" placeholder="např. večeře, autobus…">
     <div class="row" style="margin-top:10px"><button class="btn pri" data-act="expadd">Přidat výdaj</button></div></div>
-    <p class="note" style="margin:10px 0 0">Kurzy upravíš v Nastavení. Data jsou soukromá (neukládají se do veřejné stránky).</p></div>`;
+    <p class="note" style="margin:10px 0 0">Kurzy upravíš v Nastavení. Výdaje vidí po uložení i návštěvníci stránky (jen ke čtení).</p></div>`:''}`;
 }
 
 /* ================= PLÁN ================= */
@@ -1408,22 +1421,23 @@ let pTab='ukoly',bFil='Vše';
 const BK=['Doprava','Ubytování','Vstupenky'];
 function vPlan(){
   let body='';
+  if(!edit&&pTab==='kont')pTab='ukoly';  /* kontakty a doklady jsou jen pro majitele */
   if(pTab==='ukoly'){
     const tk=[...P.tasks].sort((a,b)=>(a.done-b.done)||(a.due||'9').localeCompare(b.due||'9'));
-    body=`<div class="card"><h3>Úkoly před cestou</h3>${tk.length?tk.map(t=>`<div class="item${t.done?' ck':''}"><input type="checkbox" data-chg="tasktog" data-id="${t.id}"${t.done?' checked':''}><div class="t">${esc(t.t)}<br><small${!t.done&&t.due&&t.due<todayISO()?' style="color:var(--bad)"':''}>${t.due?fd(t.due):'bez termínu'}</small></div><button class="x" data-act="taskdel" data-id="${t.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Zatím žádné úkoly.</p>'}</div>
-    <div class="card"><h3>Nový úkol</h3><div class="row"><input id="tt" class="grow" placeholder="Např. Koupit pojištění"><input id="td" type="date" style="width:auto"><button class="btn pri" data-act="taskadd">Přidat</button></div></div>`;
+    body=`<div class="card"><h3>Úkoly před cestou</h3>${tk.length?tk.map(t=>`<div class="item${t.done?' ck':''}"><input type="checkbox" data-chg="tasktog" data-id="${t.id}"${t.done?' checked':''}${edit?'':' disabled'}><div class="t">${esc(t.t)}<br><small${!t.done&&t.due&&t.due<todayISO()?' style="color:var(--bad)"':''}>${t.due?fd(t.due):'bez termínu'}</small></div>${edit?`<button class="x" data-act="taskdel" data-id="${t.id}" aria-label="Smazat">${ico('x',16)}</button>`:''}</div>`).join(''):'<p class="note">Zatím žádné úkoly.</p>'}</div>
+    ${edit?`<div class="card"><h3>Nový úkol</h3><div class="row"><input id="tt" class="grow" placeholder="Např. Koupit pojištění"><input id="td" type="date" style="width:auto"><button class="btn pri" data-act="taskadd">Přidat</button></div></div>`:''}`;
   }else if(pTab==='rez'){
     const l=P.bookings.filter(b=>bFil==='Vše'||b.type===bFil).sort((a,b)=>(a.date||'9').localeCompare(b.date||'9'));
     body=`<div class="chips">${['Vše',...BK].map(k=>`<button class="chip${k===bFil?' on':''}" data-act="bfil" data-k="${k}">${k}</button>`).join('')}</div>`+
-     (l.length?l.map(b=>`<div class="card" style="margin-bottom:12px"><div class="row" style="justify-content:space-between"><b>${esc(b.title)}</b><button class="tag ${b.status==='Potvrzeno'?'ok':'wait'}" style="border:0" data-act="bkst" data-id="${b.id}">${esc(b.status||'Čeká')}</button></div><div class="lab" style="margin-top:4px">${esc(b.type)}${b.date?' · '+fd(b.date):''}${b.ref?' · č. '+esc(b.ref):''}</div>${b.note?`<p style="margin:6px 0 0">${esc(b.note)}</p>`:''}<div class="row" style="margin-top:8px"><button class="btn sm bad" data-act="bkdel" data-id="${b.id}">Smazat</button></div></div>`).join(''):'<div class="card"><p class="note" style="margin:0">Zatím žádné rezervace.</p></div>')+
-     `<div class="card"><h3>Nová rezervace</h3><div class="form"><div class="row"><div class="grow"><label class="l">Typ</label><select id="bt">${BK.map(k=>`<option>${k}</option>`).join('')}</select></div><div class="grow"><label class="l">Datum</label><input id="bd" type="date"></div></div>
+     (l.length?l.map(b=>`<div class="card" style="margin-bottom:12px"><div class="row" style="justify-content:space-between"><b>${esc(b.title)}</b>${edit?`<button class="tag ${b.status==='Potvrzeno'?'ok':'wait'}" style="border:0" data-act="bkst" data-id="${b.id}">${esc(b.status||'Čeká')}</button>`:`<span class="tag ${b.status==='Potvrzeno'?'ok':'wait'}">${esc(b.status||'Čeká')}</span>`}</div><div class="lab" style="margin-top:4px">${esc(b.type)}${b.date?' · '+fd(b.date):''}${edit&&b.ref?' · č. '+esc(b.ref):''}</div>${b.note?`<p style="margin:6px 0 0">${esc(b.note)}</p>`:''}${edit?`<div class="row" style="margin-top:8px"><button class="btn sm bad" data-act="bkdel" data-id="${b.id}">Smazat</button></div>`:''}</div>`).join(''):'<div class="card"><p class="note" style="margin:0">Zatím žádné rezervace.</p></div>')+
+     (edit?`<div class="card"><h3>Nová rezervace</h3><div class="form"><div class="row"><div class="grow"><label class="l">Typ</label><select id="bt">${BK.map(k=>`<option>${k}</option>`).join('')}</select></div><div class="grow"><label class="l">Datum</label><input id="bd" type="date"></div></div>
      <label class="l">Název</label><input id="bn" placeholder="např. Let Cancún → Guatemala"><div class="row"><div class="grow"><label class="l">Číslo rezervace</label><input id="br"></div><div class="grow"><label class="l">Stav</label><select id="bs"><option>Čeká</option><option>Potvrzeno</option></select></div></div>
-     <label class="l">Poznámka</label><input id="bo"><div class="row" style="margin-top:10px"><button class="btn pri" data-act="bkadd">Přidat</button></div></div></div>`;
+     <label class="l">Poznámka</label><input id="bo"><div class="row" style="margin-top:10px"><button class="btn pri" data-act="bkadd">Přidat</button></div></div><p class="note" style="margin:10px 0 0">Číslo rezervace vidíš jen ty, návštěvníkům se nezobrazí.</p></div>`:'');
   }else{
-    body=`<div class="card"><h3>Kontakty a doklady</h3><p class="note">Soukromé poznámky: čísla pojištění, kontakty na velvyslanectví apod.</p>${P.notes.length?P.notes.map(n=>`<div class="item"><div class="t"><b>${esc(n.t)}</b><br><small style="white-space:pre-wrap">${esc(n.x)}</small></div><button class="x" data-act="notedel" data-id="${n.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Zatím nic.</p>'}</div>
+    body=`<div class="card"><h3>Kontakty a doklady</h3><p class="note">Soukromé poznámky: čísla pojištění, kontakty na velvyslanectví apod. Návštěvníci stránky je nevidí.</p>${P.notes.length?P.notes.map(n=>`<div class="item"><div class="t"><b>${esc(n.t)}</b><br><small style="white-space:pre-wrap">${esc(n.x)}</small></div><button class="x" data-act="notedel" data-id="${n.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Zatím nic.</p>'}</div>
      <div class="card"><h3>Nová poznámka</h3><div class="form"><input id="nt" placeholder="Název (např. Pojišťovna)"><textarea id="nx" rows="3" placeholder="Text…"></textarea><div class="row" style="margin-top:8px"><button class="btn pri" data-act="noteadd">Přidat</button></div></div></div>`;
   }
-  $('v-plan').innerHTML=pageHead('Plán a rezervace','Úkoly, rezervace a důležité kontakty (soukromé)')+seg([['ukoly','Úkoly'],['rez','Rezervace'],['kont','Kontakty']],pTab,'ptab')+body;
+  $('v-plan').innerHTML=pageHead('Plán a rezervace',edit?'Úkoly, rezervace a důležité kontakty':'Úkoly a rezervace')+seg([['ukoly','Úkoly'],['rez','Rezervace'],...(edit?[['kont','Kontakty']]:[])],pTab,'ptab')+body;
 }
 
 /* ================= VÝBAVA ================= */
@@ -1432,20 +1446,20 @@ function vVybava(){
   const kg=g=>(g/1000).toLocaleString('cs-CZ',{maximumFractionDigits:1});
   P.pack.forEach(k=>k.items.forEach(i=>{tot+=i.q*i.w;all++;if(i.c)packed++}));
   const lim=+P.limit||0,cats=P.pack.map(k=>[k.name,k.items.reduce((a,i)=>a+i.q*i.w,0)]).filter(x=>x[1]>0);
-  $('v-vybava').innerHTML=pageHead('Výbava','Co sbalit a kolik to váží (soukromé)')+
+  $('v-vybava').innerHTML=pageHead('Výbava','Co sbalit a kolik to váží')+
    `<div class="card"><h3>Celková hmotnost (odhad)</h3><div class="mono" style="font-size:1.9rem;font-weight:600;color:var(--acc)">${kg(tot)} kg${lim?` <small style="font-size:.95rem;color:var(--mut)">/ ${lim} kg</small>`:''}</div>
     ${lim?`<div class="prog ${tot/1000>lim?'bad':tot/1000>lim*.85?'warn':''}" style="margin:8px 0"><i style="width:${Math.min(100,tot/10/lim)}%"></i></div>`:''}
     <div class="lab">Sbaleno ${packed} z ${all} věcí</div>
     ${cats.length?`<div style="margin-top:12px">${cats.map(([n,w])=>`<div class="bar"><span>${esc(n)}</span><div class="w"><i style="width:${tot?Math.round(w/tot*100):0}%"></i></div><b class="mono" style="font-size:.8rem">${kg(w)} kg</b><em>${tot?Math.round(w/tot*100):0} %</em></div>`).join('')}</div>`:''}
-    <div class="row" style="margin-top:12px"><input id="vlim" type="number" min="0" step="0.5" class="grow" placeholder="Limit (kg)" value="${lim||''}"><button class="btn sm" data-act="vlim">Nastavit limit</button></div></div>`+
+    ${edit?`<div class="row" style="margin-top:12px"><input id="vlim" type="number" min="0" step="0.5" class="grow" placeholder="Limit (kg)" value="${lim||''}"><button class="btn sm" data-act="vlim">Nastavit limit</button></div>`:''}</div>`+
    P.pack.map(k=>{const w=k.items.reduce((a,i)=>a+i.q*i.w,0),pk=k.items.filter(i=>i.c).length;
     return `<div class="card"><div class="row" style="justify-content:space-between"><h3 style="margin:0">${esc(k.name)}</h3><span class="lab">${pk}/${k.items.length} · ${kg(w)} kg</span></div>
-    ${k.items.length?k.items.map(i=>`<div class="item${i.c?' ck':''}"><input type="checkbox" data-chg="itemtog" data-k="${k.id}" data-i="${i.id}"${i.c?' checked':''}><div class="t">${esc(i.t)}<br><small>${i.q}× · ${i.w} g</small></div><button class="x" data-act="itemdel" data-k="${k.id}" data-i="${i.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Prázdná kategorie.</p>'}
-    <div class="row" style="margin-top:8px"><button class="btn sm bad" data-act="catdel" data-k="${k.id}">Smazat kategorii</button></div></div>`}).join('')+
-   `<div class="card"><h3>Přidat věc</h3><div class="form"><label class="l">Název</label><input id="vn" placeholder="např. Pláštěnka">
+    ${k.items.length?k.items.map(i=>`<div class="item${i.c?' ck':''}"><input type="checkbox" data-chg="itemtog" data-k="${k.id}" data-i="${i.id}"${i.c?' checked':''}${edit?'':' disabled'}><div class="t">${esc(i.t)}<br><small>${i.q}× · ${i.w} g</small></div>${edit?`<button class="x" data-act="itemdel" data-k="${k.id}" data-i="${i.id}" aria-label="Smazat">${ico('x',16)}</button>`:''}</div>`).join(''):'<p class="note">Prázdná kategorie.</p>'}
+    ${edit?`<div class="row" style="margin-top:8px"><button class="btn sm bad" data-act="catdel" data-k="${k.id}">Smazat kategorii</button></div>`:''}</div>`}).join('')+
+   (edit?`<div class="card"><h3>Přidat věc</h3><div class="form"><label class="l">Název</label><input id="vn" placeholder="např. Pláštěnka">
     <div class="row"><div class="grow"><label class="l">Kategorie</label><select id="vc">${P.pack.map(k=>`<option value="${k.id}">${esc(k.name)}</option>`).join('')}</select></div><div class="grow"><label class="l">Počet</label><input id="vq" type="number" min="1" value="1"></div><div class="grow"><label class="l">Váha 1 ks (g)</label><input id="vw" type="number" min="0" value="0"></div></div>
     <div class="row" style="margin-top:10px"><button class="btn pri" data-act="itemadd">Přidat věc</button></div></div></div>
-   <div class="card"><h3>Nová kategorie</h3><div class="row"><input id="vk" class="grow" placeholder="např. Léky"><button class="btn pri" data-act="catadd">Přidat</button></div></div>`;
+   <div class="card"><h3>Nová kategorie</h3><div class="row"><input id="vk" class="grow" placeholder="např. Léky"><button class="btn pri" data-act="catadd">Přidat</button></div></div>`:'');
 }
 
 /* ================= NASTAVENÍ ================= */
@@ -1456,7 +1470,7 @@ function vNast(){
     <label class="l">Soukromý repozitář pro rozpočet, rezervace a výbavu (volitelné)</label><input id="ghp" value="${esc(GH.pr||'')}" placeholder="např. cesta-soukrome">
     <label class="l">Přístupový token</label><input id="ght" type="password" autocomplete="off" placeholder="${TOKEN?'(uložen v tomto prohlížeči)':'github_pat_…'}">
     <div class="row" style="margin-top:10px"><button class="btn pri" data-act="admsave">Uložit</button><button class="btn" data-act="admout">Odhlásit</button></div></div>
-    <p class="note" style="margin:10px 0 0">Bez soukromého repozitáře se rozpočet, úkoly, rezervace a výbava ukládají jen v tomto prohlížeči. Do veřejného repozitáře je nedávej.</p></div>
+    <p class="note" style="margin:10px 0 0">Soukromý repozitář slouží jako úplná záloha (včetně kontaktů a čísel rezervací); bez něj je úplná verze jen v tomto prohlížeči. Návštěvníci vidí rozpočet, úkoly, rezervace a výbavu jen ke čtení – kontakty a čísla rezervací se nezveřejňují.</p></div>
    ${edit?`<div class="card"><h3>Kurzy měn (Kč za 1 jednotku)</h3><p class="note">Orientační hodnoty – uprav nebo stáhni aktuální.</p><div class="row">${CUR.filter(c=>c[0]!=='CZK').map(([c])=>`<div style="width:92px"><label class="l">${c}</label><input id="rt_${c}" type="number" step="0.0001" value="${rate(c)}"></div>`).join('')}</div>
     <div class="row" style="margin-top:10px"><button class="btn pri" data-act="ratesave">Uložit kurzy</button><button class="btn" data-act="ratefetch">Stáhnout aktuální</button></div></div>
    <div class="card"><h3>Záloha dat</h3><div class="row"><button class="btn" data-act="export">Exportovat</button><label class="btn" style="cursor:pointer">Importovat<input type="file" accept="application/json" data-chg="import" style="display:none"></label></div></div>`:''}
@@ -1596,8 +1610,8 @@ document.addEventListener('change',e=>{const t=e.target.closest('[data-chg]');if
 (function init(){
   if(TOKEN&&GH.owner&&GH.repo)edit=true;
   const h=location.hash.slice(1);if(viewOk(h))view=h;
-  refresh();loadPublic();loadNews();loadAutoPhotos();loadPrivate();
-  setInterval(()=>{if(!edit&&!dirty.pub)loadPublic();loadNews();loadAutoPhotos()},180000);
+  refresh();loadPublic();loadNews();loadAutoPhotos();loadPrivate();loadShared();checkShared();
+  setInterval(()=>{if(!edit&&!dirty.pub)loadPublic();loadNews();loadAutoPhotos();loadShared()},180000);
   if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 })();
 </script>
