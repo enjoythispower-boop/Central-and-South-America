@@ -486,7 +486,9 @@ const PHOTO_BY_STOP={'cancun':'cancun','tulum':'tulum','ciudad de mexico':'cdmx'
 const PHOTO_BY_COUNTRY={'Mexiko':'cdmx','Guatemala':'antigua','Kostarika':'sanjose','Kolumbie':'bogota','Ekvádor':'quito','Peru':'cusco','Bolívie':'lapaz','Chile':'santiago','Argentina':'buenosaires'};
 const PHOTO_CREDITS=[['Cancún','Cancún – Playa Gaviota Azul','CC BY-SA 4.0'],['Tulum','Martin Falbisoner','CC BY-SA 4.0'],['Ciudad de México','Plaza de la Constitución – Zócalo','CC BY-SA 4.0'],['Antigua','Santa Catalina Arch','CC BY-SA 2.0'],['San José','Teatro Nacional CRI','CC BY-SA 4.0'],['Bogotá','Bogotá Monserrate desde La Candelaria','CC BY-SA 3.0'],['Quito','Quito as from panecillo Basilica','CC BY-SA 3.0'],['Cusco','Catedral, Plaza de Armas, Cusco, DD 77','CC BY-SA 4.0'],['La Paz','La Paz, Bolivia, 2025-05, amanecer','CC BY-SA 4.0'],['Santiago','Santiago cerro san cristobal','CC BY-SA 4.0'],['Buenos Aires','Avenida 9 de Julio – Obelisco','Public domain']];
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
-const placePhoto=s=>{const k=PHOTO_BY_STOP[norm(s.n)]||PHOTO_BY_COUNTRY[s.c];return k?`photos/places/${k}.jpg`:''};
+/* fotky dalších míst dohledává fotky.py (GitHub Action) do photos/places/auto.json; fotka země se u zastávek nepoužívá, aby se neopakovala */
+let AUTOPH=LS.get('cache_autoph',{})||{};
+const placePhoto=s=>{const n=norm(s.n),k=PHOTO_BY_STOP[n],a=AUTOPH[n];return k?`photos/places/${k}.jpg`:a&&a.img?a.img:''};
 const countryPhoto=c=>PHOTO_BY_COUNTRY[c]?`photos/places/${PHOTO_BY_COUNTRY[c]}.jpg`:'';
 const tintOf=c=>{let h=0;for(const ch of String(c||''))h=(h*31+ch.charCodeAt(0))%7;return 'var(--p'+h+')'};
 const phImg=(src,alt='')=>src?`<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">`:'';
@@ -778,6 +780,11 @@ async function loadNews(){
   try{if(GH.owner&&GH.repo)n=await ghRead(GH.repo,'news.json',false)}catch(e){}
   if(!n){try{const r=await fetch('news.json?t='+Date.now(),{cache:'no-store'});if(r.ok)n=await r.json()}catch(e){}}
   if(n&&Array.isArray(n.items)){NEWS=n;LS.set('cache_news',n);if(view==='zpravy'||view==='home')refresh()}
+}
+async function loadAutoPhotos(){
+  let n=null;
+  try{const r=await fetch('photos/places/auto.json?t='+Date.now(),{cache:'no-store'});if(r.ok)n=await r.json()}catch(e){}
+  if(n&&typeof n==='object'&&JSON.stringify(n)!==JSON.stringify(AUTOPH)){AUTOPH=n;LS.set('cache_autoph',n);refresh()}
 }
 
 const NT={eq:['Zemětřesení','quake',3],tc:['Cyklón / bouře','cyclone',4],fl:['Záplavy','flood',4],vo:['Sopečná aktivita','volcano',4],wf:['Požár','fire',4],news:['Nepokoje a blokády','alert',5]};
@@ -1434,7 +1441,7 @@ function vNast(){
     <div class="row" style="margin-top:10px"><button class="btn pri" data-act="ratesave">Uložit kurzy</button><button class="btn" data-act="ratefetch">Stáhnout aktuální</button></div></div>
    <div class="card"><h3>Záloha dat</h3><div class="row"><button class="btn" data-act="export">Exportovat</button><label class="btn" style="cursor:pointer">Importovat<input type="file" accept="application/json" data-chg="import" style="display:none"></label></div></div>`:''}
    <div class="card"><h3>O stránce</h3><p class="note" style="margin:0">Cancún → Buenos Aires · glóbus a mapa se zeměmi, informace o zemích, předpověď (Open-Meteo), zprávy ze skriptu. Veřejná část (trasa, poloha, deník, místa, fotky, zprávy) je viditelná všem s odkazem.</p></div>
-   <div class="card"><h3>Fotografie měst</h3><p class="note">Fotky zastávek jsou z Wikimedia Commons (volné licence), uložené přímo v projektu. Vlastní fotky přidáš ve Fotodeníku.</p><ul style="margin:0;padding-left:20px;font-size:.88rem">${PHOTO_CREDITS.map(([c,a,l])=>`<li><b>${esc(c)}</b>: ${esc(a)}, ${esc(l)}</li>`).join('')}</ul></div>`;
+   <div class="card"><h3>Fotografie měst</h3><p class="note">Fotky zastávek jsou z Wikimedia Commons (volné licence), uložené přímo v projektu. Vlastní fotky přidáš ve Fotodeníku.</p><ul style="margin:0;padding-left:20px;font-size:.88rem">${PHOTO_CREDITS.map(([c,a,l])=>`<li><b>${esc(c)}</b>: ${esc(a)}, ${esc(l)}</li>`).join('')}${Object.values(AUTOPH).filter(a=>a&&a.img).map(a=>`<li><b>${esc(a.name)}</b>: <a href="${esc(a.page)}" target="_blank" rel="noopener">${esc(a.author)}</a>, ${esc(a.license)} <span class="note">(dohledáno automaticky)</span></li>`).join('')}</ul></div>`;
 }
 
 /* ================= UDÁLOSTI ================= */
@@ -1559,8 +1566,8 @@ document.addEventListener('change',e=>{const t=e.target.closest('[data-chg]');if
 (function init(){
   if(TOKEN&&GH.owner&&GH.repo)edit=true;
   const h=location.hash.slice(1);if(viewOk(h))view=h;
-  refresh();loadPublic();loadNews();loadPrivate();
-  setInterval(()=>{if(!edit&&!dirty.pub)loadPublic();loadNews()},180000);
+  refresh();loadPublic();loadNews();loadAutoPhotos();loadPrivate();
+  setInterval(()=>{if(!edit&&!dirty.pub)loadPublic();loadNews();loadAutoPhotos()},180000);
   if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 })();
 </script>
