@@ -140,7 +140,16 @@
    "text": "Testovačka 2"
   }
  ],
- "places": [],
+ "places": [
+  {
+   "id": "mzmv7a3",
+   "sid": "s1",
+   "type": "Zajímavost",
+   "name": "Yucatán: Chichén Itzá, cenotes, Tulum, Bacalar, Isla Holbox",
+   "note": "",
+   "url": ""
+  }
+ ],
  "photos": [
   {
    "id": "pl3cq9xmvjw9pl0",
@@ -148,6 +157,13 @@
    "date": "2026-10-22",
    "cap": "Test 123",
    "f": "photos/pl3cq9xmvjw9pl0.jpg"
+  },
+  {
+   "id": "pvao642mvjwahft",
+   "sid": "s1",
+   "date": "2026-10-22",
+   "cap": "",
+   "f": "photos/pvao642mvjwahft.jpg"
   }
  ]
 }
