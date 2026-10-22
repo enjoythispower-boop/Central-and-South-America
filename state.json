@@ -12,6 +12,15 @@
    "t": "Začátek cesty"
   },
   {
+   "id": "s2",
+   "n": "Tulum",
+   "c": "Mexiko",
+   "lat": 20.21,
+   "lon": -87.47,
+   "d": "",
+   "t": ""
+  },
+  {
    "n": "Merida",
    "c": "Mexiko",
    "a": "",
@@ -22,15 +31,6 @@
    "lat": 20.97,
    "lon": -89.62,
    "id": "sj7y4hn"
-  },
-  {
-   "id": "s2",
-   "n": "Tulum",
-   "c": "Mexiko",
-   "lat": 20.21,
-   "lon": -87.47,
-   "d": "",
-   "t": ""
   },
   {
    "id": "s3",
@@ -141,5 +141,13 @@
   }
  ],
  "places": [],
- "photos": []
+ "photos": [
+  {
+   "id": "pl3cq9xmvjw9pl0",
+   "sid": "s1",
+   "date": "2026-10-22",
+   "cap": "Test 123",
+   "f": "photos/pl3cq9xmvjw9pl0.jpg"
+  }
+ ]
 }
