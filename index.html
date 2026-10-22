@@ -798,6 +798,26 @@ function activeNews(){
   return (NEWS.items||[]).filter(i=>i&&i.title).map(i=>({...i,type:newsType(i)})).filter(i=>(i.expires||addDays(i.date||t,NT[newsType(i)][2]))>=t);
 }
 
+/* ================= POLOHA PODLE NÁZVU (Open-Meteo Geocoding) ================= */
+const ISO2={'Mexiko':'MX','Guatemala':'GT','Belize':'BZ','Salvador':'SV','Honduras':'HN','Nikaragua':'NI','Kostarika':'CR','Panama':'PA','Kolumbie':'CO','Ekvádor':'EC','Peru':'PE','Bolívie':'BO','Chile':'CL','Argentina':'AR','Paraguay':'PY','Uruguay':'UY','Brazílie':'BR'};
+/* přednost má přesný název; ze stejnojmenných obcí v zemi vyhraje blízká k bodu z mapy (do 500 km) a větší před malou vesnicí, jinak ta největší */
+async function geocode(name,country,near){
+  const cc=ISO2[country];
+  try{
+    const r=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=20&language=cs&format=json${cc?'&countryCode='+cc:''}`);
+    if(!r.ok)return null;
+    const res=((await r.json()).results||[]).filter(x=>!cc||x.country_code===cc);
+    if(!res.length)return null;
+    const exact=res.filter(x=>norm(x.name)===norm(name)),pool=exact.length?exact:res;
+    const towns=pool.filter(x=>/^PPL/.test(x.feature_code||'')),list=towns.length?towns:pool;
+    const dist=x=>near&&near.lat!=null?km(near,{lat:x.latitude,lon:x.longitude}):Infinity;
+    const score=x=>dist(x)-30*Math.log10((x.population||0)+10);
+    const close=list.filter(x=>dist(x)<=500).sort((a,b)=>score(a)-score(b));
+    const g=close[0]||list.slice().sort((a,b)=>(b.population||0)-(a.population||0))[0];
+    return {lat:+g.latitude.toFixed(2),lon:+g.longitude.toFixed(2),label:[g.name,g.admin1,g.country].filter(Boolean).join(', ')};
+  }catch(e){return null}
+}
+
 /* ================= POČASÍ (Open-Meteo) ================= */
 let WXC=LS.get('wxc',{})||{};
 async function fetchWx(s){
@@ -1216,7 +1236,7 @@ function initMap(){
     const p=toSvg(e.clientX,e.clientY),lon=+(p.x/6-118).toFixed(2),lat=+(33-p.y/6).toFixed(2);
     const gi=countryAt(lon,lat),cn=gi>=0?GEO[gi].n:'';
     if(mode==='add')form={kind:'new',d:{n:'',c:cn,a:'',o:'',t:'',tm:'',tt:'',lat,lon}};
-    else{const s=S.stops[idx(sel)];s.lat=lat;s.lon=lon;if(cn)s.c=cn;mark('pub')}
+    else{const s=S.stops[idx(sel)];s.lat=lat;s.lon=lon;s.pin='man';if(cn)s.c=cn;mark('pub')}
     mode=null;refresh();
   });
 }
@@ -1274,7 +1294,7 @@ function drawSide(){
   const s=S.stops.find(x=>x.id===sel)||S.stops[0],i=idx(s.id),ci=curIdx(),{tot}=routeKm();
   let h='';
   if(edit)h+=`<div class="row" style="margin-bottom:12px"><button class="btn pri" data-act="addmode">${ico('pin',16)}Přidat bod na mapě</button></div>`;
-  if(mode)h+=`<div class="hint">${mode==='add'?'Klepni do mapy, kam chceš přidat nový bod (vloží se za vybranou zastávku).':'Klepni do mapy na nové místo pro „'+esc(s.n)+'“.'} <button class="btn sm" data-act="cancelmode">Zrušit</button></div>`;
+  if(mode)h+=`<div class="hint">${mode==='add'?'Klepni do mapy přibližně tam, kde místo je – přesnou polohu dohledám podle názvu (vloží se za vybranou zastávku).':'Klepni do mapy na nové místo pro „'+esc(s.n)+'“.'} <button class="btn sm" data-act="cancelmode">Zrušit</button></div>`;
   if(form)h+=formHtml();
   h+=`<div class="sec-h"><h2>Zastávky</h2><span class="lab">${S.stops.length} zastávek · ~${Math.round(tot).toLocaleString('cs-CZ')} km</span></div><div class="rail srail" id="srail">${S.stops.map((p,n)=>stopCard(p,n,ci,'sel')).join('')}</div>`;
   h+=detailHtml(s,i,ci);
@@ -1482,10 +1502,20 @@ const ACT={
     sel=S.stops[Math.max(0,i-1)].id;if(idx(S.cur)<0){S.cur=sel;S.upd=Date.now()}mark('pub');refresh();
   },
   formno:()=>{form=null;refresh()},
-  formok:()=>{
-    const d=form.d;d.n=$('fn').value.trim()||'Bez názvu';d.c=$('fc').value.trim();d.a=$('fa').value;d.o=$('fo').value;d.t=$('ft').value.trim();d.tm=$('ftm').value;d.tt=$('ftt').value.trim();
-    if(form.kind==='new'){d.id='s'+uid();S.stops.splice(idx(sel)+1,0,d);sel=d.id}else Object.assign(S.stops[idx(d.id)],d);
-    form=null;mark('pub');refresh();
+  formok:async()=>{
+    if(!form||form.busy)return;
+    const f=form,d=f.d,old=f.kind==='edit'?S.stops[idx(d.id)]:null;d.n=$('fn').value.trim()||'Bez názvu';d.c=$('fc').value.trim();d.a=$('fa').value;d.o=$('fo').value;d.t=$('ft').value.trim();d.tm=$('ftm').value;d.tt=$('ftt').value.trim();
+    /* poloha podle názvu; ručně přesunutý bod se nepřepisuje, dokud se nezmění název nebo země */
+    let msg='';
+    if(!old||old.pin!=='man'||old.n!==d.n||old.c!==d.c){
+      f.busy=true;fabMsg='Hledám polohu…';fab();
+      const g=await geocode(d.n,d.c,d);f.busy=false;
+      if(form!==f)return;
+      if(g){d.lat=g.lat;d.lon=g.lon;d.pin=undefined;msg='Poloha: '+g.label+' – ulož a zveřejni'}
+      else msg='„'+d.n+'“ jsem nenašel – zůstává bod z mapy';
+    }
+    if(f.kind==='new'){d.id='s'+uid();S.stops.splice(idx(sel)+1,0,d);sel=d.id}else Object.assign(S.stops[idx(d.id)],d);
+    form=null;mark('pub');fabMsg=msg;refresh();fab();
   },
   diaryadd:()=>{const v=$('dtext').value.trim();if(!v)return;S.diary.push({id:'d'+uid(),sid:sel,date:todayISO(),text:v});mark('pub');refresh()},
   homediary:()=>{const v=$('hdtext').value.trim();if(!v)return;S.diary.push({id:'d'+uid(),sid:S.cur,date:todayISO(),text:v});mark('pub');fabMsg='Zápis přidán – ulož a zveřejni';refresh()},
