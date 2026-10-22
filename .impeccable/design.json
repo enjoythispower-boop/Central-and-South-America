@@ -1,0 +1,677 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T17:53:49.550Z",
+  "title": "Design System: Cancún → Buenos Aires",
+  "extensions": {
+    "colorMeta": {
+      "night-ground": {
+        "role": "neutral",
+        "displayName": "Night Ground",
+        "canonical": "#0C0A0E",
+        "tonalRamp": [
+          "#26202D",
+          "#42374D",
+          "#5E4F6E",
+          "#7A668F",
+          "#9685A8",
+          "#B3A6BF",
+          "#D1C9D9",
+          "#F2F0F4"
+        ]
+      },
+      "bone-text": {
+        "role": "neutral",
+        "displayName": "Bone Text",
+        "canonical": "#F7F2EF",
+        "tonalRamp": [
+          "#332319",
+          "#583D2C",
+          "#7E563F",
+          "#A37052",
+          "#B98E74",
+          "#CCAC99",
+          "#E0CDC2",
+          "#F7F1EE"
+        ]
+      },
+      "ash-muted": {
+        "role": "neutral",
+        "displayName": "Ash Muted",
+        "canonical": "#BCB1AE",
+        "tonalRamp": [
+          "#2A2423",
+          "#493F3C",
+          "#675955",
+          "#86746F",
+          "#A0918D",
+          "#BAAEAB",
+          "#D5CFCD",
+          "#F3F2F1"
+        ]
+      },
+      "smoke-muted": {
+        "role": "neutral",
+        "displayName": "Smoke Muted",
+        "canonical": "#91878A",
+        "tonalRamp": [
+          "#282526",
+          "#453F41",
+          "#625A5D",
+          "#807578",
+          "#9B9295",
+          "#B6AFB1",
+          "#D3CFD0",
+          "#F3F2F2"
+        ]
+      },
+      "peach-glow": {
+        "role": "secondary",
+        "displayName": "Peach Glow",
+        "canonical": "#FFB08F",
+        "tonalRamp": [
+          "#4D1700",
+          "#852700",
+          "#BD3800",
+          "#F54800",
+          "#FF6C2E",
+          "#FF9366",
+          "#FFBEA3",
+          "#FFEDE5"
+        ]
+      },
+      "rose-glow": {
+        "role": "secondary",
+        "displayName": "Rose Glow (ambient only)",
+        "canonical": "#E2789A",
+        "tonalRamp": [
+          "#3F0E1D",
+          "#6D1733",
+          "#9B2148",
+          "#CA2B5E",
+          "#DA537E",
+          "#E481A1",
+          "#EFB3C6",
+          "#FAEAEF"
+        ]
+      },
+      "ember-amber": {
+        "role": "secondary",
+        "displayName": "Ember Amber (ambient only)",
+        "canonical": "#B9694C",
+        "tonalRamp": [
+          "#371E16",
+          "#5F3525",
+          "#884B35",
+          "#B06145",
+          "#C48169",
+          "#D4A391",
+          "#E5C8BD",
+          "#F8F0ED"
+        ]
+      },
+      "grad-ember": {
+        "role": "primary",
+        "displayName": "Gradient Ember stop",
+        "canonical": "#FF9A5C",
+        "tonalRamp": [
+          "#4D1D00",
+          "#853200",
+          "#BD4800",
+          "#F55D00",
+          "#FF7D2E",
+          "#FFA066",
+          "#FFC6A3",
+          "#FFEFE5"
+        ]
+      },
+      "grad-fuchsia": {
+        "role": "primary",
+        "displayName": "Gradient Fuchsia stop",
+        "canonical": "#FF4F9A",
+        "tonalRamp": [
+          "#4D0021",
+          "#850039",
+          "#BD0050",
+          "#F50068",
+          "#FF2E87",
+          "#FF66A7",
+          "#FFA3CA",
+          "#FFE5F0"
+        ]
+      },
+      "now-pink": {
+        "role": "primary",
+        "displayName": "Now Pink",
+        "canonical": "#FF6A88",
+        "tonalRamp": [
+          "#4D000F",
+          "#85001B",
+          "#BD0026",
+          "#F50031",
+          "#FF2E58",
+          "#FF6685",
+          "#FFA3B6",
+          "#FFE5EB"
+        ]
+      },
+      "now-pink-text": {
+        "role": "primary",
+        "displayName": "Now Pink Text",
+        "canonical": "#FF9AAE",
+        "tonalRamp": [
+          "#4D000F",
+          "#85001A",
+          "#BD0025",
+          "#F50030",
+          "#FF2E57",
+          "#FF6684",
+          "#FFA3B5",
+          "#FFE5EB"
+        ]
+      },
+      "done-white": {
+        "role": "neutral",
+        "displayName": "Done White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#262626",
+          "#424242",
+          "#5E5E5E",
+          "#7A7A7A",
+          "#969696",
+          "#B3B3B3",
+          "#D1D1D1",
+          "#F2F2F2"
+        ]
+      },
+      "next-grey": {
+        "role": "neutral",
+        "displayName": "Next Grey",
+        "canonical": "#6E6569",
+        "tonalRamp": [
+          "#282526",
+          "#453F42",
+          "#625A5E",
+          "#80757A",
+          "#9B9296",
+          "#B6AFB2",
+          "#D3CFD1",
+          "#F3F2F2"
+        ]
+      },
+      "ok-mint": {
+        "role": "tertiary",
+        "displayName": "Ok Mint",
+        "canonical": "#7FDDB0",
+        "tonalRamp": [
+          "#103C27",
+          "#1C6944",
+          "#289561",
+          "#33C17D",
+          "#5AD399",
+          "#86DFB4",
+          "#B6ECD2",
+          "#EBFAF3"
+        ]
+      },
+      "warn-honey": {
+        "role": "tertiary",
+        "displayName": "Warn Honey",
+        "canonical": "#F6BE63",
+        "tonalRamp": [
+          "#482E04",
+          "#7D5007",
+          "#B2720A",
+          "#E7940D",
+          "#F4AD39",
+          "#F7C36E",
+          "#FADBA8",
+          "#FEF5E7"
+        ]
+      },
+      "bad-coral": {
+        "role": "tertiary",
+        "displayName": "Bad Coral",
+        "canonical": "#FF7272",
+        "tonalRamp": [
+          "#4D0000",
+          "#850000",
+          "#BD0000",
+          "#F50000",
+          "#FF2E2E",
+          "#FF6666",
+          "#FFA3A3",
+          "#FFE5E5"
+        ]
+      },
+      "cool-sky": {
+        "role": "tertiary",
+        "displayName": "Cool Sky",
+        "canonical": "#8EC5FF",
+        "tonalRamp": [
+          "#00254D",
+          "#004185",
+          "#005CBD",
+          "#0077F5",
+          "#2E94FF",
+          "#66B0FF",
+          "#A3D0FF",
+          "#E5F2FF"
+        ]
+      },
+      "peach-ink": {
+        "role": "neutral",
+        "displayName": "Peach Ink",
+        "canonical": "#1B0E0A",
+        "tonalRamp": [
+          "#381D15",
+          "#613224",
+          "#8A4733",
+          "#B35D42",
+          "#C67D66",
+          "#D6A08F",
+          "#E6C6BC",
+          "#F8EFEC"
+        ]
+      },
+      "glass-fill": {
+        "role": "neutral",
+        "displayName": "Glass Fill",
+        "canonical": "rgba(255,255,255,0.07)"
+      },
+      "glass-rim": {
+        "role": "neutral",
+        "displayName": "Glass Rim",
+        "canonical": "rgba(255,255,255,0.14)"
+      },
+      "glass-rim-strong": {
+        "role": "neutral",
+        "displayName": "Glass Rim Strong",
+        "canonical": "rgba(255,255,255,0.26)"
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgba(255,255,255,0.1)"
+      },
+      "map-sea": {
+        "role": "neutral",
+        "displayName": "Map Sea",
+        "canonical": "#0E0C11",
+        "tonalRamp": [
+          "#25202D",
+          "#40374E",
+          "#5B4E6F",
+          "#766590",
+          "#9384A8",
+          "#B0A5C0",
+          "#D0C9D9",
+          "#F2F0F4"
+        ]
+      },
+      "map-land": {
+        "role": "neutral",
+        "displayName": "Map Land",
+        "canonical": "#211C23",
+        "tonalRamp": [
+          "#28222B",
+          "#453B4A",
+          "#635469",
+          "#806D88",
+          "#9B8BA2",
+          "#B6AABB",
+          "#D3CCD6",
+          "#F3F1F4"
+        ]
+      },
+      "map-land-stroke": {
+        "role": "neutral",
+        "displayName": "Map Land Stroke",
+        "canonical": "#3D343E",
+        "tonalRamp": [
+          "#29232A",
+          "#473C48",
+          "#655667",
+          "#837085",
+          "#9E8DA0",
+          "#B8ACB9",
+          "#D4CDD5",
+          "#F3F1F3"
+        ]
+      },
+      "tint-0": {
+        "role": "country-tint",
+        "displayName": "Country tint 0",
+        "canonical": "#2B2328"
+      },
+      "tint-1": {
+        "role": "country-tint",
+        "displayName": "Country tint 1",
+        "canonical": "#22262F"
+      },
+      "tint-2": {
+        "role": "country-tint",
+        "displayName": "Country tint 2",
+        "canonical": "#2E2A20"
+      },
+      "tint-3": {
+        "role": "country-tint",
+        "displayName": "Country tint 3",
+        "canonical": "#30231F"
+      },
+      "tint-4": {
+        "role": "country-tint",
+        "displayName": "Country tint 4",
+        "canonical": "#28243A"
+      },
+      "tint-5": {
+        "role": "country-tint",
+        "displayName": "Country tint 5",
+        "canonical": "#33212A"
+      },
+      "tint-6": {
+        "role": "country-tint",
+        "displayName": "Country tint 6",
+        "canonical": "#25291F"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Current-stop city name and country hero name."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Screen title in the header row of every view."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings."
+      },
+      "title-sm": {
+        "displayName": "Title small",
+        "purpose": "Card headings; photo-card names and news headlines run slightly smaller."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text with tabular numerals; descriptions cap at 62ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, pills, metadata."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Current temperature readout."
+      }
+    },
+    "gradients": [
+      {
+        "name": "grad",
+        "value": "linear-gradient(120deg,#FF9A5C,#FF4F9A)",
+        "purpose": "Now, primary send/save, progress fills."
+      },
+      {
+        "name": "ambient-wash",
+        "value": "linear-gradient(160deg,#F4A98A 0%,#E2789A 55%,#B9694C 100%); mix-blend-mode:color; opacity:.42",
+        "purpose": "Colour grade over the blurred ambient photo."
+      },
+      {
+        "name": "ambient-glow",
+        "value": "radial-gradient(70% 45% at 12% 0%,rgba(255,170,130,.38),transparent 70%),radial-gradient(60% 50% at 100% 55%,rgba(226,120,154,.3),transparent 70%),linear-gradient(180deg,rgba(12,10,14,.25) 0%,rgba(12,10,14,.62) 55%,rgba(12,10,14,.9) 100%)",
+        "purpose": "Peach and rose glows plus the darkening toward the bottom."
+      },
+      {
+        "name": "ambient-photo-filter",
+        "value": "blur(64px) saturate(.85) sepia(.3) brightness(.66)",
+        "purpose": "Filter on the fixed current-stop photo (inset -12%, opacity .95)."
+      }
+    ],
+    "materials": [
+      {
+        "name": "glass-blur",
+        "value": "backdrop-filter: blur(22px) saturate(150%)",
+        "purpose": "Default frosted surface."
+      },
+      {
+        "name": "glass-blur-heavy",
+        "value": "backdrop-filter: blur(24px to 30px)",
+        "purpose": "Tab bar, route sheet, menu sheet, lightbox."
+      },
+      {
+        "name": "no-blur-fallback",
+        "value": "background: rgba(34,27,33,.94)",
+        "purpose": "Cards and route sheet where backdrop-filter is unsupported."
+      }
+    ],
+    "shadows": [
+      {
+        "name": "lift",
+        "value": "inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75)",
+        "purpose": "Glass cards, photo frames, photo cards."
+      },
+      {
+        "name": "icon-highlight",
+        "value": "inset 0 1px 0 rgba(255,255,255,.12)",
+        "purpose": "Circular glass icon buttons."
+      },
+      {
+        "name": "active-pill",
+        "value": "inset 0 1px 0 rgba(255,255,255,.2),0 6px 16px -10px rgba(0,0,0,.55)",
+        "purpose": "Selected chip or tab."
+      },
+      {
+        "name": "sheet",
+        "value": "0 -20px 40px -24px rgba(0,0,0,.8)",
+        "purpose": "Route sheet over the map."
+      },
+      {
+        "name": "floating",
+        "value": "0 24px 50px -16px rgba(0,0,0,.85)",
+        "purpose": "Menu sheet; the desktop dock uses 0 24px 50px -20px."
+      },
+      {
+        "name": "now-ring",
+        "value": "inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75),0 0 0 1px rgba(255,140,120,.35)",
+        "purpose": "Current stop photo card."
+      },
+      {
+        "name": "focus",
+        "value": "outline: 2px solid #FFB08F; outline-offset: 3px",
+        "purpose": "Keyboard focus everywhere."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.22,1,.36,1)",
+        "purpose": "All state transitions and entrances."
+      },
+      {
+        "name": "view-rise",
+        "value": "opacity 0 to 1, translateY(8px) to 0, .5s ease",
+        "purpose": "View entrance; .3s for the menu sheet."
+      },
+      {
+        "name": "ambient-crossfade",
+        "value": "opacity 1.2s ease",
+        "purpose": "Ambient photo change when the stop changes."
+      },
+      {
+        "name": "press",
+        "value": "scale(.97) buttons, .94 icon buttons, .92 send",
+        "purpose": "Press feedback."
+      },
+      {
+        "name": "card-lift",
+        "value": "translateY(-3px), .35s",
+        "purpose": "Photo card hover."
+      },
+      {
+        "name": "now-pulse",
+        "value": "pin halo radius 12 to 20 to 12, 2s loop",
+        "purpose": "Current map pin; disabled under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "country-hero-wide",
+        "value": "700px"
+      },
+      {
+        "name": "mobile-max",
+        "value": "860px"
+      },
+      {
+        "name": "desktop-dock",
+        "value": "861px"
+      },
+      {
+        "name": "two-column",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Glass Button",
+      "kind": "button",
+      "refersTo": "button-glass",
+      "description": "Default action: translucent glass pill.",
+      "html": "<button class=\"ds-btn\">Upravit</button>",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-btn{border:1px solid var(--rim);background:rgba(255,255,255,.08);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-radius:99px;padding:10px 18px;min-height:44px;font:500 .88rem/1 Figtree,system-ui,sans-serif;color:var(--tx);display:inline-flex;align-items:center;gap:8px;transition:background .2s,border-color .2s,transform .2s var(--ease)} .ds-btn:hover{background:rgba(255,255,255,.15);border-color:var(--rim2)} .ds-btn:active{transform:scale(.97)} .ds-btn:focus-visible{outline:2px solid var(--peach);outline-offset:3px}"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary text action: translucent peach-to-fuchsia tint with peach outline.",
+      "html": "<button class=\"ds-btn-pri\">Uložit</button>",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-btn-pri{border:1px solid rgba(255,170,140,.7);background:linear-gradient(120deg,rgba(255,154,92,.32),rgba(255,79,154,.26));-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-radius:99px;padding:10px 18px;min-height:44px;font:500 .88rem/1 Figtree,system-ui,sans-serif;color:#FFF1EA;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 22px -14px rgba(0,0,0,.6);transition:background .2s,transform .2s var(--ease)} .ds-btn-pri:hover{background:linear-gradient(120deg,rgba(255,154,92,.44),rgba(255,79,154,.36))} .ds-btn-pri:active{transform:scale(.97)} .ds-btn-pri:focus-visible{outline:2px solid var(--peach);outline-offset:3px}"
+    },
+    {
+      "name": "Composer with Send",
+      "kind": "input",
+      "refersTo": "button-send",
+      "description": "Diary composer: dark glass field with a gradient border and the full-gradient send circle.",
+      "html": "<div class=\"ds-comp\"><textarea placeholder=\"Co se dnes stalo?\"></textarea><div class=\"ds-cr\"><span class=\"ds-lab\">Deník</span><button class=\"ds-send\" aria-label=\"Odeslat\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 19V5M6 11l6-6 6 6\"/></svg></button></div></div>",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-comp{border-radius:var(--r-lg);padding:6px;border:1.5px solid transparent;background:linear-gradient(rgba(24,18,24,.82),rgba(24,18,24,.82)) padding-box,linear-gradient(120deg,rgba(255,154,92,.8),rgba(255,79,154,.7)) border-box;max-width:360px} .ds-comp textarea{width:100%;box-sizing:border-box;border:0;background:transparent;resize:none;padding:12px 12px 6px;min-height:52px;color:var(--tx);font:15px/1.5 Figtree,system-ui,sans-serif;caret-color:var(--peach);outline:none} .ds-comp textarea::placeholder{color:var(--mut2)} .ds-cr{display:flex;justify-content:space-between;align-items:center;padding:4px} .ds-lab{font-size:.78rem;font-weight:500;color:var(--mut)} .ds-send{width:42px;height:42px;border-radius:50%;border:0;background:var(--grad);color:#fff;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(0,0,0,.6);transition:transform .2s var(--ease)} .ds-send:active{transform:scale(.92)} .ds-send:focus-visible{outline:2px solid var(--peach);outline-offset:3px}"
+    },
+    {
+      "name": "Glass Icon Button",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "Header circle button with optional Now Pink alert dot.",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-cbtn\" aria-label=\"Mapa\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 4L3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5z\"/><path d=\"M9 4v13M15 6.5v13\"/></svg></button><button class=\"ds-cbtn\" aria-label=\"Upozornění\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 16V11a6 6 0 0112 0v5l1.5 2h-15z\"/><path d=\"M10 20.5a2 2 0 004 0\"/></svg><i class=\"ds-bd\"></i></button></div>",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-cbtn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--rim);background:rgba(255,255,255,.08);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);color:var(--tx);box-shadow:inset 0 1px 0 rgba(255,255,255,.12);position:relative;padding:0;transition:background .25s,border-color .25s,transform .25s var(--ease)} .ds-cbtn:hover{background:rgba(255,255,255,.16);border-color:var(--rim2)} .ds-cbtn:active{transform:scale(.94)} .ds-cbtn:focus-visible{outline:2px solid var(--peach);outline-offset:3px} .ds-bd{position:absolute;top:9px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--now);box-shadow:0 0 0 2px #2a1f24}"
+    },
+    {
+      "name": "Pill Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Tabs and filters; the active pill glows peach.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip ds-on\">Vše</button><button class=\"ds-chip\">Mexiko</button><button class=\"ds-chip ds-cur\">Guatemala</button></div>",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-chips{display:flex;gap:8px} .ds-chip{display:inline-flex;gap:8px;align-items:center;padding:8px 16px;border:1px solid var(--rim);background:rgba(255,255,255,.07);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-radius:99px;font:500 .86rem/1 Figtree,system-ui,sans-serif;color:var(--tx);min-height:40px;transition:background .25s,border-color .25s,box-shadow .25s} .ds-chip:hover{background:rgba(255,255,255,.13)} .ds-chip:focus-visible{outline:2px solid var(--peach);outline-offset:3px} .ds-chip.ds-on{background:linear-gradient(120deg,rgba(255,154,92,.34),rgba(255,120,140,.2));border-color:rgba(255,176,143,.8);color:#FFF3EC;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 6px 16px -10px rgba(0,0,0,.55)} .ds-chip.ds-cur::after{content:\"\";width:7px;height:7px;border-radius:50%;background:var(--now)}"
+    },
+    {
+      "name": "Glass Card",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "Standard frosted panel with a gradient progress fill.",
+      "html": "<div class=\"ds-card\"><h3>Rozpočet</h3><p>Utraceno 1 240 USD z 3 000 USD.</p><div class=\"ds-prog\"><i style=\"width:41%\"></i></div></div>",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-card{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05));border:1px solid var(--rim);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:var(--lift);border-radius:var(--r-lg);padding:18px;max-width:340px;font-size:15px;line-height:1.5} .ds-card h3{margin:0 0 12px;font-size:1.06rem;font-weight:600;letter-spacing:-.015em} .ds-card p{margin:0 0 12px;color:var(--mut)} .ds-prog{height:4px;background:rgba(255,255,255,.12);border-radius:4px;overflow:hidden} .ds-prog i{display:block;height:100%;background:var(--grad)}"
+    },
+    {
+      "name": "Framed Photo Card",
+      "kind": "card",
+      "refersTo": "photo-card",
+      "description": "Rail stop card: photo in a 4px glass band with chips over the photo; shown in the current-stop state.",
+      "html": "<button class=\"ds-pc ds-now\"><span class=\"ds-pic\"></span><span class=\"ds-n\">8</span><span class=\"ds-st\">Teď tady</span><span class=\"ds-in\"><b>Antigua</b><small>12.–16. 11.</small></span></button>",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-pc{position:relative;width:168px;aspect-ratio:3/3.9;border-radius:26px;padding:4px;border:1px solid var(--rim);background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.06));color:#fff;text-align:left;box-shadow:var(--lift);transition:transform .35s var(--ease)} .ds-pc:hover{transform:translateY(-3px)} .ds-pc:focus-visible{outline:2px solid var(--peach);outline-offset:3px} .ds-pic{position:absolute;inset:4px;border-radius:22px;overflow:hidden;background:linear-gradient(to top,rgba(8,5,8,.82),rgba(8,5,8,0) 58%),linear-gradient(150deg,#C98A6A,#6A4152 60%,#2B2328)} .ds-n,.ds-st{position:absolute;top:11px;z-index:1;display:inline-flex;align-items:center;padding:4px 10px;border-radius:99px;background:rgba(20,14,18,.35);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);font:500 .74rem/1.2 Figtree,system-ui,sans-serif} .ds-n{left:11px} .ds-st{right:11px} .ds-now{border-color:rgba(255,176,143,.85);box-shadow:var(--lift),0 0 0 1px rgba(255,140,120,.35)} .ds-now .ds-st{background:var(--grad);border-color:transparent;color:var(--acc-tx)} .ds-in{position:absolute;left:14px;right:12px;bottom:12px;z-index:1} .ds-in b{display:block;font-size:1.02rem;font-weight:600;letter-spacing:-.01em} .ds-in small{font-size:.74rem;opacity:.86}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Glass input with peach focus halo.",
+      "html": "<label class=\"ds-l\">Město</label><input class=\"ds-input\" placeholder=\"Např. Oaxaca\">",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-l{display:block;font-size:.8rem;font-weight:500;color:var(--mut);margin:0 0 6px} .ds-input{width:280px;padding:12px 14px;border:1px solid var(--rim);border-radius:var(--r-md);background:rgba(255,255,255,.06);color:var(--tx);font:15px Figtree,system-ui,sans-serif;caret-color:var(--peach);transition:border-color .2s,background .2s} .ds-input::placeholder{color:var(--mut2)} .ds-input:focus{outline:none;border-color:rgba(255,176,143,.75);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,176,143,.16)}"
+    },
+    {
+      "name": "Bottom Tab Bar",
+      "kind": "nav",
+      "refersTo": "tab-bar",
+      "description": "Solid dark mobile tab bar; becomes a centred floating dock on desktop.",
+      "html": "<nav class=\"ds-bnav\"><button class=\"ds-on\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 11l9-8 9 8\"/><path d=\"M5 10v10h14V10\"/></svg><span>Přehled</span></button><button><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 4L3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5z\"/><path d=\"M9 4v13M15 6.5v13\"/></svg><span>Trasa</span></button><button><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3v18M7 8h10M7 16h10\"/></svg><span>Osa</span></button></nav>",
+      "css": ":host{--bg:#0C0A0E;--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;--peach:#FFB08F;--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);--line:rgba(255,255,255,.1);--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);--now:#FF6A88;--acc-tx:#1B0E0A;--blur:blur(22px) saturate(150%);--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);--r-xl:30px;--r-lg:24px;--r-md:18px;--ease:cubic-bezier(.22,1,.36,1);font-family:Figtree,system-ui,sans-serif;color:var(--tx)} .ds-bnav{display:flex;justify-content:space-around;gap:2px;padding:8px;width:340px;background:rgba(14,11,15,.86);-webkit-backdrop-filter:blur(24px) saturate(150%);backdrop-filter:blur(24px) saturate(150%);border-top:1px solid var(--line)} .ds-bnav button{flex:1;max-width:96px;background:none;border:0;color:var(--mut2);font:500 .72rem/1 Figtree,system-ui,sans-serif;padding:6px 2px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;border-radius:16px;transition:color .25s} .ds-bnav button:hover{color:var(--tx)} .ds-bnav button:focus-visible{outline:2px solid var(--peach);outline-offset:3px} .ds-bnav button.ds-on{color:#fff} .ds-bnav button.ds-on svg{stroke-width:2.2}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Inside the City's Light",
+    "overview": "The app lives inside the light of wherever the traveller is right now. The current stop's photograph is laid behind every screen, blurred past recognition (64px), graded toward peach, rose and amber, and darkened to near-black at the bottom; every control sits on top of it as frosted glass. Change the stop and the whole app's ambient light changes with it. The ground is never a flat colour and never a light page.\n\nDensity is phone-first and calm: one column of glass panels, generous pill controls at 40-46px, large semibold titles in sentence case, and photographs carried in thin glass frames rather than bled to the edge. Colour is almost entirely the photograph's; the interface itself is white text, translucent white glass and one warm gradient that marks the present moment. The route reads in three states only: white for where the traveller has been, pink for where they are, grey for what is ahead.\n\nThe world is dark only. The earlier light sage/pastel world and its theme switch are discarded and must not return as an alternate mode.",
+    "keyCharacteristics": [
+      "Fixed, heavily blurred, warm-graded photo of the current stop as the ground of every screen.",
+      "Frosted glass panels and circular glass icon buttons with a 1px white rim and an inner top highlight.",
+      "Photographs in a 4-5px glass frame; hero photos carry two stacked glass card edges behind them.",
+      "Pill tabs and chips; the active pill is a peach gradient tint with a peach outline.",
+      "One pink-orange gradient, spent on \"now\", the primary send/save action and progress fills.",
+      "Done = white, now = pink, next = grey, everywhere the route appears.",
+      "Figtree only, semibold titles, sentence case, Czech copy."
+    ],
+    "rules": [
+      {
+        "name": "The One Glow Rule",
+        "body": "The full-strength pink-orange gradient marks only the present moment (now), the primary send/save action and progress fills. Selected tabs and the primary text button use a translucent peach tint of it, never the solid gradient.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three States Rule",
+        "body": "Every representation of the route uses exactly three states: done is white, now is pink, next is grey. No other colour carries route progress.",
+        "section": "colors"
+      },
+      {
+        "name": "The Photo Is the Light Rule",
+        "body": "Warmth comes from the blurred photograph and its peach/rose/amber wash, not from coloured panels. Surfaces stay translucent white over it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "All interface text is Czech in sentence case. The only uppercase, letter-spaced text (0.06em) is country names drawn on the map, as cartographic labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Figtree is the only typeface. Hierarchy comes from size and the 600/500/400 weights, not from a second face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Frosted Not Shadowed Rule",
+        "body": "A surface earns its layer from blur, rim and inner highlight. Shadows are soft, negative-spread and below the element; never a hard offset, never a coloured glow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Nested Radius Rule",
+        "body": "An inner photo's corner radius is its frame's radius minus the frame's padding, so the band reads even all the way round.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do put the current stop's photo, blurred (64px) and warm-graded, behind every screen, fading to Night Ground (#0C0A0E) at the bottom.",
+      "Do build every surface from translucent white glass: 5-12% fill, 1px 14% rim, inner top highlight, 22px backdrop blur, with an opaque dark fallback where blur is unsupported.",
+      "Do frame every photograph in a 4-5px glass band and nest its radius (frame radius minus band).",
+      "Do mark selection on pills with the translucent peach gradient and peach outline.",
+      "Do keep route state to white (done), pink (now), grey (next) on map, timeline, legend and cards.",
+      "Do keep touch targets at 40px or more (44px for buttons, 46px icon buttons) and the 2px peach focus ring with 3px offset.",
+      "Do respect reduced motion: no view rise animation, no pin pulse, no hover lifts or press scaling."
+    ],
+    "donts": [
+      "Don't reintroduce a light theme or a theme switch; the world is dark only.",
+      "Don't use the full-strength pink-orange gradient for anything but now, the primary send/save action and progress fills.",
+      "Don't place opaque solid panels over the ambient photo, except the dark tab bar and the no-blur fallback.",
+      "Don't use hard offset shadows or coloured glows; depth is blur, rim and soft dark drop.",
+      "Don't add a second typeface or uppercase tracked labels in the interface; uppercase is reserved for country names on the map.",
+      "Don't bleed photographs edge to edge in content views; they sit in a glass frame (the full-screen map is not a photograph).",
+      "Don't bring back a side rail; navigation is the bottom tab bar on mobile and the centred dock on desktop."
+    ]
+  }
+}

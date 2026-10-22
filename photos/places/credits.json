@@ -1,0 +1,68 @@
+﻿{
+    "cancun":  {
+                   "file":  "Cancún - Playa Gaviota Azul - 08.jpg",
+                   "author":  "Own work",
+                   "license":  "CC BY-SA 4.0",
+                   "page":  "https://commons.wikimedia.org/wiki/File:Canc%C3%BAn_-_Playa_Gaviota_Azul_-_08.jpg"
+               },
+    "tulum":  {
+                  "file":  "Tulum - God of the Winds Temple 03.JPG",
+                  "author":  "Martin Falbisoner",
+                  "license":  "CC BY-SA 4.0",
+                  "page":  "https://commons.wikimedia.org/wiki/File:Tulum_-_God_of_the_Winds_Temple_03.JPG"
+              },
+    "cdmx":  {
+                 "file":  "Plaza de la Constitución - Zócalo de la Ciudad de México - 6.jpg",
+                 "author":  "ProtoplasmaKid ",
+                 "license":  "CC BY-SA 4.0",
+                 "page":  "https://commons.wikimedia.org/wiki/File:Plaza_de_la_Constituci%C3%B3n_-_Z%C3%B3calo_de_la_Ciudad_de_M%C3%A9xico_-_6.jpg"
+             },
+    "antigua":  {
+                    "file":  "Santa Catalina Arch - Antigua Guatemala Feb 2020.jpg",
+                    "author":  "Chad Davis",
+                    "license":  "CC BY-SA 2.0",
+                    "page":  "https://commons.wikimedia.org/wiki/File:Santa_Catalina_Arch_-_Antigua_Guatemala_Feb_2020.jpg"
+                },
+    "sanjose":  {
+                    "file":  "Teatro Nacional CRI 07 2019 8963.jpg",
+                    "author":  "Mariordo ((Mario Roberto Durán Ortiz)",
+                    "license":  "CC BY-SA 4.0",
+                    "page":  "https://commons.wikimedia.org/wiki/File:Teatro_Nacional_CRI_07_2019_8963.jpg"
+                },
+    "bogota":  {
+                   "file":  "Bogotá Monserrate desde La Candelaria.JPG",
+                   "author":  "Felipe Restrepo Acosta",
+                   "license":  "CC BY-SA 3.0",
+                   "page":  "https://commons.wikimedia.org/wiki/File:Bogot%C3%A1_Monserrate_desde_La_Candelaria.JPG"
+               },
+    "quito":  {
+                  "file":  "Quito as from panecillo Basilica.jpg",
+                  "author":  "Cayambe",
+                  "license":  "CC BY-SA 3.0",
+                  "page":  "https://commons.wikimedia.org/wiki/File:Quito_as_from_panecillo_Basilica.jpg"
+              },
+    "cusco":  {
+                  "file":  "Catedral, Plaza de Armas, Cusco, Perú, 2015-07-31, DD 77.JPG",
+                  "author":  "Diego Delso",
+                  "license":  "CC BY-SA 4.0",
+                  "page":  "https://commons.wikimedia.org/wiki/File:Catedral,_Plaza_de_Armas,_Cusco,_Per%C3%BA,_2015-07-31,_DD_77.JPG"
+              },
+    "lapaz":  {
+                  "file":  "La Paz, Bolivia, 2025-05, amanecer.jpg",
+                  "author":  "VassilPhoto",
+                  "license":  "CC BY-SA 4.0",
+                  "page":  "https://commons.wikimedia.org/wiki/File:La_Paz,_Bolivia,_2025-05,_amanecer.jpg"
+              },
+    "santiago":  {
+                     "file":  "Santiago cerro san cristobal.jpg",
+                     "author":  "Velvet",
+                     "license":  "CC BY-SA 4.0",
+                     "page":  "https://commons.wikimedia.org/wiki/File:Santiago_cerro_san_cristobal.jpg"
+                 },
+    "buenosaires":  {
+                        "file":  "Avenida 9 de Julio - Obelisco - Buenos Aires.jpg",
+                        "author":  "Alekino",
+                        "license":  "Public domain",
+                        "page":  "https://commons.wikimedia.org/wiki/File:Avenida_9_de_Julio_-_Obelisco_-_Buenos_Aires.jpg"
+                    }
+}

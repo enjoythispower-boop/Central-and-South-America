@@ -1,214 +1,380 @@
 <!DOCTYPE html>
-<html lang="cs" data-theme="dark">
+<html lang="cs">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0A0F15">
+<meta name="theme-color" content="#0C0A0E">
+<meta name="color-scheme" content="dark">
 <title>Cancún → Buenos Aires</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%230A0F15%22 stroke=%22%233DDCFF%22 stroke-width=%228%22/%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2212%22 fill=%22%23FFB347%22/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23FF9A5C%22/%3E%3Cstop offset=%221%22 stop-color=%22%23FF4F9A%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%22100%22 height=%22100%22 rx=%2230%22 fill=%22%230C0A0E%22/%3E%3Ccircle cx=%2250%22 cy=%2244%22 r=%2218%22 fill=%22url(%23g)%22/%3E%3Cpath d=%22M50 86 31 56h38z%22 fill=%22url(%23g)%22/%3E%3C/svg%3E">
 <style>
-:root{--bg:#0A0F15;--bg2:#0D141C;--panel:#101923;--panel2:#142030;--line:#1D2B3A;--tx:#E6F1FA;--mut:#8CA0B3;--acc:#3DDCFF;--acc2:#7C9CFF;--acc-tx:#04131A;--now:#FFB347;--done:#36D6A0;--next:#5A6B7D;--bad:#FF6B6B;--warn:#FFB347;--sea:#0A1722;--land:#17232F;--land-s:#2B3E52;--shadow:0 10px 30px rgba(0,0,0,.28)}
-:root[data-theme="light"]{--bg:#EDF2F6;--bg2:#E3EAF0;--panel:#FFFFFF;--panel2:#F8FBFD;--line:#D3DDE6;--tx:#0F1B27;--mut:#587084;--acc:#0A8FB5;--acc2:#4562D6;--acc-tx:#FFFFFF;--now:#C77700;--done:#1E9E73;--next:#8A98A6;--bad:#D63B3B;--warn:#C77700;--sea:#D8E8F2;--land:#EEE8D8;--land-s:#BDB08C;--shadow:0 8px 24px rgba(15,27,39,.08)}
+@font-face{font-family:'Figtree';font-style:normal;font-weight:400 800;font-display:swap;src:url(fonts/figtree-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Figtree';font-style:normal;font-weight:400 800;font-display:swap;src:url(fonts/figtree-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{color-scheme:dark;
+--bg:#0C0A0E;--bg2:rgba(255,255,255,.08);--panel:rgba(255,255,255,.07);--panel2:rgba(255,255,255,.05);--solid:#18141A;
+--line:rgba(255,255,255,.1);--rim:rgba(255,255,255,.14);--rim2:rgba(255,255,255,.26);
+--tx:#F7F2EF;--mut:#BCB1AE;--mut2:#91878A;
+--peach:#FFB08F;--rose:#E2789A;--grad:linear-gradient(120deg,#FF9A5C,#FF4F9A);
+--acc:#FFB08F;--acc-tx:#1B0E0A;--acc-soft:rgba(255,176,143,.16);--cool:#8EC5FF;
+--now:#FF6A88;--now-tx:#FF9AAE;--now-soft:rgba(255,106,136,.18);
+--done:#FFFFFF;--done-tx:#FFFFFF;--done-soft:rgba(255,255,255,.14);--next:#6E6569;
+--ok:#7FDDB0;--ok-soft:rgba(127,221,176,.16);
+--bad:#FF7272;--bad-soft:rgba(255,114,114,.16);--warn:#F6BE63;--warn-soft:rgba(246,190,99,.16);
+--sea:#0E0C11;--land:#211C23;--land-s:#3D343E;--pin-tx:#140B0E;
+--p0:#2B2328;--p1:#22262F;--p2:#2E2A20;--p3:#30231F;--p4:#28243A;--p5:#33212A;--p6:#25291F;
+--blur:blur(22px) saturate(150%);
+--lift:inset 0 1px 0 rgba(255,255,255,.1),0 22px 44px -24px rgba(0,0,0,.75);
+--r-xl:30px;--r-lg:24px;--r-md:18px;--r-sm:12px;
+--ease:cubic-bezier(.22,1,.36,1);--disp:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--ui:var(--disp)}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:radial-gradient(1100px 520px at 85% -10%,color-mix(in srgb,var(--acc) 10%,transparent),transparent 62%),var(--bg);color:var(--tx);font:15px/1.5 "Space Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 var(--ui);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;min-height:100vh}
+::selection{background:var(--peach);color:var(--acc-tx)}
 button{font:inherit;cursor:pointer;color:inherit}
-h1,h2,h3,h4{margin:0}
-a{color:var(--acc)}
-.mono,.lab{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
-.lab{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mut)}
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.015em;text-wrap:balance}
+a{color:var(--peach);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--peach);outline-offset:3px;border-radius:10px}
+.lab{font-size:.78rem;font-weight:500;color:var(--mut)}
+.mono{font-variant-numeric:tabular-nums}
 .hide{display:none!important}
 svg{flex:none}
-.app{display:grid;grid-template-columns:236px minmax(0,1fr);min-height:100vh}
-.side{background:var(--bg2);border-right:1px solid var(--line);color:var(--tx);padding:20px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px;overflow:auto}
-.brand{padding:4px 10px 18px;display:flex;gap:10px;align-items:center}
-.brand i{width:30px;height:30px;border-radius:9px;background:radial-gradient(circle at 50% 50%,var(--now) 0 22%,transparent 24%),var(--panel);border:2px solid var(--acc);flex:none}
-.brand b{display:block;font-size:.98rem;line-height:1.15}.brand small{color:var(--mut);font-size:.72rem}
-.nav{display:flex;flex-direction:column;gap:2px}
-.nav button{display:flex;gap:12px;align-items:center;width:100%;padding:10px 12px;border:0;background:none;border-radius:11px;text-align:left;color:var(--mut);position:relative;font-size:.92rem}
-.nav button:hover{background:color-mix(in srgb,var(--acc) 7%,transparent);color:var(--tx)}
-.nav button.on{background:color-mix(in srgb,var(--acc) 13%,transparent);color:var(--acc);font-weight:600}
-.nav button.on::before{content:"";position:absolute;left:-12px;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--acc)}
-.nav .sep{height:1px;background:var(--line);margin:8px 6px}
-.side .foot{margin-top:auto;padding:10px;font-size:.7rem;color:var(--mut)}
-.main{padding:22px 24px 120px;max-width:1180px;width:100%;margin:0 auto}
-.bnav{display:none;position:fixed;left:0;right:0;bottom:0;background:var(--bg2);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:30;justify-content:space-around;gap:2px}
-.bnav button{flex:1;background:none;border:0;color:var(--mut);font-size:.64rem;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:3px;border-radius:10px;letter-spacing:.02em}
-.bnav button.on{color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent)}
-.sheet{position:fixed;left:10px;right:10px;bottom:calc(72px + env(safe-area-inset-bottom,0px));background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:10px;z-index:31;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.sheet button{background:var(--bg2);border:0;border-radius:12px;padding:12px 4px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.78rem;color:var(--tx)}
-@media(max-width:860px){.app{display:block}.side{display:none}.bnav{display:flex}.main{padding:14px 12px 130px}}
-.view{display:none}.view.on{display:block;animation:fade .25s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-.card+.card,.card+.grid2,.grid2+.card,.grid2+.grid2,.card+.stamps{margin-top:16px}
-.card h3{font-size:.72rem;font-family:"JetBrains Mono",ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);margin-bottom:12px;font-weight:600}
-.grid2{display:grid;grid-template-columns:1fr;gap:16px}
-@media(min-width:900px){.grid2{grid-template-columns:1fr 1fr}.grid2.wide{grid-template-columns:1.25fr 1fr}.grid2.glob{grid-template-columns:1.15fr 1fr}}
-.pagehead{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin:2px 0 16px;flex-wrap:wrap}
-.pagehead h2{font-size:1.6rem;letter-spacing:-.01em}.pagehead small{color:var(--mut)}
-.note{font-size:.82rem;color:var(--mut);margin:0 0 12px}
-.pill{display:inline-flex;gap:6px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--acc);border:1px solid color-mix(in srgb,var(--acc) 40%,transparent);padding:3px 10px;border-radius:99px}
-.pill i{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc);animation:pulse 1.8s infinite}
-@keyframes pulse{50%{opacity:.35}}
-.flag{display:inline-block;border-radius:50%;border:2px solid var(--panel);box-shadow:0 0 0 1px var(--line);vertical-align:middle;flex:none}
-.btn{border:1px solid var(--line);background:color-mix(in srgb,var(--panel2) 80%,transparent);border-radius:11px;padding:9px 14px;font-weight:600;font-size:.86rem;color:var(--tx);display:inline-flex;align-items:center;gap:8px;text-decoration:none}
-.btn:hover{border-color:var(--acc);color:var(--acc)}
-.btn.pri{background:var(--acc);border-color:var(--acc);color:var(--acc-tx)}.btn.pri:hover{filter:brightness(1.1);color:var(--acc-tx)}
-.btn.sm{padding:6px 10px;font-size:.78rem;border-radius:9px}
-.btn.bad{color:var(--bad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+::-webkit-scrollbar{height:8px;width:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:8px}
+html{scrollbar-color:rgba(255,255,255,.18) transparent}
+
+/* ambientní pozadí: rozmazaná fotka aktuálního místa */
+#amb{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:var(--bg)}
+#amb img{position:absolute;z-index:0;inset:-12%;width:124%;height:124%;object-fit:cover;filter:blur(64px) saturate(.85) sepia(.3) brightness(.66);opacity:0;transition:opacity 1.2s var(--ease)}
+#amb img.on{opacity:.95}
+#amb::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,#F4A98A 0%,#E2789A 55%,#B9694C 100%);mix-blend-mode:color;opacity:.42}
+#amb::after{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(70% 45% at 12% 0%,rgba(255,170,130,.38),transparent 70%),radial-gradient(60% 50% at 100% 55%,rgba(226,120,154,.3),transparent 70%),linear-gradient(180deg,rgba(12,10,14,.25) 0%,rgba(12,10,14,.62) 55%,rgba(12,10,14,.9) 100%)}
+
+/* skelet */
+.app{position:relative;z-index:1;min-height:100vh}
+.main{padding:22px 32px 140px;max-width:1200px;margin:0 auto}
+@media(max-width:860px){.main{padding:calc(14px + env(safe-area-inset-top,0px)) 16px 150px}}
+.view{display:none}.view.on{display:block;animation:rise .5s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* hlavička obrazovky */
+.pagehead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:2px 0 18px;min-height:48px}
+.pagehead h1{font-size:clamp(1.75rem,5.4vw,2.3rem);line-height:1.05;letter-spacing:-.025em;font-weight:600}
+.pagehead .sub{color:var(--mut);margin:4px 0 0;font-size:.9rem}
+.pagehead .hb{display:flex;gap:8px;align-items:center;flex:none}
+.cbtn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--rim);background:rgba(255,255,255,.08);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);color:var(--tx);box-shadow:inset 0 1px 0 rgba(255,255,255,.12);position:relative;padding:0;text-decoration:none;transition:background .25s,border-color .25s,transform .25s var(--ease);flex:none}
+.cbtn:hover{background:rgba(255,255,255,.16);border-color:var(--rim2)}
+.cbtn:active{transform:scale(.94)}
+.cbtn.sm{width:38px;height:38px}
+.cbtn .bd{position:absolute;top:9px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--now);box-shadow:0 0 0 2px #2a1f24}
+
+/* sklo */
+.card,.glass{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05));border:1px solid var(--rim);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:var(--lift)}
+.card{border-radius:var(--r-lg);padding:18px}
+.card h3{font-size:1.06rem;margin-bottom:12px;font-weight:600}
+.card+.card,.card+.grid2,.grid2+.card,.grid2+.grid2,.card+.sec-h,.sec-h+.card{margin-top:14px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.grid2>.card{margin-top:0!important}
+@media(min-width:900px){.grid2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.grid2.glob{align-items:start}}
+.note{font-size:.84rem;color:var(--mut);margin:0 0 12px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:28px 2px 12px}
+.sec-h h2{font-size:1.2rem;font-weight:600;letter-spacing:-.01em}
+.sec-h a,.sec-h button{font-weight:500;font-size:.84rem;color:var(--mut);background:none;border:0;padding:6px 2px;text-decoration:none}
+.sec-h button:hover{color:var(--tx)}
+
+/* tlačítka a pole */
+.btn{border:1px solid var(--rim);background:rgba(255,255,255,.08);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-radius:99px;padding:10px 18px;font-weight:500;font-size:.88rem;color:var(--tx);display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;min-height:44px;transition:background .2s,border-color .2s,transform .2s var(--ease)}
+.btn:hover{background:rgba(255,255,255,.15);border-color:var(--rim2)}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:linear-gradient(120deg,rgba(255,154,92,.32),rgba(255,79,154,.26));border-color:rgba(255,170,140,.7);color:#FFF1EA;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 22px -14px rgba(0,0,0,.6)}
+.btn.pri:hover{background:linear-gradient(120deg,rgba(255,154,92,.44),rgba(255,79,154,.36))}
+.btn.sm{padding:7px 14px;font-size:.82rem;min-height:38px}
+.btn.bad{color:var(--bad);border-color:rgba(255,114,114,.35)}
+.btn.ghost{background:rgba(255,255,255,.08)}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .row>.grow{flex:1;min-width:120px}
-input,select,textarea{width:100%;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--bg2);color:var(--tx);font:inherit}
-input:focus,select:focus,textarea:focus{outline:2px solid color-mix(in srgb,var(--acc) 55%,transparent);border-color:var(--acc)}
-label.l{display:block;font-size:.66rem;font-family:"JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:10px 0 4px}
+input,select,textarea{width:100%;min-width:0;padding:12px 14px;border:1px solid var(--rim);border-radius:var(--r-md);background:rgba(255,255,255,.06);color:var(--tx);font:inherit;caret-color:var(--peach);transition:border-color .2s,background .2s}
+select option{background:#1D181E;color:var(--tx)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:rgba(255,176,143,.75);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,176,143,.16)}
+input::placeholder,textarea::placeholder{color:var(--mut2)}
+input[type=file]{padding:10px}
+input[type=file]::file-selector-button{font:inherit;font-size:.82rem;font-weight:500;color:var(--tx);background:rgba(255,255,255,.1);border:1px solid var(--rim);border-radius:99px;padding:6px 14px;margin-right:12px;cursor:pointer}
+label.l{display:block;font-size:.8rem;font-weight:500;color:var(--mut);margin:12px 0 6px}
 .form{display:grid;gap:2px}
-.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-@media(min-width:560px){.tiles{grid-template-columns:repeat(3,1fr)}}
-.tile{display:flex;gap:10px;align-items:center;text-align:left;background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:11px}
-.tile:hover{border-color:var(--acc)}
-.tile .ic{width:36px;height:36px;border-radius:10px;background:color-mix(in srgb,var(--acc) 12%,transparent);color:var(--acc);display:grid;place-items:center;flex:none}
-.tile b{display:block;font-size:.88rem}.tile small{color:var(--mut);font-size:.72rem;line-height:1.2;display:block}
-.tele .name{font-size:clamp(2rem,6vw,2.9rem);font-weight:700;line-height:1;color:var(--now);letter-spacing:-.02em}
-.mets{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
-.met{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:11px 12px}
-.met b{display:block;font-family:"JetBrains Mono",monospace;font-size:1.35rem;color:var(--acc);line-height:1.2}
-.strip{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 8px}
-.sc{flex:none;display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;padding:8px 8px;border-radius:12px;min-width:78px;text-align:center}
-.sc b{font-size:.78rem}.sc small{color:var(--mut);font-size:.66rem;font-family:"JetBrains Mono",monospace}
-.sc.done .flag{box-shadow:0 0 0 3px var(--done)}.sc.now .flag{box-shadow:0 0 0 3px var(--now),0 0 16px var(--now)}
-.sc.now{background:color-mix(in srgb,var(--now) 10%,transparent)}
-.prog{height:6px;background:var(--line);border-radius:6px;overflow:hidden}
-.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--done));border-radius:6px}
+.form .row+input,.form input+.row,.form input+input{margin-top:8px}
+
+/* pilulky: záložky a filtry */
+.chips,.seg{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 4px;margin-bottom:14px;scrollbar-width:none}
+.chips::-webkit-scrollbar,.seg::-webkit-scrollbar{display:none}
+.chip,.seg button{flex:none;display:inline-flex;gap:8px;align-items:center;padding:8px 16px;border:1px solid var(--rim);background:rgba(255,255,255,.07);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-radius:99px;font-size:.86rem;font-weight:500;color:var(--tx);min-height:40px;white-space:nowrap;transition:background .25s,border-color .25s,box-shadow .25s,color .25s}
+.chip:hover,.seg button:hover{background:rgba(255,255,255,.13)}
+.chip.on,.seg button.on{background:linear-gradient(120deg,rgba(255,154,92,.34),rgba(255,120,140,.2));border-color:rgba(255,176,143,.8);color:#FFF3EC;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 6px 16px -10px rgba(0,0,0,.55)}
+.chip .flag{box-shadow:none}
+.chip.cur::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--now)}
+.tiles,.qa{display:flex;flex-wrap:wrap;gap:8px}
+.tile{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--rim);background:rgba(255,255,255,.07);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-radius:99px;padding:7px 16px 7px 7px;font-weight:500;font-size:.88rem;min-height:46px;transition:background .2s,border-color .2s}
+.tile:hover{background:rgba(255,255,255,.14);border-color:var(--rim2)}
+.tile .ic{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;flex:none}
+.tile b{font-weight:500}
+
+/* stavové prvky */
+.pill{display:inline-flex;gap:7px;align-items:center;font-size:.78rem;font-weight:500;color:var(--tx);background:rgba(255,255,255,.08);border:1px solid var(--rim);padding:4px 11px;border-radius:99px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+@keyframes pulse{50%{opacity:.35}}
+.flag{display:inline-block;border-radius:50%;box-shadow:0 0 0 1.5px rgba(255,255,255,.35);vertical-align:middle;flex:none}
+.prog{height:4px;background:rgba(255,255,255,.12);border-radius:4px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--grad);border-radius:4px}
 .prog.warn i{background:var(--warn)}.prog.bad i{background:var(--bad)}
-.alert{display:flex;gap:10px;align-items:flex-start;border-radius:13px;padding:10px 12px;background:color-mix(in srgb,var(--warn) 12%,var(--panel));border:1px solid color-mix(in srgb,var(--warn) 40%,var(--line));border-left:3px solid var(--warn);margin-bottom:16px;font-size:.88rem}
-.alert.bad{background:color-mix(in srgb,var(--bad) 12%,var(--panel));border-color:color-mix(in srgb,var(--bad) 40%,var(--line));border-left-color:var(--bad)}
+.alert{display:flex;gap:12px;align-items:flex-start;border-radius:var(--r-lg);padding:14px 16px;margin:16px 0 0;font-size:.9rem;border:1px solid rgba(246,190,99,.35);background:linear-gradient(180deg,rgba(246,190,99,.16),rgba(246,190,99,.07));-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.alert.bad{border-color:rgba(255,114,114,.4);background:linear-gradient(180deg,rgba(255,114,114,.18),rgba(255,114,114,.07))}
+.alert b{font-weight:600}
+.alert a{font-weight:500;color:var(--tx)}
 .dotc{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;flex:none}
-.chips{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 10px;margin-bottom:4px}
-.chip{flex:none;display:inline-flex;gap:6px;align-items:center;padding:6px 12px;border:1px solid var(--line);background:var(--panel);border-radius:999px;font-size:.82rem}
-.chip.on{background:color-mix(in srgb,var(--acc) 16%,transparent);color:var(--acc);border-color:var(--acc)}
-.chip.cur{outline:2px solid var(--now);outline-offset:1px}
-.seg{display:flex;gap:4px;background:var(--bg2);border-radius:12px;padding:4px;margin-bottom:12px;overflow-x:auto}
-.seg button{flex:1 0 auto;border:0;background:none;padding:8px 12px;border-radius:9px;font-size:.84rem;font-weight:600;color:var(--mut);white-space:nowrap}
-.seg button.on{background:var(--panel2);color:var(--acc);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 35%,transparent)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.tag{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.72rem;font-weight:600;background:rgba(255,255,255,.1);color:var(--tx);white-space:nowrap;border:1px solid transparent}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.wait{background:var(--warn-soft);color:var(--warn)}
+.tag.sev-nebezpeci{background:var(--bad-soft);color:var(--bad)}
+.tag.sev-pozor{background:var(--warn-soft);color:var(--warn)}
+.tag.sev-info{background:var(--acc-soft);color:var(--peach)}
+.here{display:inline-block;background:var(--grad);color:var(--acc-tx);border-radius:99px;padding:1px 9px;font-size:.7rem;margin-left:8px;font-weight:600;letter-spacing:0;vertical-align:2px}
+.hint{background:var(--acc-soft);border:1px solid rgba(255,176,143,.35);border-radius:var(--r-md);padding:12px 14px;margin-bottom:12px;font-size:.9rem}
+
+/* rámovaná fotka (foto v jemném skleněném rámu) */
+.frame{position:relative;border-radius:var(--r-xl);padding:5px;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.07));border:1px solid var(--rim);box-shadow:var(--lift)}
+.frame .pic{position:relative;border-radius:calc(var(--r-xl) - 5px);overflow:hidden;background:var(--tint,var(--p0));height:100%}
+.frame .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.frame .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,6,10,.6),rgba(10,6,10,0) 42%),linear-gradient(to bottom,rgba(10,6,10,.28),rgba(10,6,10,0) 24%);pointer-events:none}
+.stack{position:relative;padding-top:14px}
+.stack::before,.stack::after{content:"";position:absolute;left:7%;right:7%;top:0;height:60%;border-radius:var(--r-xl);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.stack::after{left:3.5%;right:3.5%;top:7px;background:rgba(255,255,255,.09)}
+.stack>.frame{z-index:1}
+.ov{position:absolute;z-index:2;display:flex;gap:8px;align-items:center}
+.ov.otl{top:14px;left:14px}.ov.otr{top:14px;right:14px}
+.gchip{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 6px;border-radius:99px;background:rgba(20,14,18,.35);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);color:#fff;font-size:.8rem;font-weight:500;white-space:nowrap}
+.gchip.np{padding-left:12px}
+.dots{position:absolute;z-index:2;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:5px}
+.dots i{width:6px;height:6px;border-radius:6px;background:rgba(255,255,255,.35);transition:width .4s var(--ease)}
+.dots i.d{background:rgba(255,255,255,.85)}
+.dots i.n{width:20px;background:#fff}
+.trow{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.loc{display:flex;align-items:center;gap:6px;color:var(--mut);font-size:.88rem;margin-top:4px}
+.loc svg{opacity:.85}
+.desc{color:#E6DCD8;font-size:.92rem;line-height:1.55;margin:12px 0 0;max-width:62ch}
+
+/* přehled: hero */
+.stat-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--mut);font-size:.86rem;margin-top:6px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.hero .frame{aspect-ratio:4/4.3;max-height:560px}
+.hero .name{font-size:clamp(1.8rem,6.4vw,2.6rem);font-weight:600;line-height:1.05;letter-spacing:-.025em}
+.hwx{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:.95rem;white-space:nowrap;color:var(--tx)}
+.hwx svg{color:var(--peach)}
+.stats{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.stat{background:rgba(255,255,255,.08);border:1px solid var(--rim);color:var(--tx);border-radius:99px;padding:5px 12px;font-size:.8rem;font-weight:500;white-space:nowrap}
+.hero .prog{margin-top:14px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+@media(min-width:900px){.hero{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:end;gap:32px}.hero .frame{aspect-ratio:16/11}.hmeta{padding-bottom:10px}}
+
+/* deník z přehledu (pole s odesláním) */
+.composer{margin-top:16px;border-radius:var(--r-lg);padding:6px;border:1.5px solid transparent;background:linear-gradient(rgba(24,18,24,.82),rgba(24,18,24,.82)) padding-box,linear-gradient(120deg,rgba(255,154,92,.8),rgba(255,79,154,.7)) border-box;-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.composer textarea{border:0;background:transparent;resize:none;padding:12px 12px 6px;min-height:52px;box-shadow:none}
+.composer textarea:focus{box-shadow:none;background:transparent}
+.composer .cr{display:flex;justify-content:space-between;align-items:center;padding:4px 4px 2px}
+.send{width:42px;height:42px;border-radius:50%;border:0;background:var(--grad);color:#fff;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(0,0,0,.6);transition:transform .2s var(--ease)}
+.send:active{transform:scale(.92)}
+
+/* vodorovné řady fotokaret */
+.rail{position:relative;display:flex;gap:12px;overflow-x:auto;padding:4px 16px 16px;margin:0 -16px;scroll-snap-type:x proximity;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+@media(min-width:861px){.rail{margin:0 -4px;padding:4px 4px 16px}}
+.pc{position:relative;flex:none;width:168px;aspect-ratio:3/3.9;border-radius:26px;padding:4px;border:1px solid var(--rim);background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.06));color:#fff;text-align:left;scroll-snap-align:start;box-shadow:var(--lift);transition:transform .35s var(--ease),border-color .3s,box-shadow .3s}
+.pc:hover{transform:translateY(-3px)}
+.pc .pic{position:absolute;inset:4px;border-radius:22px;overflow:hidden;background:var(--tint,var(--p0))}
+.pc .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pc .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,5,8,.82),rgba(8,5,8,0) 58%),linear-gradient(to bottom,rgba(8,5,8,.3),rgba(8,5,8,0) 30%)}
+.pc .big{position:absolute;right:12px;top:30px;font-size:4.4rem;font-weight:700;opacity:.18;line-height:1}
+.pc .n{position:absolute;top:11px;left:11px;z-index:1}
+.pc .st{position:absolute;top:11px;right:11px;z-index:1}
+.pc .st.ok{width:30px;height:30px;padding:0;justify-content:center;border-radius:50%}
+.pc .gchip{font-size:.74rem;padding:4px 10px}
+.pc .in{position:absolute;left:14px;right:12px;bottom:12px;z-index:1}
+.pc b{display:block;font-size:1.02rem;font-weight:600;line-height:1.15;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pc small{display:flex;align-items:center;gap:4px;font-size:.74rem;opacity:.86;margin-top:3px;white-space:nowrap;overflow:hidden}
+.pc.now{border-color:rgba(255,176,143,.85);box-shadow:var(--lift),0 0 0 1px rgba(255,140,120,.35)}
+.pc.now .st{background:var(--grad);border-color:transparent;color:var(--acc-tx)}
+.pc.sel{border-color:#fff;box-shadow:var(--lift),0 0 0 2px rgba(255,255,255,.5)}
+.pc.done .pic img{filter:saturate(.75)}
+.srail .pc{width:140px}
+
+/* glóbus */
 .globewrap{position:relative;display:grid;place-items:center}
-#globe{width:100%;max-width:520px;aspect-ratio:1;display:block;touch-action:none;cursor:grab}
+#globe{width:100%;max-width:380px;aspect-ratio:1;display:block;touch-action:pan-y;cursor:grab}
+
+/* trasa: mapa a skleněný panel */
+.trasa{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.tmap{position:relative}
 .mapbox{position:relative}
-#map{width:100%;height:auto;display:block;border-radius:13px;background:var(--sea);touch-action:none;cursor:grab;aspect-ratio:516/534}
-#map.placing{cursor:crosshair;outline:3px solid var(--acc)}
-.zoom{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:6px}
-.zoom button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);font-size:1.05rem;font-weight:700;padding:0;color:var(--tx)}
+#map{width:100%;display:block;background:var(--sea);touch-action:none;cursor:grab;border-radius:var(--r-xl);border:1px solid var(--rim);aspect-ratio:516/534}
+#map.placing{cursor:crosshair;outline:2px solid var(--peach)}
+.zoom{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;gap:8px}
+.legend{position:absolute;left:14px;bottom:14px;display:flex;gap:12px;flex-wrap:wrap;color:var(--tx);font-size:.76rem;font-weight:500;padding:7px 12px;border-radius:99px;background:rgba(20,14,18,.5);border:1px solid var(--rim);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.tsheet{position:relative;z-index:2;border-radius:var(--r-xl);padding:12px 16px 20px;background:linear-gradient(180deg,rgba(60,44,52,.55),rgba(26,20,26,.72));border:1px solid var(--rim);-webkit-backdrop-filter:blur(28px) saturate(150%);backdrop-filter:blur(28px) saturate(150%);box-shadow:0 -20px 40px -24px rgba(0,0,0,.8)}
+.tsheet::before{content:"";display:block;width:44px;height:5px;border-radius:5px;background:rgba(255,255,255,.4);margin:0 auto 12px}
+.tsheet .sec-h{margin-top:4px}
+.tsheet .rail{margin:0 -16px;padding:4px 16px 14px}
 .ctry{fill:var(--land);stroke:var(--land-s);stroke-width:.8}
 .ctry path{vector-effect:non-scaling-stroke}
-.ctry.plan{fill:color-mix(in srgb,var(--acc) 16%,var(--land))}
-.ctry.done{fill:color-mix(in srgb,var(--done) 32%,var(--land))}
-.ctry.now{fill:color-mix(in srgb,var(--now) 40%,var(--land))}
-.grat{stroke:var(--tx);opacity:.07;vector-effect:non-scaling-stroke}
-.cl{fill:var(--tx);opacity:.6;text-anchor:middle;font-weight:600;paint-order:stroke;stroke:var(--land);stroke-width:2.5px;pointer-events:none;font-family:"JetBrains Mono",monospace}
-.route{fill:none;stroke:var(--acc);stroke-width:2;stroke-dasharray:5 4;vector-effect:non-scaling-stroke;opacity:.8}
-.dline{fill:none;stroke:var(--done);stroke-width:2.6;vector-effect:non-scaling-stroke}
+.ctry.usa{stroke:none}
+.ctry.plan{fill:#2B242D}
+.ctry.done{fill:#3A3236}
+.ctry.now{fill:#4A2A36}
+.grat{stroke:#fff;opacity:.05;vector-effect:non-scaling-stroke}
+.cl{fill:#fff;opacity:.42;text-anchor:middle;font-weight:600;paint-order:stroke;stroke:var(--land);stroke-width:2.5px;pointer-events:none;font-family:var(--ui);letter-spacing:.06em}
+.route{fill:none;stroke:#fff;stroke-opacity:.45;stroke-width:2;stroke-dasharray:1 6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.dline{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .pin{cursor:pointer}
-.pin text{font-family:"JetBrains Mono",monospace;font-weight:700;fill:#04131A;text-anchor:middle;pointer-events:none}
-.pin text.lbl{font-weight:600;fill:var(--tx);paint-order:stroke;stroke:var(--sea)}
-.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--mut);font-size:.76rem;margin-top:10px}
-.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
-.hint{background:color-mix(in srgb,var(--acc) 12%,transparent);border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);border-radius:12px;padding:10px 12px;margin-bottom:10px;font-size:.88rem}
-.stop{display:flex;gap:10px;align-items:center;padding:9px 8px;border-radius:11px;cursor:pointer;border-bottom:1px solid var(--line)}
-.stop:last-child{border-bottom:0}
-.stop.sel{background:color-mix(in srgb,var(--acc) 9%,transparent)}
-.num{flex:none;width:28px;height:28px;border-radius:50%;color:#04131A;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.74rem;display:grid;place-items:center}
-.sbody{flex:1;min-width:0}.sbody b{display:block;font-size:.92rem}.sbody small{display:block;color:var(--mut);font-size:.74rem}
-.here{background:var(--now);color:#1a1000;border-radius:6px;padding:1px 7px;font-size:.62rem;margin-left:6px;font-weight:700;font-family:"JetBrains Mono",monospace;letter-spacing:.06em}
-.acts{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
-.diary{border-left:2px solid var(--line);padding:2px 0 2px 10px;margin:8px 0}
+.pin text{font-family:var(--ui);font-weight:700;fill:var(--pin-tx);text-anchor:middle;pointer-events:none}
+.pin text.lbl{font-weight:600;fill:#fff;paint-order:stroke;stroke:var(--sea)}
+@media(max-width:899px){
+  .trasa .tmap{margin:0 -16px}
+  .trasa .pagehead{position:absolute;z-index:3;left:16px;right:16px;top:0;margin:0}
+  #map{border-radius:0;border:0;aspect-ratio:auto;height:min(64vh,560px)}
+  .trasa .zoom{top:76px}
+  .trasa .legend{bottom:52px}
+  .tsheet{margin:-36px -16px 0;border-left:0;border-right:0;border-bottom:0;border-radius:var(--r-xl) var(--r-xl) 0 0}
+}
+@media(min-width:900px){
+  .trasa{display:block}
+  .trasa .pagehead{position:relative;z-index:3}
+  .trasa .tmap{position:fixed;inset:0;z-index:0}
+  #map{height:100vh;aspect-ratio:auto;border-radius:0;border:0}
+  .trasa .zoom{left:32px;right:auto;top:110px}
+  .trasa .legend{left:32px;bottom:110px}
+  .tsheet{margin-left:auto;width:min(480px,42vw);max-height:calc(100vh - 210px);overflow-y:auto;scrollbar-width:thin}
+}
+
+/* detail zastávky */
+.detail{margin-top:8px}
+.detail .frame{aspect-ratio:4/3.2}
+.detail .seg{margin:16px 0 14px}
+.detail h2{font-size:1.5rem;font-weight:600;letter-spacing:-.02em}
+.dbody{margin-top:12px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));column-gap:20px;margin:12px 0 6px}
+.fact{border-bottom:1px solid var(--line);padding:10px 2px}.fact small{color:var(--mut);display:block;font-size:.76rem;margin-bottom:2px}.fact b{font-size:.94rem;font-weight:600}
+.diary{border-left:1px solid var(--rim);padding:2px 0 2px 12px;margin:10px 0}
 .diary small{color:var(--mut)}
-.zhero{border-radius:16px;padding:18px;display:flex;gap:14px;align-items:center;margin-bottom:12px;background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 16%,var(--panel)),var(--panel));border:1px solid var(--line)}
-.zhero h2{font-size:1.5rem}.zhero small{color:var(--mut)}
-.info ul{margin:0;padding-left:20px}.info li{margin:5px 0}
-.info h4{margin:16px 0 6px;font-size:.72rem;font-family:"JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:6px}
-.fact{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:11px}.fact small{color:var(--mut);display:block;font-size:.68rem;font-family:"JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase}.fact b{font-size:.92rem}
-.season{background:color-mix(in srgb,var(--now) 10%,transparent);border-left:3px solid var(--now);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:.88rem}
-.nowwx{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.nowwx .t{font-family:"JetBrains Mono",monospace;font-size:2.6rem;font-weight:600;line-height:1;color:var(--acc)}
-.ch text{font-family:"JetBrains Mono",monospace;font-size:10px;fill:var(--mut)}
-.legendc{display:flex;gap:14px;flex-wrap:wrap;font-size:.74rem;color:var(--mut);margin-top:4px}
-.bar{display:grid;grid-template-columns:minmax(90px,1.1fr) 2fr auto 44px;gap:8px;align-items:center;margin:8px 0;font-size:.86rem}
-.bar .w{height:8px;background:var(--line);border-radius:6px;overflow:hidden}.bar .w i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2))}
-.bar em{color:var(--mut);font-style:normal;font-size:.74rem;text-align:right;font-family:"JetBrains Mono",monospace}
-.news{border-left:3px solid var(--next)}.news.pozor{border-left-color:var(--warn)}.news.nebezpeci{border-left-color:var(--bad)}
-.item{display:flex;align-items:center;gap:10px;padding:8px 2px;border-bottom:1px solid var(--line)}
-.item:last-child{border-bottom:0}
-.item input[type=checkbox]{width:19px;height:19px;accent-color:var(--acc);flex:none}
-.item .t{flex:1;min-width:0}.item.ck .t{text-decoration:line-through;color:var(--mut)}
-.item small{color:var(--mut)}.item .x{border:0;background:none;color:var(--mut);font-size:1.05rem;padding:4px}
-.tag{display:inline-block;border-radius:6px;padding:1px 8px;font-size:.66rem;font-weight:600;background:var(--line);font-family:"JetBrains Mono",monospace;letter-spacing:.05em}
-.tag.ok{background:color-mix(in srgb,var(--done) 22%,var(--panel));color:var(--done)}
-.tag.wait{background:color-mix(in srgb,var(--warn) 22%,var(--panel));color:var(--warn)}
-.fab{position:fixed;right:18px;bottom:22px;z-index:25;border:0;border-radius:999px;padding:12px 20px;background:var(--done);color:#04131A;font-weight:700;box-shadow:0 6px 24px rgba(0,0,0,.4);max-width:80vw}
-.fab:disabled{background:var(--panel2);color:var(--mut);border:1px solid var(--line)}
-@media(max-width:860px){.fab{bottom:calc(76px + env(safe-area-inset-bottom,0px));right:12px}}
-.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:14px}
-.stamp{position:relative;border:2px solid var(--done);color:var(--done);border-radius:14px;padding:12px 8px 10px;text-align:center;transform:rotate(var(--r,0deg));background:repeating-linear-gradient(135deg,transparent 0 6px,color-mix(in srgb,var(--done) 7%,transparent) 6px 7px)}
-.stamp::before{content:"";position:absolute;inset:3px;border:1px dashed currentColor;border-radius:10px;opacity:.5;pointer-events:none}
-.stamp.now{color:var(--now);border-color:var(--now);box-shadow:0 0 20px color-mix(in srgb,var(--now) 30%,transparent);background:repeating-linear-gradient(135deg,transparent 0 6px,color-mix(in srgb,var(--now) 8%,transparent) 6px 7px)}
-.stamp.plan{color:var(--next);border-style:dashed;opacity:.6;background:none}
-.stamp b{display:block;font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-top:7px}
-.stamp small{display:block;font-family:"JetBrains Mono",monospace;font-size:.66rem;opacity:.85}
-.tl{position:relative;padding-left:28px}.tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--acc),var(--line))}
-.tn{position:relative;margin-bottom:6px}
-.tn::before{content:"";position:absolute;left:-26px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--c,var(--next));box-shadow:0 0 0 4px var(--bg)}
-.tn.now::before{box-shadow:0 0 0 4px var(--bg),0 0 14px var(--now)}
-.tr{margin:0 0 6px;font-family:"JetBrains Mono",monospace;color:var(--mut);font-size:.72rem;padding-left:2px;position:relative;top:-2px}
-.ev{display:flex;gap:8px;align-items:baseline;font-size:.84rem;margin-top:6px}
-.ev .tag{flex:none}
-.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.cal .h{font-size:.62rem;text-align:center;color:var(--mut);font-family:"JetBrains Mono",monospace;letter-spacing:.08em}
-.cd{aspect-ratio:1;border-radius:9px;background:var(--bg2);border:1px solid transparent;font-size:.78rem;position:relative;padding:4px 5px;cursor:pointer;color:var(--tx);text-align:left;font-family:"JetBrains Mono",monospace}
-.cd.st{background:color-mix(in srgb,var(--c) 26%,var(--bg2));border-color:color-mix(in srgb,var(--c) 55%,transparent)}
-.cd.today{outline:2px solid var(--acc)}.cd.sel{box-shadow:0 0 0 2px var(--tx)}.cd.out{opacity:.25}
-.cd .m{position:absolute;right:4px;bottom:4px;display:flex;gap:3px}.cd .m i{width:6px;height:6px;border-radius:50%;background:var(--now)}.cd .m i.a{background:var(--acc)}
-.ph{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.ph figure{margin:0;position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;background:var(--bg2);border:1px solid var(--line)}
-.ph img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;display:block}
-.ph figcaption{position:absolute;left:0;right:0;bottom:0;padding:20px 8px 6px;font-size:.72rem;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;pointer-events:none}
-.ph .x{position:absolute;top:6px;right:6px;border:0;border-radius:8px;background:rgba(0,0,0,.6);color:#fff;padding:2px 8px}
-.lb{position:fixed;inset:0;background:rgba(2,6,10,.92);z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:10px;cursor:zoom-out}
-.lb img{max-width:100%;max-height:82vh;border-radius:10px}.lb p{color:#cfe3f3;margin:0}
-.place{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.place{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
 .place:last-child{border-bottom:0}
 .place .t{flex:1;min-width:0}
 
+/* země */
+.zhero{position:relative;margin-bottom:16px}
+.zhero .frame{aspect-ratio:16/10}@media(min-width:700px){.zhero .frame{aspect-ratio:16/7}}
+.zhero .in{position:absolute;z-index:2;left:22px;right:22px;bottom:20px;display:flex;gap:14px;align-items:center;color:#fff}
+.zhero h2{font-size:clamp(1.8rem,6vw,2.4rem);font-weight:600;letter-spacing:-.025em;line-height:1.05}.zhero small{opacity:.9}
+.info ul{margin:0;padding-left:20px}.info li{margin:6px 0}
+.info h4{margin:18px 0 8px;font-size:1.02rem;font-weight:600}
+.info h4:first-child{margin-top:4px}
+.season{border-top:1px solid var(--line);padding-top:12px;margin-top:14px;font-size:.9rem;color:#E6DCD8}
+
+/* počasí a grafy */
+.nowwx{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.nowwx .t{font-size:2.8rem;font-weight:600;line-height:1;letter-spacing:-.03em}
+.ch text{font-family:var(--ui);font-size:10.5px;font-weight:500;fill:var(--mut)}
+@media(max-width:600px){.ch[width="100%"] text{font-size:18px}}
+.legendc{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--mut);margin-top:6px}
+.bar{display:grid;grid-template-columns:minmax(90px,1.1fr) 2fr auto 44px;gap:10px;align-items:center;margin:10px 0;font-size:.9rem}
+.bar .w{height:8px;background:rgba(255,255,255,.1);border-radius:8px;overflow:hidden}.bar .w i{display:block;height:100%;background:var(--grad);border-radius:8px}
+.bar em{color:var(--mut);font-style:normal;font-size:.8rem;text-align:right}
+
+/* seznamy */
+.item{display:flex;align-items:center;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item input[type=checkbox]{width:22px;height:22px;accent-color:#FF8A70;flex:none;padding:0}
+.item .t{flex:1;min-width:0}.item.ck .t{text-decoration:line-through;color:var(--mut)}
+.item small{color:var(--mut)}
+.item .x{border:0;background:none;color:var(--mut);min-width:44px;min-height:44px;border-radius:50%}
+.item .x:hover{background:rgba(255,255,255,.1);color:var(--bad)}
+.item .x svg,.ph .x svg{display:block;margin:auto}
+
+/* časová osa a kalendář */
+.tl{position:relative;padding-left:30px}.tl::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;background:var(--rim)}
+.tn{position:relative;margin-bottom:10px}
+.tn::before{content:"";position:absolute;left:-27px;top:24px;width:13px;height:13px;border-radius:50%;background:var(--c,var(--next));box-shadow:0 0 0 4px rgba(12,10,14,.9)}
+.tn.now::before{background:var(--grad);box-shadow:0 0 0 4px rgba(12,10,14,.9),0 0 0 8px rgba(255,106,136,.25)}
+.tn .card{padding:14px 16px}
+.tr{margin:0 0 10px;color:var(--mut);font-size:.8rem;padding-left:2px;display:flex;align-items:center;gap:6px}
+.thumb{width:52px;height:52px;border-radius:16px;flex:none;background:var(--tint,var(--p0));display:grid;place-items:center;font-weight:700;font-size:1.2rem;overflow:hidden;border:1px solid var(--rim)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ev{display:flex;gap:10px;align-items:baseline;font-size:.88rem;margin-top:8px}
+.ev .tag{flex:none}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal .h{font-size:.74rem;text-align:center;color:var(--mut);font-weight:600}
+.cd{aspect-ratio:1;border-radius:var(--r-sm);background:rgba(255,255,255,.05);border:1px solid transparent;font-size:.86rem;font-weight:500;position:relative;padding:5px 6px;cursor:pointer;color:var(--tx);text-align:left;transition:background .2s}
+.cd:hover{background:rgba(255,255,255,.12)}
+.cd.st{background:color-mix(in srgb,var(--c) 26%,rgba(255,255,255,.04))}
+.cd.today{border-color:var(--peach)}.cd.sel{background:#fff;color:#140B0E}.cd.out{opacity:.25}
+.cd .m{position:absolute;right:5px;bottom:5px;display:flex;gap:3px}.cd .m i{width:6px;height:6px;border-radius:50%;background:var(--now)}.cd .m i.a{background:var(--cool)}
+
+/* fotky */
+.ph{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.ph figure{margin:0;position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1;background:rgba(255,255,255,.06);border:4px solid rgba(255,255,255,.1)}
+.ph img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;display:block}
+.ph figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;font-size:.78rem;font-weight:500;background:linear-gradient(transparent,rgba(8,5,8,.78));color:#fff;pointer-events:none}
+.ph .x{position:absolute;top:8px;right:8px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(20,14,18,.5);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);color:#fff;min-width:36px;min-height:36px}
+.lb{position:fixed;inset:0;background:rgba(10,7,10,.82);-webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:12px;cursor:zoom-out}
+.lb img{max-width:100%;max-height:82vh;border-radius:var(--r-lg);border:5px solid rgba(255,255,255,.12)}.lb p{color:var(--mut);margin:0}
+
+/* zprávy */
 .sevs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.sevb{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;padding:11px 12px;text-align:left;display:block}
-.sevb b{display:block;font-family:"JetBrains Mono",monospace;font-size:1.7rem;color:var(--c);line-height:1.1}
-.sevb.on{box-shadow:0 0 0 2px var(--c)}
-.statusbar{display:flex;gap:12px;align-items:center;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:14px}
-.ncard{display:flex;gap:12px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:14px;padding:12px;margin-bottom:10px}
-.ncard.nebezpeci{border-left-color:var(--bad)}.ncard.pozor{border-left-color:var(--warn)}
-.nic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--c,var(--acc)) 14%,transparent);color:var(--c,var(--acc));flex:none}
-.ncard.nebezpeci .nic{--c:var(--bad)}.ncard.pozor .nic{--c:var(--warn)}
-.nb{flex:1;min-width:0}.nb b{font-size:.94rem;line-height:1.3}
-.nb details summary{cursor:pointer;color:var(--acc);font-size:.78rem;margin-top:8px;list-style:none}
+.sevb{background:linear-gradient(180deg,color-mix(in srgb,var(--c) 18%,transparent),color-mix(in srgb,var(--c) 6%,transparent));border:1px solid color-mix(in srgb,var(--c) 30%,transparent);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-radius:var(--r-lg);padding:12px 14px;text-align:left;display:block;min-height:64px;color:var(--tx)}
+.sevb b{display:block;font-size:1.7rem;line-height:1.1;font-weight:600}
+.sevb .lab{color:var(--tx)}
+.sevb.on{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
+.statusbar{display:flex;gap:14px;align-items:center;border-radius:var(--r-lg);padding:14px 16px;margin-bottom:14px}
+.ncard{display:flex;gap:14px;border-radius:var(--r-lg);padding:14px;margin-bottom:10px}
+.nic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--acc-soft);color:var(--peach);flex:none}
+.ncard.nebezpeci .nic{background:var(--bad-soft);color:var(--bad)}.ncard.pozor .nic{background:var(--warn-soft);color:var(--warn)}
+.nb{flex:1;min-width:0}.nb b{font-size:.96rem;line-height:1.3;font-weight:600}
+.nb details summary{cursor:pointer;color:var(--peach);font-size:.84rem;font-weight:500;margin-top:8px;list-style:none}
 .nb details summary::-webkit-details-marker{display:none}
-.nb details p{margin:8px 0;font-size:.86rem;color:var(--tx)}
-.tag.sev-nebezpeci{background:color-mix(in srgb,var(--bad) 22%,var(--panel));color:var(--bad)}
-.tag.sev-pozor{background:color-mix(in srgb,var(--warn) 22%,var(--panel));color:var(--warn)}
-.tag.sev-info{background:color-mix(in srgb,var(--acc) 18%,var(--panel));color:var(--acc)}
-.ngrp{display:flex;align-items:center;gap:10px;margin:20px 0 10px}.ngrp .lab{white-space:nowrap}.ngrp i{flex:1;height:1px;background:var(--line)}
-.calm{text-align:center;padding:30px 14px}.calm svg{color:var(--done)}
+.nb details p{margin:8px 0;font-size:.88rem;color:var(--tx)}
+.ngrp{display:flex;align-items:center;gap:10px;margin:24px 0 12px}.ngrp .lab{white-space:nowrap;font-size:.86rem;color:var(--tx)}.ngrp i{flex:1;height:1px;background:var(--line)}
+.calm{text-align:center;padding:34px 16px}.calm svg{color:var(--ok)}
+.calm h3{margin:10px 0 4px}
+.clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* spodní lišta */
+.bnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:flex;justify-content:space-around;gap:2px;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));background:rgba(14,11,15,.86);-webkit-backdrop-filter:blur(24px) saturate(150%);backdrop-filter:blur(24px) saturate(150%);border-top:1px solid var(--line)}
+.bnav button{flex:1;max-width:96px;background:none;border:0;color:var(--mut2);font-size:.72rem;font-weight:500;padding:6px 2px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;border-radius:16px;transition:color .25s}
+.bnav button:hover{color:var(--tx)}
+.bnav button.on{color:#fff}
+.bnav button.on svg{stroke-width:2.2}
+.bnav .dx{display:none}
+@media(min-width:861px){
+  .bnav{left:50%;right:auto;transform:translateX(-50%);bottom:18px;border:1px solid var(--rim);border-radius:26px;padding:6px 8px;box-shadow:0 24px 50px -20px rgba(0,0,0,.8);width:max-content;max-width:calc(100vw - 40px)}
+  .bnav button{width:76px;flex:none}
+  .bnav .dx{display:flex}.bnav .mx{display:none}
+}
+.sheet{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:31;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;border-radius:var(--r-xl);background:rgba(30,24,30,.9);border:1px solid var(--rim);-webkit-backdrop-filter:blur(28px);backdrop-filter:blur(28px);box-shadow:0 24px 50px -16px rgba(0,0,0,.85);animation:rise .3s var(--ease)}
+.sheet button{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 4px;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:.8rem;font-weight:500;color:var(--tx)}
+.sheet button:hover{background:rgba(255,255,255,.12)}
+.fab{position:fixed;right:18px;bottom:96px;z-index:25;border:0;border-radius:999px;padding:13px 22px;background:var(--grad);color:#fff;font-weight:600;box-shadow:0 14px 30px -12px rgba(0,0,0,.7);max-width:80vw;min-height:48px}
+.fab:disabled{background:rgba(40,32,38,.9);color:var(--mut);border:1px solid var(--rim);box-shadow:none}
+@media(max-width:860px){.fab{bottom:calc(86px + env(safe-area-inset-bottom,0px));right:14px}}
+
+@media(prefers-reduced-motion:reduce){
+  .view.on,.sheet{animation:none}.pill i{animation:none}.pc:hover{transform:none}.btn:active,.cbtn:active{transform:none}#amb img{transition:none}
+  *{scroll-behavior:auto!important}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .card,.glass,.tsheet{background:rgba(34,27,33,.94)}
+}
 </style>
 </head>
 <body>
+<div id="amb" aria-hidden="true"></div>
 <div class="app">
-  <aside class="side">
-    <div class="brand"><i></i><div><b>Cancún → Buenos Aires</b><small>Latinská Amerika</small></div></div>
-    <nav class="nav" id="nav"></nav>
-    <div class="foot mono" id="foot"></div>
-  </aside>
   <main class="main">
     <section class="view" id="v-home"></section>
     <section class="view" id="v-trasa"></section>
@@ -223,15 +389,16 @@ label.l{display:block;font-size:.66rem;font-family:"JetBrains Mono",monospace;le
     <section class="view" id="v-nast"></section>
   </main>
 </div>
-<nav class="bnav" id="bnav"></nav>
+<nav class="bnav" id="bnav" aria-label="Hlavní navigace"></nav>
 <div class="sheet hide" id="sheet"></div>
-<div class="lb hide" id="lb" data-act="lbclose"></div>
+<div class="lb hide" id="lb" data-act="lbclose" role="dialog" aria-modal="true" aria-label="Fotografie"></div>
 <button class="fab hide" id="fab" data-act="save">Uložit a zveřejnit</button>
 <script>
 /* ================= ZÁKLAD ================= */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const uid=()=>Math.random().toString(36).slice(2,8);
+const RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
 const todayISO=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const fd=iso=>{if(!iso)return'';const [y,m,d]=iso.split('-');return `${+d}. ${+m}. ${y}`};
 const fdm=iso=>{if(!iso)return'';const [,m,d]=iso.split('-');return `${+d}. ${+m}.`};
@@ -255,6 +422,13 @@ plan:'<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12
 vybava:'<path d="M8 8a4 4 0 018 0v12H8z"/><path d="M8 13h8M10 4V3h4v1"/>',
 nast:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',
 more:'<circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/>',
+plus:'<path d="M12 5v14M5 12h14"/>',
+x:'<path d="M6 6l12 12M18 6L6 18"/>',
+chevl:'<path d="M15 5l-7 7 7 7"/>',
+chevr:'<path d="M9 5l7 7-7 7"/>',
+minus:'<path d="M5 12h14"/>',
+locate:'<circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',
+expand:'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
 pin:'<path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
 quake:'<path d="M2 12h4l2-6 4 12 2-6h8"/>',
 cyclone:'<circle cx="12" cy="12" r="2"/><path d="M12 3a9 9 0 019 9M21 12a9 9 0 01-9 9M12 21a9 9 0 01-9-9M3 12a9 9 0 019-9"/>',
@@ -263,8 +437,15 @@ volcano:'<path d="M3 20l6-11h6l6 11z"/><path d="M10 5l-1-3M14 5l1-3M12 5V2"/>',
 fire:'<path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
 alert:'<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/>',
 check:'<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
-star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>'
+star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+leg:'<path d="M6 4v7a4 4 0 004 4h9"/><path d="M15 11l4 4-4 4"/>',
+tick:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+bell:'<path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/>',
+map:'<path d="M9 4L3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5z"/><path d="M9 4v13M15 6.5v13"/>',
+send:'<path d="M12 19V5M6 11l6-6 6 6"/>',
+ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/>'
 };
+const cbtn=(icon,act,label,extra='')=>`<button class="cbtn" data-act="${act}" aria-label="${label}" title="${label}"${extra}>${ico(icon,20)}</button>`;
 const ico=(k,s=20)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]||''}</svg>`;
 
 /* ikony počasí */
@@ -297,9 +478,18 @@ const FL={
 "Paraguay":"linear-gradient(180deg,#d52b1e 33.3%,#fff 33.3% 66.6%,#0038a8 66.6%)",
 "Uruguay":"linear-gradient(#fff,#fff) 0 0/40% 55% no-repeat,repeating-linear-gradient(180deg,#fff 0 11.1%,#0038a8 11.1% 22.2%)"
 };
-const flag=(c,sz=28)=>`<span class="flag" style="width:${sz}px;height:${sz}px;background:${FL[c]||'linear-gradient(#5A6B7D,#2B3E52)'}"></span>`;
-const PAL=['#3DDCFF','#FFB347','#36D6A0','#B58CFF','#FF7AA2','#7C9CFF','#C9D36B'];
-const hueCol=s=>{let h=0;for(const ch of String(s))h=(h*31+ch.charCodeAt(0))%360;return `hsl(${h} 70% 58%)`};
+const flag=(c,sz=28)=>`<span class="flag" style="width:${sz}px;height:${sz}px;background:${FL[c]||'linear-gradient(#A3B6AE,#566F68)'}" aria-hidden="true"></span>`;
+const PAL=['#FFB08F','#FF6A88','#8EC5FF','#F6BE63','#B79CFF','#7FDDB0','#E2789A'];
+const hueCol=s=>{let h=0;for(const ch of String(s))h=(h*31+ch.charCodeAt(0))%360;return `hsl(${h} 55% 52%)`};
+/* fotky měst (Wikimedia Commons, uložené v photos/places) a pastelové barvy zemí */
+const PHOTO_BY_STOP={'cancun':'cancun','tulum':'tulum','ciudad de mexico':'cdmx','mexico city':'cdmx','antigua':'antigua','san jose':'sanjose','bogota':'bogota','quito':'quito','cusco':'cusco','la paz':'lapaz','santiago':'santiago','buenos aires':'buenosaires'};
+const PHOTO_BY_COUNTRY={'Mexiko':'cdmx','Guatemala':'antigua','Kostarika':'sanjose','Kolumbie':'bogota','Ekvádor':'quito','Peru':'cusco','Bolívie':'lapaz','Chile':'santiago','Argentina':'buenosaires'};
+const PHOTO_CREDITS=[['Cancún','Cancún – Playa Gaviota Azul','CC BY-SA 4.0'],['Tulum','Martin Falbisoner','CC BY-SA 4.0'],['Ciudad de México','Plaza de la Constitución – Zócalo','CC BY-SA 4.0'],['Antigua','Santa Catalina Arch','CC BY-SA 2.0'],['San José','Teatro Nacional CRI','CC BY-SA 4.0'],['Bogotá','Bogotá Monserrate desde La Candelaria','CC BY-SA 3.0'],['Quito','Quito as from panecillo Basilica','CC BY-SA 3.0'],['Cusco','Catedral, Plaza de Armas, Cusco, DD 77','CC BY-SA 4.0'],['La Paz','La Paz, Bolivia, 2025-05, amanecer','CC BY-SA 4.0'],['Santiago','Santiago cerro san cristobal','CC BY-SA 4.0'],['Buenos Aires','Avenida 9 de Julio – Obelisco','Public domain']];
+const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
+const placePhoto=s=>{const k=PHOTO_BY_STOP[norm(s.n)]||PHOTO_BY_COUNTRY[s.c];return k?`photos/places/${k}.jpg`:''};
+const countryPhoto=c=>PHOTO_BY_COUNTRY[c]?`photos/places/${PHOTO_BY_COUNTRY[c]}.jpg`:'';
+const tintOf=c=>{let h=0;for(const ch of String(c||''))h=(h*31+ch.charCodeAt(0))%7;return 'var(--p'+h+')'};
+const phImg=(src,alt='')=>src?`<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">`:'';
 
 /* ================= DATA (země, klima, hranice) ================= */
 const GEO=[{"n":"Venezuela","c":[-66.21,7.12],"r":[[-63.85,11.13,-63.82,11.0,-63.92,10.89,-64.4,10.98,-64.35,11.05,-64.21,11.09,-64.11,11.01,-64.03,11.0,-63.89,11.17],[-60.02,8.55,-59.83,8.31,-59.85,8.25,-59.96,8.19,-60.03,8.05,-60.38,7.83,-60.51,7.81,-60.72,7.54,-60.6,7.32,-60.63,7.21,-60.58,7.16,-60.32,7.13,-60.35,7.0,-60.72,6.77,-60.87,6.79,-60.94,6.73,-61.14,6.69,-61.2,6.59,-61.13,6.21,-61.39,5.94,-60.67,5.16,-60.6,5.0,-60.63,4.89,-60.91,4.69,-61.0,4.54,-61.28,4.52,-61.48,4.4,-61.56,4.29,-62.15,4.1,-62.41,4.16,-62.71,4.02,-62.76,3.67,-62.86,3.59,-62.97,3.59,-63.34,3.94,-63.53,3.89,-63.65,3.94,-64.02,3.93,-64.19,4.13,-64.58,4.14,-64.72,4.27,-64.79,4.28,-64.82,4.23,-64.67,4.01,-64.22,3.59,-64.22,3.21,-64.01,2.67,-64.05,2.5,-63.92,2.45,-63.39,2.41,-63.39,2.22,-63.46,2.14,-64.01,1.93,-64.11,1.62,-64.2,1.53,-64.31,1.46,-64.49,1.45,-64.73,1.25,-65.03,1.16,-65.36,0.87,-65.47,0.69,-65.55,0.69,-65.52,0.84,-65.64,0.97,-65.81,0.94,-66.06,0.79,-66.3,0.75,-66.88,1.22,-66.88,1.36,-67.21,2.27,-67.21,2.39,-67.57,2.69,-67.62,2.79,-67.77,2.83,-67.86,2.79,-67.83,2.89,-67.35,3.32,-67.31,3.42,-67.66,3.86,-67.86,4.51,-67.83,5.27,-67.64,5.56,-67.57,5.83,-67.47,5.93,-67.44,6.03,-67.48,6.18,-67.57,6.24,-67.86,6.29,-67.94,6.24,-68.47,6.16,-68.94,6.2,-69.09,6.18,-69.27,6.1,-69.36,6.15,-69.43,6.12,-70.13,6.95,-70.39,6.97,-70.74,7.09,-71.13,6.99,-71.62,7.03,-71.89,6.99,-72.01,7.03,-72.09,7.1,-72.21,7.37,-72.39,7.42,-72.47,7.52,-72.45,7.97,-72.36,8.15,-72.42,8.38,-72.66,8.63,-72.8,9.11,-72.96,9.14,-73.06,9.26,-73.19,9.19,-73.37,9.19,-73.01,9.79,-72.87,10.49,-72.69,10.84,-72.45,11.11,-72.25,11.2,-71.96,11.67,-71.32,11.86,-71.49,11.72,-71.96,11.57,-71.95,11.41,-71.83,11.19,-71.64,11.01,-71.73,10.99,-71.6,10.66,-71.66,10.44,-71.96,10.11,-72.11,9.82,-71.98,9.55,-71.76,9.34,-71.78,9.25,-71.69,9.07,-71.54,9.05,-71.24,9.16,-71.08,9.35,-71.05,9.71,-71.26,10.14,-71.39,10.26,-71.55,10.78,-71.46,10.84,-71.47,10.96,-70.23,11.37,-70.1,11.52,-69.89,11.44,-69.81,11.47,-69.77,11.54,-69.82,11.67,-70.19,11.62,-70.29,11.89,-70.2,12.1,-70.0,12.18,-69.86,12.05,-69.76,11.68,-69.63,11.48,-69.23,11.52,-68.83,11.43,-68.4,11.16,-68.27,10.88,-68.32,10.81,-68.3,10.69,-68.14,10.49,-67.87,10.47,-66.99,10.61,-66.25,10.63,-66.11,10.57,-66.09,10.47,-65.85,10.26,-65.13,10.07,-64.85,10.1,-64.19,10.46,-63.83,10.45,-63.73,10.5,-63.86,10.56,-64.16,10.58,-64.25,10.54,-64.3,10.64,-63.5,10.64,-62.7,10.75,-62.24,10.7,-61.88,10.74,-61.92,10.68,-62.23,10.63,-62.38,10.55,-62.91,10.53,-62.84,10.51,-62.84,10.42,-62.69,10.29,-62.66,10.2,-62.74,10.06,-62.6,10.12,-62.6,10.22,-62.55,10.2,-62.32,9.78,-62.22,9.88,-62.15,9.82,-62.16,9.98,-62.08,9.98,-61.91,9.87,-61.74,9.63,-61.77,9.81,-61.62,9.82,-61.59,9.89,-61.31,9.63,-61.01,9.56,-60.79,9.36,-60.84,9.26,-61.02,9.15,-61.25,8.6,-61.62,8.6,-61.3,8.41,-61.2,8.49,-61.04,8.49,-60.8,8.59,-60.48,8.55,-60.34,8.63]]},{"n":"Uruguay","c":[-55.66,-32.8],"r":[[-53.37,-33.74,-53.47,-33.85,-53.53,-34.02,-53.74,-34.25,-53.79,-34.38,-54.17,-34.67,-54.27,-34.67,-54.9,-34.93,-55.24,-34.9,-55.37,-34.81,-55.67,-34.77,-56.12,-34.91,-56.25,-34.9,-56.39,-34.86,-56.46,-34.77,-56.85,-34.68,-57.17,-34.45,-57.83,-34.48,-57.87,-34.45,-57.96,-34.31,-58.4,-33.91,-58.44,-33.72,-58.36,-33.18,-58.22,-33.13,-58.09,-32.97,-58.2,-32.47,-58.12,-32.25,-58.19,-31.92,-58.04,-31.77,-57.99,-31.62,-58.05,-31.5,-58.03,-31.42,-57.89,-31.2,-57.9,-30.97,-57.81,-30.86,-57.87,-30.59,-57.65,-30.29,-57.65,-30.23,-57.61,-30.19,-57.55,-30.26,-57.21,-30.28,-57.12,-30.15,-56.83,-30.11,-56.04,-30.78,-56.0,-30.84,-56.0,-31.08,-55.81,-31.04,-55.6,-30.85,-55.17,-31.28,-55.09,-31.31,-55.04,-31.28,-54.9,-31.39,-54.59,-31.49,-54.22,-31.86,-53.92,-31.95,-53.76,-32.06,-53.6,-32.4,-53.12,-32.74,-53.48,-33.07,-53.53,-33.17,-53.53,-33.66]]},{"n":"Portoriko","c":[-66.41,18.23],"r":[[-66.13,18.45,-65.88,18.44,-65.63,18.38,-65.62,18.24,-65.97,17.98,-66.13,17.95,-66.77,17.99,-66.9,17.95,-67.2,17.99,-67.17,18.22,-67.26,18.36,-67.16,18.5]]},{"n":"USA","c":[-98.51,32.82],"r":[[-74.71,36,-66.99,36,-77.31,36,-75.76,36,-75.56,35.88,-75.53,35.82,-75.73,36,-76.74,36,-76.73,35.96,-76.61,35.94,-76.07,35.97,-76.08,35.69,-76.0,35.72,-75.98,35.9,-75.81,35.95,-75.74,35.77,-75.78,35.65,-76.17,35.35,-76.49,35.4,-76.58,35.53,-76.64,35.45,-76.74,35.43,-77.04,35.53,-76.97,35.46,-76.51,35.27,-76.63,35.07,-76.78,34.99,-77.07,35.15,-76.97,35.02,-76.74,34.94,-76.46,34.99,-76.36,34.94,-76.44,34.84,-76.52,34.78,-76.71,34.75,-76.73,34.71,-77.13,34.71,-77.29,34.6,-77.36,34.62,-77.41,34.73,-77.38,34.53,-77.75,34.28,-77.86,34.15,-77.93,33.94,-77.95,34.17,-78.01,33.91,-78.41,33.92,-78.84,33.72,-79.14,33.41,-79.2,33.24,-79.23,33.4,-79.28,33.32,-79.23,33.18,-79.27,33.14,-79.59,33.0,-79.62,32.91,-79.8,32.79,-79.93,32.81,-79.89,32.73,-79.94,32.67,-80.36,32.5,-80.64,32.51,-80.47,32.42,-80.48,32.35,-80.58,32.29,-80.65,32.4,-80.71,32.34,-80.8,32.45,-80.8,32.36,-80.69,32.22,-80.85,32.11,-80.92,31.94,-81.11,31.88,-81.07,31.79,-81.2,31.7,-81.17,31.61,-81.26,31.54,-81.18,31.53,-81.29,31.37,-81.38,31.35,-81.29,31.26,-81.37,31.17,-81.44,31.2,-81.52,30.8,-81.25,29.79,-80.9,29.05,-80.52,28.49,-80.59,28.27,-80.46,27.9,-80.61,28.18,-80.61,28.52,-80.69,28.34,-80.73,28.46,-80.69,28.58,-80.77,28.63,-80.77,28.73,-80.84,28.76,-80.75,28.38,-80.23,27.21,-80.12,27.08,-80.05,26.81,-80.13,25.83,-80.16,25.88,-80.3,25.62,-80.37,25.33,-80.48,25.23,-81.01,25.13,-81.11,25.14,-81.17,25.23,-81.14,25.31,-80.97,25.22,-80.94,25.26,-81.11,25.37,-81.37,25.83,-81.72,25.98,-81.81,26.15,-81.87,26.43,-81.96,26.49,-81.83,26.69,-81.97,26.55,-82.04,26.55,-82.07,26.89,-82.01,26.96,-82.18,26.94,-82.18,26.84,-82.29,26.87,-82.72,27.5,-82.64,27.52,-82.4,27.84,-82.45,27.9,-82.52,27.88,-82.64,27.98,-82.68,27.96,-82.6,27.87,-82.66,27.72,-82.74,27.71,-82.84,27.85,-82.66,28.49,-82.65,28.89,-82.77,29.05,-83.29,29.45,-83.7,29.93,-84.04,30.1,-84.31,30.06,-84.38,29.91,-84.55,29.9,-84.8,29.77,-85.32,29.68,-85.41,29.77,-85.41,29.84,-85.32,29.76,-85.36,29.88,-85.68,30.12,-85.61,30.15,-85.66,30.19,-85.6,30.29,-85.74,30.24,-85.75,30.17,-86.45,30.4,-86.13,30.4,-86.26,30.49,-86.45,30.5,-86.68,30.4,-87.2,30.34,-86.99,30.43,-87.0,30.57,-87.07,30.5,-87.17,30.54,-87.28,30.34,-87.48,30.29,-87.45,30.39,-87.62,30.26,-88.0,30.23,-87.79,30.29,-87.93,30.45,-87.92,30.56,-88.01,30.69,-88.13,30.37,-88.69,30.35,-88.9,30.42,-89.32,30.35,-89.44,30.22,-89.59,30.17,-89.96,30.27,-90.05,30.35,-90.23,30.38,-90.41,30.14,-90.28,30.06,-90.18,30.03,-90.0,30.06,-89.74,30.17,-89.66,30.12,-89.82,30.01,-89.74,29.93,-89.63,29.9,-89.5,30.06,-89.4,30.05,-89.35,29.82,-89.53,29.77,-89.59,29.72,-89.56,29.7,-89.68,29.67,-89.72,29.62,-89.51,29.42,-89.18,29.34,-89.02,29.2,-89.02,29.14,-89.16,29.02,-89.24,29.08,-89.38,28.98,-89.35,29.07,-89.52,29.25,-89.79,29.33,-89.88,29.46,-90.16,29.54,-90.05,29.43,-90.05,29.34,-90.1,29.18,-90.21,29.1,-90.3,29.26,-90.38,29.3,-90.59,29.27,-90.68,29.15,-90.75,29.13,-91.29,29.29,-91.15,29.32,-91.24,29.46,-91.25,29.56,-91.33,29.51,-91.51,29.56,-91.67,29.75,-91.82,29.75,-91.89,29.84,-92.02,29.8,-92.13,29.7,-92.06,29.62,-92.08,29.59,-92.26,29.56,-92.67,29.6,-93.17,29.78,-93.7,29.77,-93.83,29.72,-93.88,29.81,-93.81,29.85,-93.77,29.95,-93.84,29.98,-93.94,29.81,-93.89,29.69,-94.1,29.67,-94.76,29.38,-94.53,29.55,-94.78,29.55,-94.73,29.66,-94.74,29.75,-94.83,29.75,-94.89,29.68,-95.02,29.7,-94.99,29.53,-94.89,29.37,-95.14,29.17,-95.15,29.08,-95.27,28.96,-95.85,28.64,-96.23,28.49,-96.01,28.63,-96.37,28.66,-96.45,28.59,-96.58,28.72,-96.64,28.71,-96.53,28.49,-96.42,28.46,-96.68,28.34,-96.77,28.42,-96.84,28.2,-96.89,28.16,-96.93,28.22,-97.16,28.14,-97.14,28.06,-97.03,28.09,-97.07,27.99,-97.17,27.88,-97.43,27.84,-97.29,27.67,-97.44,27.33,-97.52,27.31,-97.77,27.46,-97.69,27.29,-97.48,27.24,-97.48,27.12,-97.56,26.97,-97.44,26.49,-97.21,26.07,-97.15,26.06,-97.15,25.96,-97.28,25.94,-97.38,25.87,-97.8,26.04,-98.28,26.11,-99.11,26.45,-99.23,26.76,-99.46,27.06,-99.51,27.55,-99.76,27.73,-100.11,28.17,-100.3,28.33,-100.33,28.5,-100.76,29.18,-101.38,29.74,-101.55,29.81,-101.99,29.8,-102.34,29.87,-102.39,29.81,-102.61,29.75,-102.73,29.64,-102.89,29.22,-103.09,29.04,-103.26,29.0,-103.99,29.32,-104.4,29.57,-104.62,29.85,-104.68,30.13,-104.92,30.58,-106.15,31.45,-106.44,31.77,-108.21,31.78,-108.22,31.33,-111.04,31.33,-114.84,32.51,-114.72,32.72,-117.13,32.53,-117.14,32.65,-117.18,32.69,-117.24,32.66,-117.32,33.1,-117.47,33.3,-117.79,33.54,-118.16,33.75,-118.26,33.76,-118.3,33.71,-118.41,33.74,-118.39,33.86,-118.51,34.02,-118.83,34.02,-119.14,34.11,-119.23,34.16,-119.27,34.26,-119.61,34.42,-119.85,34.41,-120,34.46,-120,36],[-97.17,26.16,-97.18,26.11,-97.4,26.82,-97.39,27.2,-97.35,26.8]]},{"n":"Falklandy","c":[-58.63,-51.75],"r":[[-58.85,-51.27,-58.7,-51.33,-58.43,-51.32,-58.38,-51.37,-58.41,-51.42,-58.52,-51.42,-58.51,-51.48,-58.27,-51.57,-58.24,-51.58,-58.29,-51.46,-58.26,-51.42,-57.98,-51.39,-57.81,-51.52,-57.96,-51.58,-57.79,-51.64,-57.84,-51.71,-58.68,-51.94,-58.65,-52.1,-59.2,-52.02,-59.07,-52.17,-59.34,-52.2,-59.4,-52.31,-59.53,-52.24,-59.65,-52.14,-59.65,-52.08,-59.54,-51.97,-59.57,-51.92,-59.26,-51.74,-59.06,-51.69,-59.1,-51.49,-58.89,-51.36,-58.92,-51.27],[-60.29,-51.46,-60.14,-51.48,-59.92,-51.39,-59.79,-51.45,-59.46,-51.41,-59.39,-51.36,-59.27,-51.43,-59.92,-51.97,-60.24,-51.99,-60.39,-52.15,-60.69,-52.19,-60.96,-52.06,-60.76,-51.95,-60.59,-51.95,-60.24,-51.77,-60.28,-51.72,-60.5,-51.76,-60.58,-51.71,-60.24,-51.64,-60.51,-51.49,-60.57,-51.36]]},{"n":"Trinidad a Tobago","c":[-61.25,10.42],"r":[[-61.01,10.13,-61.17,10.08,-61.9,10.07,-61.63,10.24,-61.5,10.27,-61.48,10.6,-61.65,10.72,-61.37,10.8,-60.92,10.84,-61.03,10.67,-61.04,10.48,-60.97,10.32]]},{"n":"Surinam","c":[-56.21,4.13],"r":[[-54.16,5.36,-54.45,5.01,-54.48,4.84,-54.43,4.58,-54.45,4.48,-54.35,4.05,-53.99,3.59,-54.01,3.45,-54.2,3.14,-54.2,2.82,-54.4,2.46,-54.54,2.34,-54.66,2.33,-54.72,2.44,-54.88,2.45,-54.98,2.6,-55.38,2.44,-55.73,2.41,-55.96,2.52,-56.14,2.26,-55.91,2.04,-55.96,1.86,-56.45,1.93,-56.71,2.04,-57.11,2.77,-57.21,2.88,-57.3,3.38,-57.55,3.35,-57.65,3.39,-57.65,3.52,-57.83,3.68,-58.03,4.0,-58.06,4.17,-57.95,4.35,-57.85,4.67,-57.92,4.82,-57.88,4.88,-57.71,4.99,-57.41,5.0,-57.31,5.05,-57.31,5.11,-57.21,5.21,-57.28,5.25,-57.32,5.34,-57.25,5.48,-57.18,5.53,-57.06,5.94,-56.97,5.99,-56.23,5.89,-55.94,5.8,-55.9,5.7,-55.91,5.89,-55.83,5.96,-54.83,5.99,-54.36,5.91,-54.05,5.81,-54.05,5.61]]},{"n":"Peru","c":[-75.78,-9.16],"r":[[-69.96,-4.24,-69.97,-4.3,-70.05,-4.33,-70.13,-4.29,-70.24,-4.3,-70.4,-4.15,-70.8,-4.17,-70.97,-4.35,-71.84,-4.5,-72.35,-4.79,-72.7,-5.07,-72.89,-5.12,-72.98,-5.63,-73.24,-6.1,-73.14,-6.34,-73.14,-6.47,-73.24,-6.56,-73.5,-6.68,-73.76,-6.91,-73.81,-7.08,-73.72,-7.31,-73.96,-7.38,-73.96,-7.51,-74.0,-7.56,-73.72,-7.78,-73.78,-7.94,-73.64,-8.07,-73.55,-8.35,-73.36,-8.48,-73.3,-8.65,-72.97,-8.99,-72.97,-9.12,-73.21,-9.41,-72.81,-9.41,-72.38,-9.51,-72.32,-9.56,-72.26,-9.77,-72.17,-9.84,-72.18,-10.0,-71.24,-9.97,-70.54,-9.44,-70.59,-9.54,-70.57,-9.71,-70.64,-9.82,-70.64,-11.01,-70.53,-10.95,-70.39,-11.06,-70.29,-11.06,-69.96,-10.93,-69.58,-10.95,-68.69,-12.5,-68.76,-12.61,-68.76,-12.69,-68.98,-12.88,-68.98,-13.5,-69.08,-13.68,-68.87,-14.17,-69.0,-14.27,-69.01,-14.38,-69.23,-14.6,-69.28,-14.75,-69.36,-14.8,-69.37,-14.96,-69.17,-15.24,-69.42,-15.64,-69.22,-16.15,-69.13,-16.22,-68.91,-16.26,-68.84,-16.34,-69.03,-16.48,-69.02,-16.64,-69.2,-16.77,-69.44,-17.09,-69.63,-17.2,-69.64,-17.25,-69.52,-17.39,-69.51,-17.51,-69.68,-17.65,-69.85,-17.7,-69.8,-17.99,-69.93,-18.21,-70.18,-18.32,-70.42,-18.35,-71.34,-17.68,-71.4,-17.42,-71.53,-17.3,-72.11,-17.0,-72.47,-16.71,-72.79,-16.61,-73.4,-16.3,-73.73,-16.2,-74.15,-15.91,-74.37,-15.83,-75.11,-15.41,-75.53,-14.9,-75.93,-14.63,-76.17,-14.23,-76.29,-14.13,-76.3,-13.95,-76.38,-13.86,-76.26,-13.8,-76.18,-13.52,-76.23,-13.37,-76.5,-12.98,-76.83,-12.35,-77.15,-12.06,-77.22,-11.66,-77.31,-11.53,-77.63,-11.29,-77.74,-10.84,-78.19,-10.09,-78.45,-9.37,-78.67,-8.97,-78.76,-8.62,-79.01,-8.21,-79.38,-7.84,-79.62,-7.3,-79.99,-6.77,-80.11,-6.65,-80.81,-6.28,-81.14,-6.06,-81.16,-5.88,-81.09,-5.81,-80.93,-5.84,-80.88,-5.63,-80.94,-5.47,-81.17,-5.17,-81.11,-5.03,-81.34,-4.67,-81.23,-4.23,-80.8,-3.73,-80.33,-3.39,-80.27,-3.42,-80.18,-3.88,-80.3,-4.0,-80.49,-4.01,-80.49,-4.17,-80.35,-4.21,-80.48,-4.43,-80.38,-4.46,-80.14,-4.3,-79.8,-4.48,-79.64,-4.46,-79.52,-4.54,-79.5,-4.67,-79.33,-4.93,-79.03,-4.97,-78.92,-4.86,-78.91,-4.71,-78.69,-4.56,-78.65,-4.46,-78.68,-4.33,-78.42,-3.78,-78.35,-3.4,-78.28,-3.4,-78.23,-3.49,-78.16,-3.46,-78.18,-3.35,-77.86,-2.98,-76.68,-2.56,-76.09,-2.13,-75.57,-1.53,-75.41,-0.92,-75.35,-0.97,-75.25,-0.95,-75.26,-0.59,-75.43,-0.41,-75.49,-0.25,-75.63,-0.12,-75.34,-0.14,-75.22,-0.04,-75.14,-0.05,-74.94,-0.19,-74.8,-0.2,-74.76,-0.3,-74.62,-0.37,-74.42,-0.58,-74.34,-0.85,-74.25,-0.97,-74.05,-1.03,-73.86,-1.2,-73.67,-1.25,-73.52,-1.45,-73.5,-1.69,-73.2,-1.83,-73.13,-2.08,-73.15,-2.28,-72.94,-2.39,-72.63,-2.35,-72.39,-2.43,-72.22,-2.4,-71.98,-2.33,-71.75,-2.15,-71.4,-2.33,-71.2,-2.31,-70.97,-2.21,-70.09,-2.66,-70.07,-2.75,-70.74,-3.78,-70.53,-3.87,-70.34,-3.82,-70.24,-3.88,-70.17,-4.05]]},{"n":"Paraguay","c":[-58.65,-23.23],"r":[[-58.16,-20.16,-58.0,-20.47,-57.98,-20.66,-57.92,-20.69,-57.9,-20.87,-57.83,-21.0,-57.87,-21.36,-57.94,-21.49,-57.92,-21.7,-57.98,-22.01,-57.96,-22.11,-57.82,-22.14,-57.72,-22.1,-57.57,-22.18,-57.24,-22.2,-56.94,-22.27,-56.63,-22.23,-56.45,-22.08,-56.25,-22.27,-55.85,-22.31,-55.75,-22.41,-55.71,-22.59,-55.62,-22.67,-55.65,-22.89,-55.52,-23.42,-55.54,-23.58,-55.46,-23.69,-55.42,-23.95,-55.29,-24.0,-55.08,-24.0,-54.63,-23.81,-54.24,-24.05,-54.32,-24.13,-54.28,-24.31,-54.44,-25.12,-54.61,-25.43,-54.63,-26.01,-54.75,-26.53,-54.83,-26.65,-54.93,-26.7,-55.14,-26.93,-55.43,-27.01,-55.56,-27.15,-55.63,-27.36,-55.72,-27.41,-55.95,-27.33,-56.16,-27.32,-56.44,-27.55,-56.61,-27.47,-56.72,-27.49,-56.97,-27.44,-57.11,-27.47,-58.17,-27.27,-58.6,-27.31,-58.64,-27.2,-58.62,-27.13,-58.44,-26.92,-58.32,-26.86,-58.19,-26.63,-58.2,-26.38,-58.11,-26.18,-57.89,-26.01,-57.75,-25.7,-57.57,-25.53,-57.65,-25.33,-57.96,-25.05,-58.14,-24.98,-58.37,-24.96,-58.52,-24.84,-59.19,-24.56,-59.89,-24.09,-60.11,-24.01,-60.5,-23.96,-61.03,-23.75,-61.21,-23.56,-61.8,-23.18,-61.93,-23.06,-62.21,-22.61,-62.65,-22.23,-62.28,-21.07,-62.28,-20.56,-61.92,-20.06,-61.76,-19.65,-60.01,-19.3,-59.09,-19.29,-58.18,-19.82,-58.14,-20.0]]},{"n":"Panama","c":[-81.35,8.53],"r":[[-77.37,8.66,-77.48,8.5,-77.2,7.97,-77.34,7.84,-77.35,7.71,-77.54,7.57,-77.59,7.54,-77.7,7.69,-77.76,7.7,-77.74,7.54,-77.83,7.44,-77.9,7.23,-78.17,7.54,-78.38,7.9,-78.42,8.06,-78.29,8.09,-78.26,8.14,-78.28,8.25,-78.14,8.39,-78.05,8.28,-77.76,8.13,-78.01,8.32,-78.1,8.5,-78.22,8.4,-78.26,8.45,-78.4,8.51,-78.37,8.4,-78.41,8.36,-78.51,8.63,-79.09,9.0,-79.25,9.02,-79.51,8.97,-79.69,8.85,-79.81,8.64,-79.75,8.6,-80.12,8.35,-80.37,8.29,-80.46,8.21,-80.46,8.08,-80.07,7.67,-80.01,7.5,-80.11,7.43,-80.29,7.43,-80.44,7.27,-80.67,7.23,-80.84,7.22,-80.9,7.28,-81.06,7.9,-81.16,7.85,-81.22,7.62,-81.27,7.63,-81.5,7.72,-81.73,8.14,-81.97,8.22,-82.16,8.19,-82.22,8.23,-82.23,8.31,-82.36,8.27,-82.68,8.32,-82.87,8.25,-82.88,8.07,-82.91,8.2,-83.03,8.34,-82.86,8.45,-82.84,8.56,-82.92,8.74,-82.73,8.92,-82.94,9.06,-82.94,9.45,-82.8,9.59,-82.64,9.51,-82.57,9.58,-82.37,9.43,-82.34,9.21,-82.19,9.19,-82.24,9.03,-82.08,8.93,-81.78,8.96,-81.9,9.14,-81.71,9.02,-81.55,8.83,-81.36,8.78,-80.84,8.89,-80.55,9.08,-80.13,9.21,-79.58,9.6,-79.11,9.54,-78.93,9.43,-78.5,9.41,-78.08,9.24]]},{"n":"Nikaragua","c":[-85.57,12.84],"r":[[-83.16,14.99,-83.28,14.81,-83.34,14.9,-83.41,14.83,-83.3,14.75,-83.19,14.34,-83.41,14.0,-83.57,13.32,-83.51,12.41,-83.59,12.4,-83.63,12.46,-83.59,12.71,-83.63,12.61,-83.75,12.5,-83.65,12.29,-83.68,12.02,-83.77,12.06,-83.77,11.93,-83.83,11.86,-83.71,11.82,-83.65,11.64,-83.75,11.57,-83.87,11.3,-83.77,11.01,-83.64,10.92,-83.71,10.79,-83.92,10.74,-84.17,10.78,-84.35,10.98,-84.7,11.05,-84.91,10.95,-85.59,11.19,-85.74,11.06,-85.96,11.33,-86.47,11.74,-86.76,12.16,-87.67,12.9,-87.67,12.97,-87.58,13.04,-87.39,12.92,-87.34,12.98,-87.06,12.99,-86.96,13.05,-86.92,13.22,-86.71,13.31,-86.77,13.7,-86.73,13.76,-86.33,13.77,-86.15,13.99,-86.04,14.05,-85.99,13.97,-85.79,13.85,-85.73,13.86,-85.68,13.98,-85.18,14.34,-85.16,14.53,-85.04,14.61,-84.98,14.75,-84.86,14.81,-84.54,14.63,-84.29,14.69,-84.24,14.75,-84.15,14.72,-84.07,14.79,-83.87,14.79,-83.63,14.88,-83.54,14.98]]},{"n":"Mexiko","c":[-102.37,23.94],"r":[[-117.13,32.53,-114.72,32.72,-114.84,32.51,-111.04,31.33,-108.22,31.33,-108.21,31.78,-106.44,31.77,-106.15,31.45,-104.92,30.58,-104.68,30.13,-104.62,29.85,-104.4,29.57,-103.99,29.32,-103.26,29.0,-103.09,29.04,-102.89,29.22,-102.73,29.64,-102.61,29.75,-102.27,29.87,-101.99,29.8,-101.44,29.78,-100.76,29.18,-100.33,28.5,-100.3,28.33,-100.11,28.17,-99.76,27.73,-99.51,27.55,-99.46,27.06,-99.23,26.76,-99.11,26.45,-98.28,26.11,-97.8,26.04,-97.38,25.87,-97.28,25.94,-97.15,25.96,-97.16,25.75,-97.51,25.01,-97.67,24.39,-97.74,23.76,-97.75,22.94,-97.86,22.62,-97.84,22.51,-97.76,22.11,-97.58,21.81,-97.31,21.56,-97.41,21.27,-97.43,21.46,-97.38,21.57,-97.59,21.76,-97.75,22.03,-97.64,21.6,-97.52,21.48,-97.18,20.72,-96.46,19.87,-96.29,19.34,-95.99,19.05,-95.91,18.9,-95.78,18.81,-95.93,18.85,-95.92,18.82,-95.63,18.69,-95.58,18.69,-95.72,18.77,-95.18,18.7,-95.01,18.57,-94.8,18.52,-94.55,18.17,-94.46,18.17,-94.19,18.2,-93.55,18.43,-93.13,18.42,-92.89,18.47,-92.77,18.52,-92.71,18.61,-92.44,18.67,-91.98,18.72,-91.88,18.64,-91.94,18.56,-91.91,18.53,-91.8,18.47,-91.53,18.46,-91.27,18.62,-91.28,18.72,-91.37,18.81,-91.34,18.9,-91.47,18.83,-91.44,18.89,-90.96,19.15,-90.74,19.35,-90.69,19.73,-90.49,19.95,-90.49,20.56,-90.35,21.01,-89.82,21.28,-88.88,21.41,-88.47,21.57,-88.01,21.6,-87.25,21.45,-87.19,21.48,-87.19,21.55,-87.39,21.55,-87.13,21.62,-86.82,21.42,-86.77,21.15,-86.92,20.79,-87.22,20.51,-87.42,20.23,-87.47,20.1,-87.43,19.9,-87.46,19.82,-87.59,19.78,-87.69,19.64,-87.64,19.55,-87.43,19.58,-87.48,19.44,-87.66,19.35,-87.66,19.26,-87.55,19.32,-87.5,19.29,-87.8,18.36,-87.88,18.27,-87.96,18.44,-88.04,18.48,-88.01,18.73,-88.03,18.84,-88.07,18.83,-88.2,18.72,-88.3,18.47,-88.52,18.45,-88.81,17.96,-88.9,17.91,-89.05,18.0,-89.14,17.97,-89.16,17.82,-90.99,17.82,-90.99,17.25,-91.41,17.26,-90.97,16.87,-90.71,16.71,-90.63,16.51,-90.42,16.39,-90.45,16.07,-91.74,16.07,-92.21,15.28,-92.08,15.07,-92.16,14.96,-92.16,14.69,-92.23,14.54,-93.17,15.45,-93.92,16.05,-94.37,16.28,-94.43,16.23,-94.0,16.02,-94.47,16.19,-94.66,16.2,-94.68,16.23,-94.59,16.32,-94.62,16.35,-94.79,16.29,-94.79,16.36,-94.9,16.42,-95.02,16.28,-94.8,16.21,-95.13,16.18,-95.46,15.98,-96.21,15.69,-96.51,15.65,-96.81,15.73,-97.18,15.91,-97.75,15.97,-98.14,16.21,-98.52,16.31,-98.76,16.53,-99.69,16.72,-100.03,16.92,-100.85,17.2,-101.6,17.65,-101.92,17.96,-102.22,17.96,-102.7,18.06,-103.44,18.33,-103.91,18.83,-104.94,19.31,-105.48,19.98,-105.67,20.38,-105.54,20.5,-105.38,20.51,-105.26,20.58,-105.25,20.67,-105.33,20.75,-105.51,20.81,-105.24,21.12,-105.21,21.49,-105.43,21.62,-105.65,21.99,-105.64,22.33,-105.79,22.63,-106.4,23.2,-106.94,23.88,-107.77,24.47,-107.53,24.36,-107.49,24.42,-107.51,24.49,-107.82,24.54,-107.95,24.62,-108.01,24.78,-108.28,25.08,-108.14,25.02,-108.04,25.04,-108.05,25.07,-108.7,25.38,-108.79,25.54,-109.03,25.48,-109.07,25.55,-108.97,25.59,-108.88,25.73,-109.08,25.62,-109.2,25.59,-109.31,25.63,-109.39,25.73,-109.42,26.03,-109.2,26.3,-109.12,26.25,-109.22,26.35,-109.28,26.53,-109.48,26.71,-109.76,26.7,-109.89,26.88,-109.94,27.08,-110.28,27.16,-110.38,27.23,-110.48,27.32,-110.59,27.54,-110.62,27.65,-110.53,27.86,-110.76,27.92,-110.92,27.89,-111.12,27.97,-111.47,28.38,-111.68,28.47,-111.94,28.82,-112.16,29.02,-112.22,29.27,-112.38,29.35,-112.41,29.54,-112.74,29.98,-112.82,30.3,-113.06,30.65,-113.11,30.79,-113.12,31.05,-113.04,31.09,-113.05,31.18,-113.62,31.35,-113.63,31.47,-113.76,31.56,-113.95,31.63,-114.0,31.52,-114.15,31.51,-114.93,31.9,-114.84,31.8,-114.79,31.65,-114.85,31.54,-114.88,31.16,-114.7,30.76,-114.63,30.51,-114.65,30.24,-114.55,30.02,-114.37,29.83,-114.18,29.73,-113.76,29.37,-113.55,29.1,-113.5,28.93,-113.38,28.95,-113.32,28.81,-113.2,28.8,-113.09,28.51,-112.87,28.42,-112.73,27.83,-112.33,27.52,-112.19,27.19,-112.0,27.08,-112.01,26.97,-111.88,26.84,-111.86,26.68,-111.75,26.57,-111.7,26.58,-111.82,26.76,-111.79,26.88,-111.57,26.71,-111.33,26.13,-111.29,25.79,-111.15,25.57,-111.03,25.53,-110.89,25.14,-110.69,24.87,-110.74,24.59,-110.66,24.34,-110.55,24.21,-110.4,24.17,-110.37,24.1,-110.3,24.2,-110.32,24.31,-110.26,24.34,-110.02,24.17,-109.81,23.94,-109.71,23.8,-109.68,23.66,-109.51,23.6,-109.42,23.48,-109.46,23.21,-109.82,22.92,-110.0,22.89,-110.09,23.01,-110.18,23.34,-110.36,23.61,-110.63,23.74,-111.04,24.11,-111.42,24.33,-111.68,24.56,-111.8,24.54,-111.85,24.67,-112.07,24.84,-112.13,25.04,-112.06,25.49,-112.18,25.91,-112.38,26.21,-112.66,26.32,-113.02,26.58,-113.12,26.72,-113.15,26.95,-113.27,26.79,-113.42,26.8,-113.6,26.72,-113.84,26.97,-114.0,26.99,-114.11,27.11,-114.45,27.22,-114.54,27.43,-114.99,27.74,-115.04,27.84,-114.57,27.78,-114.3,27.87,-114.3,27.77,-114.14,27.67,-114.07,27.68,-114.18,27.83,-114.16,27.92,-114.27,27.93,-114.18,28.01,-114.05,28.43,-114.14,28.6,-114.94,29.35,-115.17,29.43,-115.67,29.76,-115.75,29.94,-115.81,29.96,-115.81,30.3,-115.99,30.41,-116.06,30.8,-116.3,30.97,-116.33,31.2,-116.66,31.56,-116.67,31.7,-116.72,31.73,-116.62,31.76,-116.62,31.85,-116.85,32.0,-116.91,32.2,-117.06,32.34],[-113.15,29.05,-113.27,29.1,-113.5,29.31,-113.58,29.41,-113.59,29.57,-113.42,29.49,-113.37,29.34,-113.2,29.3],[-112.2,29.01,-112.28,28.77,-112.51,28.85,-112.47,29.17,-112.42,29.2,-112.28,29.24]]},{"n":"Jamajka","c":[-77.2,18.16],"r":[[-77.26,18.46,-76.91,18.39,-76.7,18.26,-76.35,18.15,-76.21,17.91,-76.52,17.87,-76.85,17.97,-76.95,17.85,-77.12,17.88,-77.2,17.71,-77.36,17.83,-77.77,17.88,-78.04,18.17,-78.3,18.22,-78.34,18.29,-78.22,18.45,-77.98,18.47,-77.87,18.52]]},{"n":"Honduras","c":[-86.51,14.82],"r":[[-83.16,14.99,-83.54,14.98,-83.63,14.88,-83.97,14.77,-84.07,14.79,-84.15,14.72,-84.24,14.75,-84.27,14.7,-84.46,14.64,-84.65,14.66,-84.86,14.81,-84.98,14.75,-85.04,14.61,-85.16,14.53,-85.18,14.34,-85.68,13.98,-85.73,13.86,-85.79,13.85,-85.99,13.97,-86.04,14.05,-86.15,13.99,-86.33,13.77,-86.76,13.75,-86.71,13.31,-86.87,13.27,-86.96,13.05,-87.06,12.99,-87.34,12.98,-87.33,13.08,-87.41,13.13,-87.5,13.27,-87.49,13.35,-87.81,13.4,-87.74,13.45,-87.78,13.52,-87.72,13.81,-87.8,13.89,-87.99,13.88,-88.15,13.99,-88.48,13.85,-88.51,13.98,-88.71,14.03,-89.06,14.33,-89.36,14.42,-89.17,14.61,-89.22,14.87,-89.14,15.07,-88.98,15.14,-88.23,15.73,-88.13,15.7,-87.88,15.88,-87.7,15.91,-87.62,15.91,-87.49,15.79,-87.28,15.83,-86.91,15.76,-86.36,15.78,-85.93,15.95,-85.99,16.02,-85.48,15.9,-85.16,15.92,-84.97,15.99,-84.65,15.88,-84.56,15.8,-84.43,15.83,-84.52,15.87,-84.26,15.82,-83.76,15.41,-83.97,15.52,-84.11,15.49,-84.1,15.4,-83.93,15.39,-83.76,15.22,-83.59,15.27,-83.5,15.22,-83.68,15.37,-83.65,15.37,-83.37,15.24,-83.29,15.08]]},{"n":"Haiti","c":[-72.23,18.93],"r":[[-71.78,19.72,-71.71,19.49,-71.75,19.29,-71.65,19.16,-71.81,18.99,-71.73,18.86,-71.74,18.73,-71.87,18.61,-72.0,18.6,-71.87,18.42,-71.76,18.34,-71.77,18.04,-72.06,18.23,-72.5,18.22,-72.88,18.15,-73.38,18.25,-73.75,18.19,-73.89,18.04,-74.09,18.21,-74.46,18.39,-74.48,18.45,-74.39,18.62,-74.23,18.66,-73.59,18.52,-72.79,18.44,-72.62,18.55,-72.38,18.57,-72.35,18.67,-72.65,18.89,-72.81,19.07,-72.74,19.13,-72.77,19.24,-72.7,19.44,-73.05,19.61,-73.4,19.66,-73.44,19.72,-73.32,19.86,-72.88,19.93,-72.64,19.9,-72.22,19.74],[-72.81,18.78,-72.82,18.71,-73.08,18.79,-73.28,18.9,-73.28,18.95,-73.07,18.93]]},{"n":"Guyana","c":[-58.96,4.79],"r":[[-60.74,5.2,-61.39,5.94,-61.13,6.21,-61.2,6.59,-61.14,6.69,-60.94,6.73,-60.87,6.79,-60.72,6.77,-60.35,7.0,-60.32,7.13,-60.58,7.16,-60.63,7.21,-60.6,7.32,-60.72,7.54,-60.51,7.81,-60.38,7.83,-60.03,8.05,-59.96,8.19,-59.85,8.25,-59.83,8.31,-60.02,8.55,-59.84,8.37,-59.67,8.36,-59.2,8.07,-58.81,7.74,-58.51,7.4,-58.48,7.04,-58.58,6.84,-58.61,6.5,-58.67,6.39,-58.59,6.45,-58.57,6.63,-58.42,6.85,-58.3,6.88,-57.98,6.79,-57.61,6.45,-57.54,6.33,-57.34,6.27,-57.23,6.18,-57.17,5.89,-57.2,5.55,-57.32,5.34,-57.21,5.19,-57.31,5.11,-57.33,5.02,-57.71,4.99,-57.88,4.88,-57.92,4.82,-57.85,4.67,-58.06,4.1,-57.83,3.68,-57.65,3.52,-57.65,3.39,-57.55,3.35,-57.3,3.38,-57.2,2.85,-57.11,2.77,-56.71,2.04,-56.48,1.94,-56.84,1.88,-57.01,1.92,-57.12,2.01,-57.32,1.96,-57.54,1.73,-57.98,1.65,-58.03,1.52,-58.34,1.59,-58.39,1.48,-58.51,1.44,-58.51,1.29,-58.69,1.28,-58.79,1.21,-58.86,1.2,-58.97,1.3,-59.23,1.38,-59.54,1.7,-59.67,1.75,-59.67,1.84,-59.74,1.87,-59.76,2.27,-59.89,2.36,-59.99,2.69,-59.97,2.99,-59.83,3.35,-59.86,3.59,-59.68,3.7,-59.55,3.93,-59.74,4.23,-59.7,4.38,-59.83,4.48,-60.15,4.53,-60.03,4.74,-59.99,5.08,-60.14,5.24,-60.24,5.26,-60.46,5.19]]},{"n":"Guatemala","c":[-90.12,15.69],"r":[[-92.23,14.54,-92.16,14.69,-92.16,14.96,-92.08,15.07,-92.21,15.28,-91.74,16.07,-90.45,16.07,-90.42,16.39,-90.63,16.51,-90.71,16.71,-90.97,16.87,-91.41,17.26,-90.99,17.25,-90.99,17.82,-89.16,17.82,-89.24,15.89,-88.89,15.89,-88.6,15.76,-88.54,15.85,-88.6,15.95,-88.23,15.73,-88.96,15.15,-89.17,15.04,-89.22,14.87,-89.17,14.61,-89.36,14.42,-89.57,14.39,-89.55,14.24,-90.05,13.9,-90.1,13.83,-90.1,13.74,-90.61,13.93,-91.15,13.93,-91.38,13.99,-91.82,14.23]]},{"n":"Francouzská Guyana","c":[-53.04,3.92],"r":[[-54.62,2.33,-54.54,2.34,-54.4,2.46,-54.2,2.82,-54.2,3.14,-54.01,3.45,-53.99,3.59,-54.35,4.05,-54.34,4.14,-54.4,4.2,-54.44,4.43,-54.47,4.92,-54.33,5.19,-54.09,5.41,-53.92,5.77,-53.85,5.78,-53.46,5.56,-52.9,5.43,-52.45,5.02,-52.29,4.94,-52.32,4.77,-52.22,4.86,-52.06,4.72,-51.96,4.51,-52.0,4.35,-51.93,4.44,-51.88,4.63,-51.83,4.64,-51.67,4.23,-51.65,4.06,-51.77,3.99,-51.99,3.7,-52.16,3.37,-52.33,3.18,-52.56,2.57,-52.7,2.36,-53.01,2.18,-53.23,2.21,-53.33,2.34,-53.51,2.25,-53.74,2.31,-53.77,2.35,-54.13,2.12,-54.43,2.21]]},{"n":"Salvador","c":[-88.92,13.74],"r":[[-89.36,14.42,-89.06,14.33,-88.71,14.03,-88.51,13.98,-88.48,13.85,-88.15,13.99,-87.99,13.88,-87.8,13.89,-87.73,13.84,-87.78,13.52,-87.73,13.48,-87.84,13.39,-87.82,13.28,-87.93,13.18,-88.18,13.16,-88.69,13.28,-88.48,13.2,-88.51,13.18,-88.87,13.28,-89.28,13.48,-89.8,13.56,-90.1,13.74,-90.1,13.83,-90.05,13.9,-89.55,14.24,-89.57,14.39]]},{"n":"Ekvádor","c":[-78.18,-1.44],"r":[[-75.29,-0.11,-75.48,-0.16,-75.63,-0.12,-75.49,-0.25,-75.43,-0.41,-75.26,-0.59,-75.25,-0.95,-75.35,-0.97,-75.41,-0.92,-75.57,-1.53,-76.09,-2.13,-76.68,-2.56,-77.86,-2.98,-78.18,-3.35,-78.16,-3.46,-78.23,-3.49,-78.28,-3.4,-78.35,-3.4,-78.42,-3.78,-78.68,-4.33,-78.65,-4.46,-78.69,-4.56,-78.91,-4.71,-78.92,-4.86,-79.03,-4.97,-79.33,-4.93,-79.5,-4.67,-79.52,-4.54,-79.64,-4.46,-79.8,-4.48,-80.14,-4.3,-80.38,-4.46,-80.48,-4.43,-80.35,-4.21,-80.49,-4.17,-80.49,-4.01,-80.3,-4.0,-80.18,-3.88,-80.27,-3.42,-80.33,-3.39,-80.16,-3.32,-79.96,-3.16,-79.73,-2.58,-79.82,-2.36,-79.84,-2.07,-79.89,-2.15,-79.88,-2.42,-79.93,-2.55,-80.03,-2.56,-80.01,-2.35,-80.29,-2.71,-80.45,-2.63,-80.69,-2.4,-80.93,-2.27,-80.96,-2.19,-80.77,-2.08,-80.76,-1.94,-80.83,-1.63,-80.8,-1.38,-80.9,-1.08,-80.84,-0.98,-80.55,-0.85,-80.46,-0.59,-80.28,-0.62,-80.38,-0.58,-80.48,-0.37,-80.14,-0.01,-80.05,0.16,-80.02,0.41,-80.09,0.79,-80.03,0.83,-79.9,0.86,-79.74,0.98,-79.61,0.97,-79.47,1.06,-78.9,1.21,-78.83,1.3,-78.86,1.46,-78.68,1.28,-78.18,0.97,-77.83,0.83,-77.7,0.84,-77.65,0.72,-77.47,0.64,-77.4,0.39,-77.11,0.35,-76.83,0.25,-76.5,0.23,-76.43,0.26,-76.39,0.41,-76.27,0.44,-76.07,0.35,-75.78,0.09,-75.62,0.06],[-80.13,-2.97,-80.15,-3.01,-80.27,-3.0,-80.23,-2.75,-80.08,-2.67,-79.91,-2.72,-80.09,-2.85],[-90.33,-0.77,-90.54,-0.68,-90.53,-0.58,-90.47,-0.52,-90.27,-0.49,-90.19,-0.54,-90.19,-0.66],[-89.42,-0.91,-89.54,-0.95,-89.61,-0.89,-89.42,-0.72,-89.29,-0.69,-89.29,-0.79],[-91.42,-0.46,-91.61,-0.44,-91.65,-0.28,-91.46,-0.26,-91.4,-0.32],[-91.27,0.02,-91.21,-0.04,-91.18,-0.22,-90.97,-0.42,-90.96,-0.59,-90.8,-0.75,-90.91,-0.94,-91.13,-1.02,-91.37,-1.02,-91.5,-0.86,-91.33,-0.71,-91.14,-0.62,-91.12,-0.56,-91.25,-0.37,-91.37,-0.29,-91.43,-0.02,-91.55,-0.05,-91.6,0.0,-91.49,0.1,-91.36,0.13],[-90.58,-0.33,-90.62,-0.36,-90.81,-0.33,-90.87,-0.27,-90.78,-0.16,-90.55,-0.28]]},{"n":"Dominikánská rep.","c":[-70.21,18.89],"r":[[-71.77,18.04,-71.76,18.34,-71.87,18.42,-72.0,18.6,-71.87,18.61,-71.74,18.73,-71.73,18.86,-71.81,18.99,-71.66,19.13,-71.65,19.2,-71.75,19.29,-71.71,19.49,-71.78,19.72,-71.67,19.85,-71.56,19.9,-71.28,19.85,-70.95,19.91,-70.63,19.78,-70.44,19.77,-70.2,19.64,-69.96,19.67,-69.82,19.37,-69.74,19.3,-69.32,19.33,-69.23,19.27,-69.32,19.2,-69.6,19.21,-69.62,19.12,-68.9,18.99,-68.68,18.9,-68.34,18.61,-68.45,18.42,-68.69,18.21,-68.94,18.41,-69.27,18.44,-69.77,18.44,-70.02,18.37,-70.18,18.25,-70.48,18.22,-70.65,18.34,-71.03,18.27,-71.08,18.23,-71.11,18.07,-71.44,17.63,-71.63,17.77,-71.67,17.95]]},{"n":"Kuba","c":[-77.99,21.61],"r":[[-81.84,23.16,-81.58,23.12,-81.26,23.16,-81.14,23.05,-80.65,23.1,-80.37,22.94,-79.82,22.89,-79.85,22.83,-79.68,22.74,-79.55,22.58,-79.27,22.41,-78.69,22.37,-78.14,22.11,-77.86,21.9,-77.64,21.8,-77.5,21.79,-77.58,21.89,-77.5,21.87,-77.14,21.64,-77.18,21.6,-77.37,21.61,-77.25,21.48,-77.1,21.59,-76.84,21.4,-76.87,21.33,-76.73,21.36,-76.65,21.28,-76.26,21.23,-76.07,21.13,-75.72,21.11,-75.6,20.99,-75.66,20.9,-75.6,20.84,-75.74,20.81,-75.72,20.71,-75.21,20.71,-74.88,20.65,-74.51,20.38,-74.17,20.29,-74.16,20.17,-74.25,20.08,-74.63,20.06,-75.12,19.9,-75.15,20.01,-75.29,19.89,-75.55,19.89,-75.76,19.96,-76.16,19.99,-77.72,19.86,-77.55,20.08,-77.1,20.41,-77.11,20.49,-77.23,20.64,-78.0,20.71,-78.12,20.76,-78.49,21.05,-78.58,21.41,-78.73,21.59,-78.82,21.62,-79.19,21.55,-79.36,21.58,-80.23,21.87,-80.48,22.12,-80.5,22.06,-81.04,22.07,-81.19,22.27,-81.22,22.14,-81.28,22.11,-81.36,22.1,-81.44,22.18,-81.85,22.21,-82.08,22.39,-81.71,22.5,-81.7,22.59,-81.84,22.67,-82.74,22.69,-83.38,22.22,-83.9,22.17,-84.03,21.94,-84.5,21.78,-84.5,21.93,-84.84,21.83,-84.89,21.86,-84.53,22.03,-84.33,22.07,-84.38,22.26,-84.36,22.38,-84.04,22.67,-83.26,22.97,-82.67,23.04,-82.1,23.19],[-82.56,21.57,-82.85,21.44,-82.96,21.44,-83.07,21.47,-83.18,21.59,-83.05,21.55,-82.97,21.59,-83.08,21.79,-82.99,21.94,-82.72,21.89]]},{"n":"Kostarika","c":[-83.94,9.98],"r":[[-82.57,9.58,-82.64,9.51,-82.8,9.59,-82.94,9.45,-82.94,9.06,-82.73,8.92,-82.92,8.74,-82.84,8.56,-82.86,8.45,-83.03,8.34,-82.91,8.2,-82.88,8.07,-83.12,8.35,-83.16,8.59,-83.29,8.67,-83.47,8.71,-83.3,8.51,-83.29,8.41,-83.61,8.48,-83.74,8.61,-83.61,8.8,-83.64,9.03,-83.74,9.15,-84.22,9.46,-84.58,9.57,-84.66,9.65,-84.64,9.79,-84.71,9.9,-85.02,10.12,-85.26,10.26,-85.24,10.11,-85.16,10.02,-84.96,9.93,-84.89,9.82,-85.11,9.58,-85.32,9.81,-85.63,9.9,-85.8,10.13,-85.85,10.29,-85.83,10.4,-85.66,10.64,-85.67,10.74,-85.91,10.9,-85.75,10.99,-85.74,11.06,-85.59,11.19,-84.91,10.95,-84.7,11.05,-84.35,10.98,-84.17,10.78,-83.92,10.74,-83.71,10.79,-83.64,10.92,-83.35,10.32,-82.78,9.67]]},{"n":"Kolumbie","c":[-72.47,3.92],"r":[[-71.32,11.86,-71.96,11.67,-72.25,11.2,-72.45,11.11,-72.69,10.84,-72.87,10.49,-73.01,9.79,-73.37,9.19,-73.19,9.19,-73.06,9.26,-72.96,9.14,-72.8,9.11,-72.66,8.63,-72.42,8.38,-72.36,8.15,-72.45,7.97,-72.47,7.52,-72.39,7.42,-72.21,7.37,-72.09,7.1,-72.01,7.03,-71.89,6.99,-71.62,7.03,-71.13,6.99,-70.74,7.09,-70.39,6.97,-70.13,6.95,-69.43,6.12,-69.36,6.15,-69.27,6.1,-69.09,6.18,-68.94,6.2,-68.47,6.16,-67.94,6.24,-67.86,6.29,-67.57,6.24,-67.48,6.18,-67.44,6.03,-67.47,5.93,-67.57,5.83,-67.64,5.56,-67.83,5.27,-67.86,4.51,-67.66,3.86,-67.31,3.42,-67.35,3.32,-67.83,2.89,-67.86,2.79,-67.77,2.83,-67.62,2.79,-67.57,2.69,-67.21,2.39,-67.13,2.0,-66.88,1.36,-66.88,1.22,-67.08,1.18,-67.09,1.62,-67.4,2.12,-67.56,2.07,-67.82,1.79,-67.93,1.75,-68.03,1.79,-68.13,1.96,-68.19,1.99,-68.25,1.85,-68.18,1.72,-69.32,1.72,-69.54,1.77,-69.85,1.71,-69.85,1.06,-69.31,1.05,-69.16,0.86,-69.15,0.64,-69.28,0.63,-69.47,0.73,-69.81,0.61,-70.05,0.58,-70.07,-0.14,-69.92,-0.32,-69.63,-0.51,-69.59,-0.64,-69.61,-0.76,-69.54,-0.92,-69.45,-1.0,-69.4,-1.2,-69.96,-4.24,-70.17,-4.05,-70.24,-3.88,-70.34,-3.82,-70.53,-3.87,-70.74,-3.78,-70.07,-2.75,-70.09,-2.66,-70.97,-2.21,-71.2,-2.31,-71.4,-2.33,-71.75,-2.15,-71.98,-2.33,-72.22,-2.4,-72.39,-2.43,-72.63,-2.35,-72.94,-2.39,-73.15,-2.28,-73.13,-2.08,-73.2,-1.83,-73.5,-1.69,-73.52,-1.45,-73.67,-1.25,-73.86,-1.2,-74.05,-1.03,-74.25,-0.97,-74.34,-0.85,-74.42,-0.58,-74.62,-0.37,-74.76,-0.3,-74.8,-0.2,-74.94,-0.19,-75.14,-0.05,-75.22,-0.04,-75.29,-0.11,-75.62,0.06,-75.78,0.09,-76.07,0.35,-76.27,0.44,-76.39,0.41,-76.43,0.26,-76.5,0.23,-76.83,0.25,-77.11,0.35,-77.4,0.39,-77.47,0.64,-77.65,0.72,-77.7,0.84,-77.83,0.83,-78.31,1.05,-78.68,1.28,-79.03,1.62,-78.96,1.75,-78.79,1.85,-78.58,1.77,-78.55,1.92,-78.63,2.06,-78.59,2.36,-78.42,2.48,-78.06,2.51,-77.87,2.73,-77.81,2.72,-77.67,2.88,-77.69,3.04,-77.56,3.08,-77.42,3.34,-77.36,3.35,-77.08,3.91,-77.16,3.86,-77.26,3.89,-77.28,4.06,-77.36,3.94,-77.43,4.06,-77.41,4.25,-77.52,4.21,-77.35,4.4,-77.29,4.72,-77.34,4.84,-77.37,5.32,-77.4,5.42,-77.54,5.54,-77.32,5.68,-77.25,5.78,-77.47,6.18,-77.47,6.28,-77.4,6.27,-77.37,6.57,-77.44,6.69,-77.52,6.69,-77.9,7.23,-77.83,7.44,-77.74,7.54,-77.76,7.7,-77.7,7.69,-77.59,7.54,-77.54,7.57,-77.35,7.71,-77.34,7.84,-77.2,7.97,-77.48,8.5,-77.39,8.64,-76.85,8.09,-76.92,7.97,-76.87,7.92,-76.79,7.93,-76.74,8.0,-76.77,8.31,-76.82,8.47,-76.92,8.57,-76.28,8.99,-76.14,9.27,-76.03,9.37,-75.9,9.43,-75.64,9.45,-75.6,9.54,-75.68,9.73,-75.59,9.99,-75.6,10.12,-75.54,10.2,-75.56,10.24,-75.71,10.14,-75.55,10.33,-75.45,10.61,-74.84,11.11,-74.45,10.99,-74.33,11.0,-74.49,10.93,-74.52,10.86,-74.4,10.77,-74.14,11.32,-73.68,11.27,-73.31,11.3,-72.72,11.71,-72.28,11.89,-72.14,12.19,-71.97,12.24,-71.71,12.42,-71.49,12.43,-71.26,12.33,-71.14,12.05]]},{"n":"Chile","c":[-71.48,-35.76],"r":[[-70.42,-18.35,-70.18,-18.32,-69.93,-18.21,-69.8,-17.99,-69.85,-17.7,-69.68,-17.65,-69.51,-17.51,-69.49,-17.62,-69.36,-17.77,-69.31,-17.94,-69.09,-18.05,-69.14,-18.14,-68.97,-18.97,-68.46,-19.43,-68.7,-19.72,-68.58,-19.86,-68.56,-19.97,-68.6,-20.05,-68.76,-20.09,-68.69,-20.31,-68.76,-20.42,-68.49,-20.63,-68.56,-20.72,-68.56,-20.9,-68.43,-20.95,-68.2,-21.3,-68.19,-21.62,-68.11,-21.75,-68.08,-21.98,-67.99,-22.06,-67.88,-22.49,-67.88,-22.82,-67.79,-22.88,-67.58,-22.89,-67.2,-22.82,-67.01,-23.0,-67.35,-24.03,-68.25,-24.39,-68.51,-24.63,-68.56,-24.75,-68.56,-24.84,-68.38,-25.09,-68.5,-25.16,-68.59,-25.42,-68.41,-26.15,-68.58,-26.35,-68.59,-26.47,-68.32,-26.88,-68.32,-26.97,-68.34,-27.03,-68.59,-27.14,-68.71,-27.11,-68.85,-27.15,-69.17,-27.92,-69.49,-28.2,-69.66,-28.41,-69.83,-29.1,-70.03,-29.32,-69.93,-29.77,-69.96,-30.08,-69.84,-30.17,-69.96,-30.36,-70.15,-30.36,-70.35,-30.9,-70.31,-31.02,-70.39,-31.12,-70.52,-31.15,-70.58,-31.57,-70.45,-31.84,-70.25,-31.96,-70.36,-32.08,-70.32,-32.27,-70.17,-32.47,-70.18,-32.63,-70.12,-32.81,-70.02,-32.88,-70.09,-33.03,-70.08,-33.2,-70.02,-33.27,-69.82,-33.28,-69.8,-33.4,-69.89,-33.73,-69.85,-34.22,-70.05,-34.3,-70.29,-34.73,-70.39,-35.15,-70.56,-35.25,-70.53,-35.31,-70.47,-35.33,-70.41,-35.52,-70.38,-35.77,-70.4,-36.06,-70.72,-36.28,-70.75,-36.39,-70.9,-36.42,-71.06,-36.52,-71.07,-36.64,-71.19,-36.84,-71.12,-37.12,-71.2,-37.3,-71.13,-37.44,-71.19,-37.63,-71.17,-37.76,-71.03,-38.04,-70.97,-38.45,-70.85,-38.54,-70.95,-38.74,-71.09,-38.76,-71.4,-38.93,-71.42,-39.29,-71.54,-39.6,-71.72,-39.64,-71.64,-39.89,-71.66,-40.02,-71.82,-40.18,-71.7,-40.34,-71.8,-40.44,-71.94,-40.79,-71.87,-40.89,-71.87,-41.56,-71.91,-41.65,-71.75,-42.05,-71.76,-42.1,-71.86,-42.15,-72.03,-42.15,-72.11,-42.25,-72.05,-42.47,-72.14,-42.58,-72.11,-42.78,-72.15,-42.99,-72.1,-43.07,-71.78,-43.17,-71.75,-43.24,-71.76,-43.3,-71.91,-43.35,-71.91,-43.44,-71.75,-43.59,-71.74,-43.7,-71.79,-43.75,-71.68,-43.93,-71.81,-44.11,-71.82,-44.38,-71.21,-44.44,-71.15,-44.49,-71.16,-44.56,-71.26,-44.76,-72.06,-44.77,-72.04,-44.9,-71.6,-44.98,-71.35,-45.23,-71.35,-45.33,-71.49,-45.44,-71.51,-45.51,-71.75,-45.58,-71.75,-45.84,-71.63,-45.95,-71.69,-46.04,-71.88,-46.16,-71.76,-46.32,-71.7,-46.65,-71.94,-46.83,-71.96,-47.02,-71.91,-47.2,-72.04,-47.24,-72.1,-47.34,-72.34,-47.49,-72.34,-47.57,-72.52,-47.88,-72.51,-47.97,-72.33,-48.11,-72.29,-48.23,-72.36,-48.37,-72.5,-48.42,-72.61,-48.52,-72.61,-48.79,-72.73,-48.9,-73.03,-49.01,-73.15,-49.19,-73.14,-49.3,-73.46,-49.31,-73.58,-49.58,-73.47,-49.79,-73.53,-49.91,-73.5,-50.12,-73.38,-50.23,-73.15,-50.74,-73.08,-50.76,-72.87,-50.65,-72.51,-50.61,-72.34,-50.68,-72.28,-50.91,-72.31,-51.03,-72.38,-51.1,-72.3,-51.3,-72.41,-51.54,-72.27,-51.69,-71.95,-51.88,-71.97,-51.96,-69.96,-52.01,-69.49,-52.14,-69.21,-52.14,-68.46,-52.29,-68.44,-52.36,-69.24,-52.21,-69.45,-52.27,-69.62,-52.46,-70.56,-52.67,-70.8,-52.77,-70.82,-52.96,-70.98,-53.37,-70.95,-53.57,-70.99,-53.78,-71.3,-53.88,-71.69,-53.8,-72.18,-53.63,-72.38,-53.47,-72.41,-53.35,-72.3,-53.25,-71.94,-53.23,-71.85,-53.29,-71.83,-53.4,-71.89,-53.52,-71.79,-53.48,-71.74,-53.23,-71.29,-53.03,-71.16,-52.89,-71.16,-52.85,-71.23,-52.81,-71.39,-52.76,-72.28,-53.13,-72.49,-53.29,-72.55,-53.46,-72.73,-53.42,-73.05,-53.24,-72.92,-53.12,-72.89,-52.87,-72.73,-52.76,-72.68,-52.75,-72.63,-52.82,-72.45,-52.81,-72.12,-52.65,-71.8,-52.68,-71.59,-52.66,-71.51,-52.61,-71.81,-52.54,-72.23,-52.52,-72.44,-52.63,-72.5,-52.56,-72.71,-52.54,-72.78,-52.58,-72.8,-52.71,-73.02,-52.89,-73.02,-53.02,-73.12,-53.07,-73.34,-53.06,-73.64,-52.84,-73.24,-52.71,-73.07,-52.53,-73.12,-52.49,-73.18,-52.49,-73.18,-52.56,-73.24,-52.62,-73.38,-52.6,-73.59,-52.69,-73.91,-52.69,-74.01,-52.64,-74.04,-52.4,-74.15,-52.38,-74.3,-52.12,-73.83,-52.23,-73.7,-52.2,-73.68,-52.08,-73.53,-52.15,-73.26,-52.16,-72.79,-51.95,-72.69,-51.99,-72.57,-52.2,-72.72,-52.36,-72.63,-52.37,-72.52,-52.25,-72.52,-52.17,-72.63,-52.01,-72.63,-51.95,-72.5,-51.85,-72.49,-51.76,-72.54,-51.71,-72.76,-51.57,-73.17,-51.45,-73.2,-51.48,-72.65,-51.7,-72.58,-51.74,-72.6,-51.8,-72.93,-51.86,-73.38,-52.07,-73.52,-52.04,-73.65,-51.86,-73.75,-51.79,-73.97,-51.78,-74.19,-51.68,-74.07,-51.58,-73.93,-51.62,-73.9,-51.33,-73.94,-51.27,-74.81,-51.06,-75.06,-50.79,-75.09,-50.68,-74.68,-50.66,-74.65,-50.62,-74.77,-50.47,-74.64,-50.36,-74.36,-50.49,-74.14,-50.82,-73.81,-50.94,-73.82,-50.84,-73.74,-50.7,-73.62,-50.65,-73.69,-50.57,-73.65,-50.49,-73.75,-50.54,-73.89,-50.78,-73.98,-50.83,-74.2,-50.61,-74.18,-50.49,-73.95,-50.51,-74.43,-50.35,-74.63,-50.19,-74.34,-49.98,-74.02,-50.02,-73.96,-49.99,-74.01,-49.93,-74.17,-49.91,-74.32,-49.78,-74.29,-49.6,-74.1,-49.56,-73.83,-49.61,-73.89,-49.52,-74.09,-49.43,-74.01,-49.09,-73.94,-49.02,-74.03,-49.03,-74.22,-49.5,-74.37,-49.4,-74.38,-48.79,-74.34,-48.6,-74.18,-48.49,-74.01,-48.48,-74.17,-48.43,-74.34,-48.49,-74.48,-48.46,-74.58,-48.27,-74.58,-48.0,-73.85,-48.04,-73.53,-48.2,-73.38,-48.18,-73.39,-48.15,-73.5,-48.11,-73.61,-47.99,-73.72,-47.66,-73.85,-47.87,-73.94,-47.93,-74.23,-47.97,-74.35,-47.94,-74.37,-47.83,-74.61,-47.76,-74.66,-47.7,-74.53,-47.57,-74.24,-47.68,-74.13,-47.59,-74.48,-47.43,-74.4,-47.33,-74.16,-47.18,-74.21,-47.08,-74.15,-46.97,-74.31,-46.79,-74.45,-46.77,-74.51,-46.89,-74.69,-46.86,-75.0,-46.74,-75.05,-46.63,-74.98,-46.51,-75.15,-46.6,-75.54,-46.7,-75.57,-46.73,-75.45,-46.75,-75.39,-46.86,-75.43,-46.93,-75.63,-46.86,-75.71,-46.7,-75.66,-46.61,-74.93,-46.16,-75.07,-46.01,-75.07,-45.88,-74.76,-45.82,-74.46,-45.84,-74.16,-45.77,-74.08,-45.68,-74.12,-45.5,-73.96,-45.4,-73.82,-45.45,-73.96,-45.84,-74.06,-45.95,-74.02,-46.06,-74.08,-46.13,-74.39,-46.22,-74.09,-46.22,-73.97,-46.15,-73.88,-45.85,-73.73,-45.81,-73.69,-45.86,-73.71,-46.07,-73.81,-46.38,-73.95,-46.53,-73.94,-46.57,-73.85,-46.57,-73.66,-46.3,-73.59,-45.9,-73.59,-45.78,-73.76,-45.7,-73.78,-45.63,-73.73,-45.48,-73.55,-45.48,-73.27,-45.35,-72.93,-45.45,-73.23,-45.26,-73.45,-45.24,-73.41,-45.1,-73.36,-44.98,-73.08,-44.92,-72.74,-44.73,-72.68,-44.59,-72.66,-44.44,-73.27,-44.17,-73.22,-43.9,-73.07,-43.86,-73.0,-43.63,-73.1,-43.46,-73.08,-43.32,-72.94,-43.21,-72.88,-43.05,-72.76,-43.04,-72.85,-42.67,-72.77,-42.51,-72.63,-42.51,-72.78,-42.3,-72.77,-42.26,-72.63,-42.2,-72.43,-42.43,-72.41,-42.39,-72.5,-41.98,-72.74,-42.0,-72.82,-41.91,-72.66,-41.74,-72.48,-41.72,-72.36,-41.65,-72.32,-41.5,-72.43,-41.65,-72.54,-41.69,-72.67,-41.66,-72.81,-41.54,-72.95,-41.51,-73.24,-41.78,-73.52,-41.8,-73.73,-41.74,-73.62,-41.58,-73.81,-41.52,-73.86,-41.45,-73.98,-40.97,-73.78,-40.47,-73.67,-39.96,-73.41,-39.79,-73.25,-39.42,-73.23,-39.22,-73.52,-38.51,-73.46,-38.04,-73.66,-37.7,-73.67,-37.59,-73.6,-37.48,-73.66,-37.34,-73.6,-37.19,-73.37,-37.22,-73.22,-37.17,-73.12,-36.69,-73.01,-36.64,-72.87,-36.39,-72.78,-35.98,-72.59,-35.76,-72.63,-35.59,-72.39,-35.24,-72.22,-35.1,-72.06,-34.62,-72.0,-34.17,-71.83,-33.82,-71.66,-33.65,-71.64,-33.52,-71.7,-33.43,-71.74,-33.09,-71.59,-32.97,-71.45,-32.66,-71.42,-32.39,-71.51,-32.21,-71.53,-31.81,-71.71,-30.76,-71.67,-30.33,-71.4,-30.14,-71.31,-29.65,-71.33,-29.44,-71.48,-29.2,-71.52,-28.93,-71.31,-28.67,-71.19,-28.38,-71.09,-27.81,-70.93,-27.59,-70.9,-27.19,-70.65,-26.33,-70.63,-25.99,-70.71,-25.78,-70.63,-25.55,-70.49,-25.38,-70.45,-25.25,-70.57,-24.64,-70.51,-23.89,-70.39,-23.57,-70.59,-23.37,-70.59,-23.25,-70.56,-23.06,-70.45,-23.03,-70.33,-22.85,-70.09,-21.49,-70.09,-21.25,-70.2,-20.73,-70.16,-19.71,-70.27,-19.27,-70.36,-18.4],[-68.63,-52.65,-68.65,-54.85,-69.08,-54.91,-69.49,-54.86,-69.72,-54.71,-70.03,-54.82,-70.14,-54.82,-70.28,-54.75,-70.5,-54.81,-71.23,-54.69,-71.44,-54.62,-71.9,-54.6,-71.93,-54.53,-71.8,-54.43,-71.57,-54.5,-71.39,-54.4,-71.08,-54.44,-70.8,-54.33,-70.7,-54.35,-70.7,-54.49,-70.31,-54.53,-70.3,-54.49,-70.54,-54.3,-70.76,-54.24,-70.86,-54.11,-70.87,-53.88,-70.65,-53.82,-70.7,-53.73,-70.53,-53.63,-70.38,-53.99,-70.63,-54.0,-70.53,-54.14,-70.38,-54.18,-70.17,-54.38,-69.87,-54.37,-69.74,-54.31,-69.42,-54.41,-69.32,-54.49,-69.31,-54.57,-69.25,-54.56,-69.04,-54.41,-69.99,-54.11,-70.15,-53.89,-70.15,-53.76,-70.09,-53.72,-69.39,-53.5,-69.36,-53.42,-69.39,-53.37,-69.64,-53.33,-70.09,-53.42,-70.33,-53.38,-70.46,-53.21,-70.44,-53.09,-70.39,-53.03,-70.13,-52.94,-70.38,-52.75,-70.19,-52.72,-69.94,-52.82,-69.76,-52.73,-69.5,-52.49,-69.41,-52.49,-69.17,-52.67,-68.79,-52.58],[-67.08,-55.15,-67.17,-55.24,-67.34,-55.29,-67.5,-55.18,-67.77,-55.26,-68.07,-55.22,-68.3,-54.98,-68.11,-54.93,-67.25,-54.98,-67.11,-55.06],[-73.77,-43.35,-74.12,-43.36,-74.39,-43.23,-74.21,-42.88,-74.16,-42.59,-74.2,-42.48,-74.17,-42.27,-74.06,-42.06,-74.04,-41.8,-73.53,-41.9,-73.42,-42.19,-73.44,-42.28,-73.53,-42.31,-73.47,-42.47,-73.79,-42.59,-73.44,-42.94,-73.54,-43.07,-73.75,-43.16],[-74.48,-49.15,-74.52,-49.62,-74.46,-49.69,-74.5,-49.86,-74.59,-50.01,-74.76,-50.01,-74.88,-49.73,-74.72,-49.42,-74.96,-49.53,-75.03,-49.84,-75.3,-49.85,-75.45,-49.77,-75.55,-49.79,-75.57,-49.7,-75.52,-49.62,-75.34,-49.63,-75.31,-49.49,-75.47,-49.36,-75.33,-49.27,-75.09,-49.27,-75.09,-49.19,-75.21,-49.15,-75.18,-49.08,-74.95,-48.96,-74.98,-48.82,-74.9,-48.73,-74.75,-48.71,-74.55,-48.77],[-75.51,-48.76,-75.62,-48.77,-75.65,-48.59,-75.52,-48.33,-75.56,-48.07,-75.39,-48.02,-75.16,-48.43,-75.16,-48.62],[-74.39,-52.92,-73.65,-53.07,-73.45,-53.14,-73.14,-53.35,-73.57,-53.31,-73.62,-53.23,-73.87,-53.1,-74.27,-53.08,-74.56,-52.92,-74.71,-52.75,-74.57,-52.77],[-74.57,-48.59,-74.92,-48.63,-75.01,-48.54,-75.05,-48.39,-75.21,-48.14,-75.25,-48.03,-75.2,-47.97,-74.98,-47.92,-74.9,-47.84,-74.83,-47.85,-74.85,-48.02,-74.73,-48.13,-74.6,-48.37],[-72.92,-53.48,-72.88,-53.58,-72.48,-53.59,-72.2,-53.81,-72.41,-54.0,-72.87,-54.13,-72.96,-54.07,-72.78,-53.95,-72.76,-53.86,-73.04,-53.83,-73.08,-54.0,-73.21,-53.99,-73.31,-53.94,-73.31,-53.73,-73.47,-53.74,-73.64,-53.57,-73.85,-53.55,-73.69,-53.43,-73.45,-53.41,-73.37,-53.47,-73.1,-53.51,-73.11,-53.42,-73.05,-53.39],[-74.82,-51.63,-74.78,-51.82,-74.65,-51.87,-74.54,-51.96,-74.7,-52.28,-74.85,-52.27,-75.02,-52.04,-75.11,-51.79,-75.01,-51.72,-74.91,-51.74,-74.91,-51.65],[-69.7,-54.92,-68.9,-55.02,-68.46,-54.96,-68.4,-55.04,-68.61,-55.16,-68.38,-55.19,-68.28,-55.25,-68.33,-55.33,-68.09,-55.48,-68.05,-55.64,-68.23,-55.6,-68.34,-55.5,-68.87,-55.45,-68.93,-55.37,-68.89,-55.24,-69.01,-55.26,-69.19,-55.17,-69.3,-55.17,-69.36,-55.3,-69.18,-55.48,-69.46,-55.42,-69.64,-55.32,-69.66,-55.23,-69.82,-55.24,-69.98,-55.15,-69.89,-54.88],[-71.39,-54.03,-71.17,-54.11,-71.02,-54.11,-71.01,-54.25,-71.14,-54.37,-71.47,-54.23,-71.76,-54.23,-71.95,-54.3,-71.97,-54.21,-72.21,-54.05,-72.15,-53.94,-72.0,-53.88,-71.55,-53.96],[-73.73,-44.39,-73.98,-44.49,-74.0,-44.59,-73.92,-44.65,-73.83,-44.84,-73.73,-45.12,-73.75,-45.27,-73.83,-45.28,-73.85,-45.34,-74.1,-45.32,-74.09,-45.2,-74.19,-45.14,-74.35,-44.91,-74.62,-44.65,-74.48,-44.59,-74.5,-44.47,-74.3,-44.4,-74.21,-44.43,-74.1,-44.39,-74.08,-44.19,-73.99,-44.14,-73.9,-44.14,-73.82,-44.23,-73.7,-44.27],[-72.99,-44.78,-73.23,-44.86,-73.35,-44.83,-73.4,-44.77,-73.45,-44.64,-73.28,-44.49,-73.26,-44.35,-73.03,-44.38,-72.78,-44.51,-72.77,-44.55],[-75.3,-50.68,-75.33,-50.77,-75.44,-50.74,-75.48,-50.65,-75.43,-50.48,-75.12,-50.51,-75.29,-50.6],[-75.11,-48.84,-75.12,-48.92,-75.39,-49.16,-75.51,-49.23,-75.64,-49.2,-75.49,-49.08,-75.52,-49.01,-75.64,-48.94,-75.58,-48.86,-75.12,-48.77],[-74.56,-51.28,-74.56,-51.36,-74.62,-51.4,-74.73,-51.37,-74.85,-51.43,-75.05,-51.4,-75.29,-51.62,-75.3,-51.56,-75.15,-51.28,-75.04,-51.32,-74.61,-51.21],[-75.06,-50.3,-75.25,-50.38,-75.45,-50.34,-75.33,-50.01,-74.88,-50.11,-74.84,-50.2],[-74.31,-45.69,-74.46,-45.76,-74.68,-45.74,-74.69,-45.66,-74.49,-45.43,-74.5,-45.28,-74.31,-45.17,-74.31,-45.46,-74.23,-45.61],[-70.99,-54.87,-70.93,-54.94,-70.8,-54.97,-70.42,-54.91,-70.28,-55.07,-70.3,-55.11,-70.48,-55.18,-70.6,-55.08,-70.71,-55.11,-70.94,-55.06,-70.97,-55.01,-71.2,-54.89,-71.39,-54.93,-71.44,-54.89,-71.37,-54.83]]},{"n":"Brazílie","c":[-51.16,-10.84],"r":[[-66.88,1.22,-66.35,0.77,-66.06,0.79,-65.68,0.98,-65.57,0.93,-65.52,0.84,-65.55,0.69,-65.47,0.69,-65.36,0.87,-65.1,1.11,-64.82,1.26,-64.73,1.25,-64.49,1.45,-64.31,1.46,-64.2,1.53,-64.11,1.62,-64.01,1.93,-63.43,2.16,-63.39,2.41,-63.92,2.45,-64.05,2.5,-64.01,2.67,-64.22,3.21,-64.22,3.59,-64.67,4.01,-64.82,4.23,-64.79,4.28,-64.72,4.27,-64.58,4.14,-64.19,4.13,-64.02,3.93,-63.65,3.94,-63.53,3.89,-63.34,3.94,-62.97,3.59,-62.86,3.59,-62.76,3.67,-62.71,4.02,-62.47,4.14,-62.15,4.1,-61.56,4.29,-61.48,4.4,-61.28,4.52,-61.0,4.54,-60.91,4.69,-60.63,4.89,-60.63,5.08,-60.74,5.2,-60.65,5.22,-60.46,5.19,-60.24,5.26,-60.14,5.24,-59.99,5.08,-60.03,4.74,-60.15,4.53,-59.83,4.48,-59.7,4.38,-59.74,4.23,-59.55,3.93,-59.68,3.7,-59.86,3.59,-59.83,3.35,-59.97,2.99,-59.99,2.69,-59.89,2.36,-59.76,2.27,-59.76,1.9,-59.67,1.84,-59.67,1.75,-59.54,1.7,-59.23,1.38,-58.97,1.3,-58.86,1.2,-58.69,1.28,-58.51,1.29,-58.51,1.44,-58.39,1.48,-58.34,1.59,-58.03,1.52,-57.98,1.65,-57.6,1.7,-57.37,1.94,-57.12,2.01,-57.01,1.92,-56.84,1.88,-56.48,1.94,-55.96,1.86,-55.91,2.04,-56.14,2.26,-55.96,2.52,-55.73,2.41,-55.38,2.44,-54.98,2.6,-54.88,2.45,-54.72,2.44,-54.66,2.33,-54.13,2.12,-53.77,2.35,-53.74,2.31,-53.51,2.25,-53.33,2.34,-53.23,2.21,-52.97,2.18,-52.65,2.43,-52.33,3.18,-52.16,3.37,-51.99,3.7,-51.77,3.99,-51.65,4.06,-51.55,4.31,-51.46,4.31,-51.22,4.09,-51.08,3.67,-51.05,3.28,-50.68,2.21,-50.72,2.13,-50.61,2.1,-50.46,1.83,-50.19,1.79,-49.96,1.66,-49.88,1.42,-49.9,1.16,-50.29,0.84,-50.76,0.22,-50.97,0.13,-51.1,-0.03,-51.28,-0.08,-51.4,-0.39,-51.7,-0.76,-51.72,-1.02,-51.92,-1.18,-51.98,-1.37,-52.02,-1.4,-52.23,-1.36,-52.66,-1.55,-52.31,-1.56,-52.2,-1.64,-51.95,-1.59,-51.3,-1.22,-50.9,-0.94,-50.84,-1.04,-50.92,-1.12,-50.85,-1.23,-50.79,-1.49,-50.68,-1.64,-50.69,-1.76,-50.4,-2.01,-50.0,-1.83,-49.72,-1.93,-49.32,-1.73,-49.55,-2.52,-49.64,-2.66,-49.46,-2.5,-49.21,-1.92,-48.99,-1.83,-48.71,-1.49,-48.6,-1.49,-48.46,-1.61,-48.45,-1.52,-48.35,-1.48,-48.47,-1.39,-48.48,-1.32,-48.41,-1.23,-48.45,-1.15,-48.31,-1.04,-48.32,-0.96,-48.13,-0.79,-48.12,-0.74,-48.03,-0.71,-47.96,-0.77,-47.81,-0.66,-47.69,-0.73,-47.56,-0.67,-47.42,-0.77,-47.44,-0.65,-47.27,-0.65,-47.13,-0.75,-46.81,-0.78,-46.62,-0.97,-46.42,-1.03,-46.22,-1.03,-46.22,-1.1,-46.05,-1.1,-45.97,-1.19,-45.64,-1.35,-45.46,-1.36,-45.35,-1.57,-45.33,-1.72,-45.18,-1.51,-45.08,-1.47,-44.79,-1.72,-44.72,-1.73,-44.78,-1.8,-44.65,-1.75,-44.55,-1.95,-44.54,-2.05,-44.66,-2.23,-44.76,-2.26,-44.66,-2.37,-44.58,-2.23,-44.44,-2.17,-44.38,-2.37,-44.52,-2.41,-44.59,-2.57,-44.72,-3.2,-44.44,-2.94,-44.31,-2.54,-44.23,-2.47,-44.11,-2.49,-44.11,-2.6,-44.22,-2.75,-44.19,-2.81,-43.93,-2.58,-43.86,-2.59,-43.73,-2.52,-43.45,-2.5,-43.38,-2.38,-42.94,-2.46,-42.25,-2.79,-42.0,-2.81,-41.88,-2.75,-41.48,-2.92,-41.32,-2.94,-40.47,-2.8,-39.97,-2.86,-39.02,-3.39,-38.69,-3.65,-38.48,-3.72,-38.05,-4.22,-37.63,-4.59,-37.3,-4.71,-37.18,-4.91,-36.86,-4.97,-36.59,-5.1,-35.98,-5.05,-35.55,-5.13,-35.39,-5.25,-35.24,-5.57,-35.09,-6.18,-34.99,-6.39,-34.81,-7.29,-34.88,-7.75,-34.84,-7.97,-34.97,-8.41,-35.16,-8.93,-35.6,-9.54,-35.76,-9.7,-35.89,-9.69,-35.85,-9.77,-35.89,-9.85,-36.4,-10.48,-36.77,-10.67,-36.94,-10.82,-37.09,-11.05,-37.18,-11.07,-37.18,-11.19,-37.36,-11.4,-37.32,-11.22,-37.36,-11.25,-37.44,-11.39,-37.41,-11.5,-37.47,-11.65,-37.69,-12.1,-38.24,-12.84,-38.4,-12.97,-38.5,-12.96,-38.53,-12.76,-38.69,-12.62,-38.75,-12.75,-38.85,-12.79,-38.76,-12.91,-38.84,-13.15,-39.03,-13.36,-39.09,-13.59,-39.03,-13.56,-38.99,-13.61,-39.04,-13.76,-39.05,-14.04,-39.01,-14.1,-38.96,-14.0,-38.94,-14.03,-39.06,-14.65,-38.88,-15.86,-39.2,-17.18,-39.16,-17.7,-39.28,-17.85,-39.49,-17.99,-39.65,-18.25,-39.74,-18.64,-39.7,-19.28,-39.78,-19.57,-40.0,-19.74,-40.14,-19.97,-40.2,-20.21,-40.3,-20.29,-40.39,-20.57,-40.6,-20.78,-40.79,-20.91,-40.96,-21.24,-41.05,-21.5,-41.0,-22.0,-41.7,-22.31,-41.98,-22.58,-41.99,-22.74,-41.94,-22.79,-42.04,-22.95,-42.96,-22.97,-43.08,-22.9,-43.09,-22.72,-43.16,-22.73,-43.24,-22.79,-43.2,-22.94,-43.22,-22.99,-43.9,-23.1,-43.97,-23.06,-43.68,-23.01,-43.86,-22.91,-44.05,-22.94,-44.15,-23.01,-44.64,-23.06,-44.67,-23.21,-44.57,-23.27,-44.67,-23.33,-44.95,-23.38,-45.21,-23.58,-45.33,-23.6,-45.42,-23.69,-45.46,-23.8,-45.66,-23.77,-45.97,-23.79,-46.87,-24.24,-47.14,-24.49,-47.99,-25.04,-47.91,-25.07,-47.93,-25.17,-48.2,-25.42,-48.24,-25.4,-48.18,-25.31,-48.4,-25.27,-48.46,-25.31,-48.43,-25.4,-48.48,-25.44,-48.65,-25.44,-48.73,-25.37,-48.69,-25.49,-48.43,-25.55,-48.4,-25.6,-48.54,-25.82,-48.67,-25.84,-48.58,-25.94,-48.62,-26.18,-48.75,-26.27,-48.65,-26.41,-48.68,-26.7,-48.56,-27.2,-48.64,-27.56,-48.62,-28.08,-48.69,-28.31,-48.8,-28.44,-48.8,-28.58,-49.27,-28.87,-49.75,-29.36,-50.04,-29.8,-50.3,-30.43,-50.92,-31.26,-51.15,-31.48,-51.8,-31.9,-52.04,-32.12,-52.06,-31.83,-51.89,-31.87,-51.68,-31.78,-51.45,-31.56,-51.27,-31.48,-51.17,-31.34,-51.16,-31.12,-51.1,-31.08,-50.98,-31.09,-50.94,-30.9,-50.77,-30.81,-50.69,-30.7,-50.72,-30.43,-50.58,-30.44,-50.56,-30.25,-50.65,-30.24,-50.93,-30.37,-51.03,-30.37,-51.04,-30.26,-51.18,-30.21,-51.3,-30.04,-51.28,-30.24,-51.16,-30.36,-51.25,-30.47,-51.28,-30.75,-51.36,-30.67,-51.38,-30.85,-51.46,-30.91,-51.51,-31.11,-51.97,-31.38,-52.03,-31.6,-52.12,-31.7,-52.2,-31.89,-52.13,-32.17,-52.34,-32.44,-52.65,-33.14,-53.37,-33.74,-53.53,-33.66,-53.53,-33.17,-53.48,-33.07,-53.12,-32.74,-53.6,-32.4,-53.76,-32.06,-53.92,-31.95,-54.22,-31.86,-54.59,-31.49,-54.9,-31.39,-55.04,-31.28,-55.09,-31.31,-55.17,-31.28,-55.6,-30.85,-55.81,-31.04,-56.0,-31.08,-56.0,-30.84,-56.04,-30.78,-56.83,-30.11,-57.12,-30.15,-57.21,-30.28,-57.55,-30.26,-57.61,-30.19,-57.4,-30.03,-57.22,-29.78,-57.09,-29.72,-56.77,-29.42,-56.64,-29.2,-56.48,-29.09,-56.23,-28.74,-55.9,-28.44,-55.89,-28.37,-55.69,-28.38,-55.73,-28.2,-55.48,-28.09,-55.24,-27.9,-55.1,-27.87,-55.04,-27.77,-54.91,-27.71,-54.83,-27.55,-54.33,-27.42,-54.16,-27.25,-54.04,-27.24,-53.84,-27.12,-53.72,-26.88,-53.75,-26.75,-53.71,-26.35,-53.67,-26.29,-53.82,-25.96,-53.89,-25.67,-54.15,-25.52,-54.45,-25.62,-54.61,-25.58,-54.61,-25.43,-54.44,-25.12,-54.28,-24.31,-54.32,-24.13,-54.24,-24.05,-54.63,-23.81,-55.08,-24.0,-55.29,-24.0,-55.42,-23.95,-55.46,-23.69,-55.54,-23.58,-55.52,-23.42,-55.65,-22.89,-55.62,-22.67,-55.71,-22.59,-55.8,-22.35,-55.85,-22.31,-56.25,-22.27,-56.45,-22.08,-56.63,-22.23,-56.94,-22.27,-57.24,-22.2,-57.57,-22.18,-57.72,-22.1,-57.82,-22.14,-57.96,-22.11,-57.98,-22.01,-57.92,-21.7,-57.94,-21.49,-57.87,-21.36,-57.83,-21.0,-57.9,-20.87,-57.92,-20.69,-57.98,-20.66,-58.0,-20.47,-58.16,-20.16,-57.86,-19.98,-58.13,-19.74,-57.8,-19.08,-57.72,-19.04,-57.73,-18.92,-57.78,-18.91,-57.57,-18.28,-57.49,-18.22,-57.59,-18.12,-57.83,-17.51,-57.99,-17.51,-58.39,-17.23,-58.48,-16.7,-58.35,-16.49,-58.34,-16.28,-58.54,-16.33,-60.18,-16.27,-60.24,-15.48,-60.58,-15.1,-60.27,-15.09,-60.3,-14.62,-60.48,-14.18,-60.4,-14.02,-60.51,-13.79,-61.08,-13.49,-61.79,-13.53,-62.1,-13.24,-62.12,-13.16,-62.35,-13.13,-62.76,-13.0,-63.02,-12.81,-63.07,-12.67,-63.25,-12.71,-63.35,-12.68,-63.69,-12.48,-63.94,-12.53,-64.42,-12.44,-64.51,-12.25,-64.83,-12.03,-64.99,-11.98,-65.09,-11.74,-65.18,-11.75,-65.18,-11.65,-65.32,-11.44,-65.39,-11.25,-65.32,-11.02,-65.45,-10.51,-65.3,-10.15,-65.31,-9.87,-65.4,-9.71,-65.56,-9.8,-65.93,-9.79,-66.57,-9.9,-67.11,-10.27,-67.42,-10.39,-67.58,-10.51,-67.72,-10.68,-68.07,-10.7,-68.31,-10.97,-68.62,-11.11,-68.73,-11.12,-68.85,-11.01,-69.23,-10.96,-69.96,-10.93,-70.29,-11.06,-70.39,-11.06,-70.53,-10.95,-70.64,-11.01,-70.64,-9.82,-70.57,-9.71,-70.59,-9.54,-70.54,-9.44,-71.24,-9.97,-72.18,-10.0,-72.17,-9.84,-72.26,-9.77,-72.32,-9.56,-72.38,-9.51,-72.81,-9.41,-73.21,-9.41,-72.97,-9.12,-72.97,-8.99,-73.3,-8.65,-73.36,-8.48,-73.55,-8.35,-73.64,-8.07,-73.78,-7.94,-73.72,-7.78,-74.0,-7.56,-73.96,-7.51,-73.96,-7.38,-73.72,-7.31,-73.81,-7.08,-73.76,-6.91,-73.5,-6.68,-73.24,-6.56,-73.14,-6.47,-73.14,-6.34,-73.24,-6.1,-72.98,-5.63,-72.89,-5.12,-72.7,-5.07,-72.35,-4.79,-71.84,-4.5,-70.97,-4.35,-70.8,-4.17,-70.4,-4.15,-70.24,-4.3,-70.13,-4.29,-70.05,-4.33,-69.97,-4.3,-69.4,-1.2,-69.45,-1.0,-69.54,-0.92,-69.61,-0.76,-69.59,-0.64,-69.63,-0.51,-69.92,-0.32,-70.07,-0.14,-70.05,0.58,-69.81,0.61,-69.47,0.73,-69.28,0.63,-69.15,0.64,-69.16,0.86,-69.31,1.05,-69.85,1.06,-69.85,1.71,-69.54,1.77,-69.32,1.72,-68.18,1.72,-68.25,1.85,-68.19,1.99,-68.13,1.96,-68.03,1.79,-67.93,1.75,-67.82,1.79,-67.56,2.07,-67.4,2.12,-67.09,1.62,-67.08,1.18],[-49.63,-0.23,-49.12,-0.16,-48.39,-0.3,-48.5,-0.66,-48.57,-0.69,-48.57,-0.89,-48.7,-1.11,-48.84,-1.23,-48.8,-1.33,-48.83,-1.39,-49.04,-1.51,-49.17,-1.41,-49.23,-1.6,-49.51,-1.51,-49.59,-1.71,-49.8,-1.79,-50.07,-1.7,-50.11,-1.75,-50.51,-1.79,-50.6,-1.7,-50.76,-1.24,-50.73,-1.13,-50.6,-1.15,-50.58,-1.1,-50.71,-1.08,-50.78,-1.01,-50.79,-0.91,-50.77,-0.65,-50.72,-0.58,-50.65,-0.27,-50.46,-0.16,-50.25,-0.12],[-49.74,0.27,-49.7,0.22,-49.84,0.01,-49.92,-0.02,-50.34,0.04,-50.34,0.13,-50.27,0.23,-50.13,0.23,-49.88,0.3],[-50.3,1.94,-50.46,1.91,-50.51,2.03,-50.49,2.13,-50.34,2.14],[-50.65,-0.13,-50.93,-0.33,-51.04,-0.23,-51.0,-0.11,-50.84,-0.05,-50.67,-0.06],[-49.44,-0.11,-49.71,-0.14,-49.83,-0.09,-49.71,0.01,-49.5,0.08,-49.4,0.06,-49.37,0.0],[-50.43,0.14,-50.45,-0.01,-50.63,0.05,-50.61,0.21,-50.45,0.33,-50.42,0.56,-50.37,0.59,-50.33,0.26],[-50.15,0.39,-50.26,0.36,-50.28,0.52,-50.25,0.59,-50.06,0.64,-50.04,0.52],[-51.83,-1.43,-51.94,-1.45,-51.8,-1.2,-51.68,-1.09,-51.68,-0.86,-51.55,-0.65,-51.42,-0.57,-51.26,-0.54,-51.16,-0.67,-51.28,-1.02,-51.64,-1.34]]},{"n":"Bolívie","c":[-63.8,-16.71],"r":[[-69.51,-17.51,-69.52,-17.39,-69.64,-17.25,-69.63,-17.2,-69.44,-17.09,-69.2,-16.77,-69.02,-16.64,-69.03,-16.48,-68.84,-16.34,-68.91,-16.26,-69.13,-16.22,-69.22,-16.15,-69.42,-15.64,-69.17,-15.24,-69.37,-14.96,-69.36,-14.8,-69.28,-14.75,-69.23,-14.6,-69.01,-14.38,-69.0,-14.27,-68.87,-14.17,-69.08,-13.68,-68.98,-13.5,-68.98,-12.88,-68.76,-12.69,-68.76,-12.61,-68.69,-12.5,-69.58,-10.95,-68.85,-11.01,-68.73,-11.12,-68.62,-11.11,-68.31,-10.97,-68.07,-10.7,-67.72,-10.68,-67.58,-10.51,-67.42,-10.39,-67.11,-10.27,-66.57,-9.9,-65.93,-9.79,-65.56,-9.8,-65.4,-9.71,-65.31,-9.87,-65.3,-10.15,-65.45,-10.51,-65.32,-11.02,-65.39,-11.25,-65.32,-11.44,-65.18,-11.65,-65.18,-11.75,-65.09,-11.74,-64.99,-11.98,-64.83,-12.03,-64.51,-12.25,-64.42,-12.44,-63.94,-12.53,-63.69,-12.48,-63.35,-12.68,-63.25,-12.71,-63.07,-12.67,-63.02,-12.81,-62.76,-13.0,-62.35,-13.13,-62.12,-13.16,-62.1,-13.24,-61.79,-13.53,-61.08,-13.49,-60.51,-13.79,-60.4,-14.02,-60.48,-14.18,-60.3,-14.62,-60.27,-15.09,-60.58,-15.1,-60.24,-15.48,-60.18,-16.27,-58.54,-16.33,-58.34,-16.28,-58.35,-16.49,-58.48,-16.7,-58.39,-17.23,-57.99,-17.51,-57.83,-17.51,-57.59,-18.12,-57.49,-18.22,-57.57,-18.28,-57.78,-18.91,-57.73,-18.92,-57.72,-19.04,-57.8,-19.08,-58.13,-19.74,-57.86,-19.98,-58.02,-20.06,-58.09,-20.15,-58.16,-20.16,-58.14,-20.0,-58.18,-19.82,-59.09,-19.29,-60.01,-19.3,-61.76,-19.65,-61.92,-20.06,-62.28,-20.56,-62.28,-21.07,-62.65,-22.23,-62.83,-22.0,-63.86,-22.01,-63.97,-22.07,-64.27,-22.6,-64.32,-22.83,-64.6,-22.23,-64.99,-22.11,-65.77,-22.1,-66.1,-21.83,-66.22,-21.8,-66.36,-22.11,-66.71,-22.22,-66.8,-22.41,-67.03,-22.55,-67.06,-22.65,-67.2,-22.82,-67.71,-22.89,-67.88,-22.82,-67.88,-22.49,-67.99,-22.06,-68.08,-21.98,-68.11,-21.75,-68.19,-21.62,-68.2,-21.3,-68.43,-20.95,-68.56,-20.9,-68.56,-20.72,-68.49,-20.63,-68.76,-20.42,-68.69,-20.31,-68.76,-20.09,-68.6,-20.05,-68.56,-19.97,-68.58,-19.86,-68.7,-19.72,-68.47,-19.41,-68.97,-18.97,-69.14,-18.14,-69.09,-18.05,-69.31,-17.94,-69.36,-17.77,-69.49,-17.62]]},{"n":"Belize","c":[-88.73,17.19],"r":[[-89.16,17.82,-89.14,17.97,-89.05,18.0,-88.9,17.91,-88.81,17.96,-88.52,18.45,-88.3,18.47,-88.35,18.36,-88.13,18.35,-88.1,18.12,-88.27,17.61,-88.2,17.52,-88.29,17.31,-88.26,16.96,-88.31,16.63,-88.56,16.29,-88.7,16.25,-88.88,16.02,-88.89,15.89,-89.24,15.89]]},{"n":"Bahamy","c":[-78.01,24.7],"r":[[-77.66,24.25,-77.76,24.16,-77.68,24.12,-77.61,24.22,-77.56,24.14,-77.52,23.87,-77.58,23.74,-77.77,23.75,-77.85,24.04,-78.0,24.22,-77.7,24.29],[-77.23,25.9,-77.4,26.03,-77.25,26.16,-77.2,26.49,-77.24,26.56,-77.51,26.85,-77.94,26.9,-77.86,26.94,-77.53,26.9,-77.26,26.64,-77.07,26.53,-77.04,26.33,-77.17,26.24],[-73.03,21.19,-73.17,20.98,-73.66,20.94,-73.68,20.98,-73.68,21.1,-73.52,21.19,-73.23,21.15,-73.06,21.31,-73.01,21.3],[-77.74,24.71,-77.74,24.46,-78.04,24.29,-78.14,24.49,-78.26,24.48,-78.44,24.63,-78.34,24.64,-78.32,24.59,-78.24,24.65,-78.3,24.75,-78.18,24.92,-78.16,25.02,-78.21,25.19,-78.16,25.2,-77.97,25.08,-77.97,25.0],[-78.49,26.73,-78.37,26.7,-77.94,26.74,-77.92,26.69,-78.75,26.5,-78.99,26.69,-78.8,26.58,-78.63,26.66,-78.6,26.8],[-74.21,22.21,-74.28,22.18,-73.94,22.48,-73.91,22.57,-73.98,22.68,-73.85,22.73,-73.88,22.68,-73.83,22.54,-73.98,22.36],[-76.65,25.49,-76.34,25.33,-76.13,25.14,-76.17,24.65,-76.32,24.82,-76.21,24.82,-76.16,25.12,-76.37,25.31,-76.62,25.43,-76.78,25.43,-76.71,25.57],[-74.84,22.9,-74.97,23.07,-75.22,23.17,-75.14,23.2,-75.13,23.27,-75.31,23.67,-75.11,23.33,-75.06,23.15,-74.85,23.0]]},{"n":"Argentina","c":[-63.88,-35.18],"r":[[-57.61,-30.19,-57.87,-30.59,-57.81,-30.86,-57.9,-30.97,-57.89,-31.2,-58.03,-31.42,-58.05,-31.5,-57.99,-31.62,-58.04,-31.77,-58.19,-31.92,-58.12,-32.25,-58.22,-32.56,-58.17,-32.96,-58.25,-33.08,-58.38,-33.07,-58.42,-33.11,-58.55,-33.66,-58.39,-34.19,-58.52,-34.3,-58.47,-34.46,-58.28,-34.68,-57.55,-35.02,-57.3,-35.19,-57.17,-35.36,-57.16,-35.51,-57.35,-35.72,-57.38,-35.9,-57.26,-36.14,-57.08,-36.3,-56.94,-36.35,-56.75,-36.35,-56.72,-36.39,-56.67,-36.73,-56.73,-36.96,-57.09,-37.45,-57.4,-37.75,-57.51,-37.91,-57.55,-38.09,-58.18,-38.44,-59.01,-38.67,-59.83,-38.84,-61.11,-38.99,-61.85,-38.96,-62.07,-38.92,-62.19,-38.81,-62.34,-38.8,-62.38,-38.85,-62.3,-38.99,-62.34,-39.15,-62.3,-39.24,-62.05,-39.37,-62.18,-39.38,-62.08,-39.46,-62.13,-39.83,-62.29,-39.89,-62.4,-40.2,-62.39,-40.46,-62.25,-40.67,-62.3,-40.81,-62.39,-40.89,-62.96,-41.11,-63.62,-41.16,-63.77,-41.15,-64.38,-40.92,-64.85,-40.81,-64.81,-40.76,-64.87,-40.74,-65.07,-40.81,-65.13,-40.88,-65.16,-41.11,-65.02,-41.57,-65.06,-41.97,-64.99,-42.1,-64.62,-42.26,-64.54,-42.26,-64.57,-42.42,-64.42,-42.43,-64.1,-42.39,-64.06,-42.27,-64.25,-42.25,-64.23,-42.22,-63.79,-42.11,-63.63,-42.28,-63.62,-42.7,-63.69,-42.81,-64.04,-42.88,-64.13,-42.86,-64.32,-42.57,-64.49,-42.51,-64.65,-42.53,-64.81,-42.63,-64.97,-42.67,-65.03,-42.76,-64.63,-42.91,-64.32,-42.97,-64.43,-43.06,-64.84,-43.19,-65.25,-43.57,-65.31,-43.79,-65.24,-44.05,-65.31,-44.16,-65.27,-44.28,-65.29,-44.36,-65.36,-44.48,-65.65,-44.66,-65.7,-44.8,-65.6,-44.88,-65.64,-45.01,-66.19,-44.97,-66.58,-45.18,-66.94,-45.26,-67.26,-45.58,-67.6,-46.05,-67.61,-46.17,-67.51,-46.44,-66.78,-47.01,-66.0,-47.09,-65.85,-47.16,-65.74,-47.35,-65.77,-47.57,-65.89,-47.7,-66.22,-47.83,-66.17,-47.86,-65.93,-47.83,-65.81,-47.94,-66.39,-48.34,-67.13,-48.69,-67.47,-48.95,-67.69,-49.25,-67.66,-49.34,-67.78,-49.86,-67.91,-49.98,-68.26,-50.1,-68.49,-49.98,-68.67,-49.75,-68.66,-49.94,-68.98,-50.0,-68.6,-50.01,-68.42,-50.16,-68.94,-50.38,-69.09,-50.58,-69.15,-50.86,-69.36,-51.03,-69.2,-50.99,-69.06,-51.3,-69.03,-51.45,-69.06,-51.55,-69.46,-51.58,-68.96,-51.68,-68.4,-52.31,-68.44,-52.36,-68.46,-52.29,-69.21,-52.14,-69.49,-52.14,-69.96,-52.01,-71.97,-51.96,-71.95,-51.88,-72.27,-51.69,-72.41,-51.54,-72.3,-51.3,-72.38,-51.1,-72.31,-51.03,-72.28,-50.91,-72.34,-50.68,-72.51,-50.61,-72.87,-50.65,-73.08,-50.76,-73.15,-50.74,-73.38,-50.23,-73.5,-50.12,-73.53,-49.91,-73.47,-49.79,-73.58,-49.58,-73.46,-49.31,-73.14,-49.3,-73.15,-49.19,-73.03,-49.01,-72.73,-48.9,-72.61,-48.79,-72.61,-48.52,-72.5,-48.42,-72.36,-48.37,-72.29,-48.23,-72.33,-48.11,-72.51,-47.97,-72.52,-47.88,-72.34,-47.57,-72.34,-47.49,-72.1,-47.34,-72.04,-47.24,-71.91,-47.2,-71.96,-47.02,-71.94,-46.83,-71.7,-46.65,-71.76,-46.32,-71.88,-46.16,-71.69,-46.04,-71.63,-45.95,-71.75,-45.84,-71.75,-45.58,-71.51,-45.51,-71.49,-45.44,-71.35,-45.33,-71.35,-45.23,-71.6,-44.98,-72.04,-44.9,-72.06,-44.77,-71.26,-44.76,-71.16,-44.56,-71.15,-44.49,-71.21,-44.44,-71.82,-44.38,-71.81,-44.11,-71.68,-43.93,-71.79,-43.75,-71.74,-43.7,-71.75,-43.59,-71.91,-43.44,-71.91,-43.35,-71.76,-43.3,-71.75,-43.24,-71.78,-43.17,-72.05,-43.1,-72.15,-42.99,-72.11,-42.78,-72.14,-42.58,-72.05,-42.47,-72.11,-42.25,-72.03,-42.15,-71.86,-42.15,-71.76,-42.1,-71.75,-42.05,-71.91,-41.65,-71.87,-41.56,-71.87,-40.89,-71.94,-40.79,-71.93,-40.69,-71.8,-40.44,-71.71,-40.38,-71.7,-40.34,-71.82,-40.18,-71.66,-40.02,-71.64,-39.89,-71.72,-39.64,-71.54,-39.6,-71.42,-39.29,-71.4,-38.93,-71.09,-38.76,-70.95,-38.74,-70.86,-38.6,-70.85,-38.54,-70.97,-38.45,-71.03,-38.04,-71.17,-37.76,-71.19,-37.63,-71.13,-37.44,-71.2,-37.3,-71.12,-37.12,-71.19,-36.84,-71.07,-36.64,-71.06,-36.52,-70.9,-36.42,-70.75,-36.39,-70.72,-36.28,-70.4,-36.06,-70.38,-35.77,-70.41,-35.52,-70.47,-35.33,-70.53,-35.31,-70.56,-35.25,-70.39,-35.15,-70.29,-34.73,-70.05,-34.3,-69.85,-34.22,-69.89,-33.73,-69.8,-33.4,-69.82,-33.28,-70.02,-33.27,-70.08,-33.2,-70.09,-33.03,-70.02,-32.88,-70.12,-32.81,-70.18,-32.63,-70.17,-32.47,-70.32,-32.27,-70.36,-32.08,-70.25,-31.96,-70.45,-31.84,-70.58,-31.57,-70.56,-31.32,-70.52,-31.15,-70.39,-31.12,-70.31,-31.02,-70.35,-30.9,-70.17,-30.39,-69.96,-30.36,-69.84,-30.17,-69.96,-30.08,-69.93,-29.77,-70.03,-29.32,-69.83,-29.1,-69.66,-28.41,-69.49,-28.2,-69.17,-27.92,-68.85,-27.15,-68.71,-27.11,-68.59,-27.14,-68.34,-27.03,-68.32,-26.97,-68.32,-26.88,-68.59,-26.47,-68.58,-26.35,-68.41,-26.15,-68.6,-25.49,-68.54,-25.24,-68.38,-25.09,-68.56,-24.84,-68.51,-24.63,-68.25,-24.39,-67.35,-24.03,-67.01,-23.0,-67.2,-22.82,-67.06,-22.65,-67.03,-22.55,-66.8,-22.41,-66.71,-22.22,-66.36,-22.11,-66.22,-21.8,-66.1,-21.83,-65.77,-22.1,-64.99,-22.11,-64.6,-22.23,-64.32,-22.83,-64.27,-22.6,-63.92,-22.03,-62.84,-22.0,-62.62,-22.29,-62.37,-22.44,-62.21,-22.61,-61.93,-23.06,-61.5,-23.39,-61.21,-23.56,-61.03,-23.75,-60.5,-23.96,-60.11,-24.01,-59.89,-24.09,-59.19,-24.56,-58.52,-24.84,-58.37,-24.96,-58.14,-24.98,-57.96,-25.05,-57.65,-25.33,-57.57,-25.53,-57.75,-25.7,-57.89,-26.01,-58.11,-26.18,-58.2,-26.38,-58.19,-26.63,-58.32,-26.86,-58.44,-26.92,-58.62,-27.13,-58.64,-27.2,-58.6,-27.31,-58.17,-27.27,-57.11,-27.47,-56.97,-27.44,-56.72,-27.49,-56.61,-27.47,-56.44,-27.55,-56.16,-27.32,-55.95,-27.33,-55.72,-27.41,-55.63,-27.36,-55.56,-27.15,-55.43,-27.01,-55.14,-26.93,-54.93,-26.7,-54.83,-26.65,-54.75,-26.53,-54.63,-26.01,-54.61,-25.58,-54.45,-25.62,-54.15,-25.52,-53.89,-25.67,-53.82,-25.96,-53.67,-26.29,-53.71,-26.35,-53.75,-26.75,-53.72,-26.88,-53.84,-27.12,-54.04,-27.24,-54.16,-27.25,-54.33,-27.42,-54.83,-27.55,-54.91,-27.71,-55.04,-27.77,-55.1,-27.87,-55.24,-27.9,-55.48,-28.09,-55.73,-28.2,-55.69,-28.38,-55.89,-28.37,-55.9,-28.44,-56.23,-28.74,-56.48,-29.09,-56.64,-29.2,-56.77,-29.42,-57.09,-29.72,-57.22,-29.78,-57.4,-30.03],[-68.65,-54.85,-68.63,-52.65,-68.34,-52.9,-68.24,-53.08,-68.33,-53.02,-68.43,-53.06,-68.52,-53.18,-68.49,-53.26,-68.16,-53.31,-68.01,-53.56,-67.29,-54.05,-66.24,-54.53,-65.75,-54.65,-65.37,-54.63,-65.18,-54.68,-65.35,-54.88,-65.47,-54.91,-65.95,-54.92,-66.51,-55.03,-67.13,-54.9,-68.22,-54.82],[-64.55,-54.72,-63.82,-54.73,-63.97,-54.81,-64.32,-54.8,-64.64,-54.9,-64.76,-54.83]]}];
@@ -642,7 +832,7 @@ function ctryStatus(){
 
 /* ================= 3D GLÓBUS ================= */
 const D=Math.PI/180;
-const G={lon:-75,lat:-8,drag:null,auto:true,raf:0,resume:0,col:null};
+const G={lon:-75,lat:-8,drag:null,auto:!RM,raf:0,resume:0,col:null};
 function globeColors(){
   const s=getComputedStyle(document.documentElement),g=n=>s.getPropertyValue(n).trim()||'#888';
   G.col={sea:g('--sea'),land:g('--land'),landS:g('--land-s'),acc:g('--acc'),now:g('--now'),done:g('--done'),next:g('--next'),tx:g('--tx'),p2:g('--panel2')};
@@ -651,7 +841,7 @@ function globeInit(){
   const cv=$('globe');if(!cv)return;
   cv.addEventListener('pointerdown',e=>{G.drag={x:e.clientX,y:e.clientY,lon:G.lon,lat:G.lat};G.auto=false;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
   cv.addEventListener('pointermove',e=>{if(!G.drag)return;G.lon=G.drag.lon-(e.clientX-G.drag.x)*.35;G.lat=Math.max(-70,Math.min(70,G.drag.lat+(e.clientY-G.drag.y)*.35))});
-  const up=()=>{G.drag=null;clearTimeout(G.resume);G.resume=setTimeout(()=>{G.auto=true},4000)};
+  const up=()=>{G.drag=null;clearTimeout(G.resume);G.resume=setTimeout(()=>{G.auto=!RM},4000)};
   cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
 }
 function globeStart(){globeColors();if(!G.raf)G.raf=requestAnimationFrame(globeFrame)}
@@ -671,16 +861,14 @@ function drawGlobe(ts){
   const l0=G.lon*D,p0=G.lat*D,sp0=Math.sin(p0),cp0=Math.cos(p0);
   const P3=(lon,lat,rr=1)=>{const l=lon*D-l0,p=lat*D,sp=Math.sin(p),cp=Math.cos(p),cl=Math.cos(l);return{x:cx+cp*Math.sin(l)*R*rr,y:cy-(cp0*sp-sp0*cp*cl)*R*rr,c:sp0*sp+cp0*cp*cl}};
   ctx.clearRect(0,0,N,N);
-  let g=ctx.createRadialGradient(cx,cy,R*.92,cx,cy,R*1.28);g.addColorStop(0,'rgba(61,220,255,.28)');g.addColorStop(1,'rgba(61,220,255,0)');
-  ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,R*1.28,0,7);ctx.fill();
-  g=ctx.createRadialGradient(cx-R*.35,cy-R*.4,R*.1,cx,cy,R);g.addColorStop(0,C.p2);g.addColorStop(1,C.sea);
-  ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.fill();
+  ctx.fillStyle=C.sea;ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.fill();
   ctx.save();ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.clip();
   /* souřadnicová síť */
-  ctx.strokeStyle='rgba(140,170,200,.13)';ctx.lineWidth=1;
+  ctx.strokeStyle=C.tx;ctx.globalAlpha=.07;ctx.lineWidth=1;
   const ln=(f)=>{ctx.beginPath();let pen=false;for(let k=0;k<=72;k++){const q=f(k/72),p=P3(q[0],q[1]);if(p.c>0){pen?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);pen=true}else pen=false}ctx.stroke()};
   for(let la=-60;la<=60;la+=20)ln(t=>[-180+360*t,la]);
   for(let lo=-180;lo<180;lo+=20)ln(t=>[lo,-80+160*t]);
+  ctx.globalAlpha=1;
   /* země */
   const st=ctryStatus();
   GEO.forEach((c,gi)=>{
@@ -698,13 +886,13 @@ function drawGlobe(ts){
     const pts=gcPts(stops[i-1],stops[i],28),done=i<=ci;
     ctx.beginPath();let pen=false;
     pts.forEach(q=>{const p=P3(q.lon,q.lat,1+Math.sin(Math.PI*q.t)*Math.min(.1,q.om*.1));if(p.c>0.02){pen?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);pen=true}else pen=false});
-    if(done){ctx.strokeStyle=C.acc;ctx.lineWidth=2.4*dpr;ctx.shadowColor=C.acc;ctx.shadowBlur=10*dpr;ctx.setLineDash([])}
+    if(done){ctx.strokeStyle=C.done;ctx.lineWidth=2.8*dpr;ctx.shadowBlur=0;ctx.setLineDash([])}
     else{ctx.strokeStyle=C.next;ctx.lineWidth=1.6*dpr;ctx.shadowBlur=0;ctx.setLineDash([4*dpr,5*dpr]);ctx.lineDashOffset=-ts/60}
     ctx.stroke();ctx.shadowBlur=0;ctx.setLineDash([]);
   }
   if(ci>0){
     const pts=gcPts(stops[ci-1],stops[ci],60),t=(ts/2800)%1,q=pts[Math.min(60,Math.floor(t*60))],p=P3(q.lon,q.lat,1+Math.sin(Math.PI*q.t)*Math.min(.1,q.om*.1));
-    if(p.c>0.02){ctx.fillStyle='#fff';ctx.shadowColor=C.acc;ctx.shadowBlur=16*dpr;ctx.beginPath();ctx.arc(p.x,p.y,3.2*dpr,0,7);ctx.fill();ctx.shadowBlur=0}
+    if(p.c>0.02){ctx.fillStyle='#fff';ctx.strokeStyle=C.done;ctx.lineWidth=2*dpr;ctx.beginPath();ctx.arc(p.x,p.y,3.6*dpr,0,7);ctx.fill();ctx.stroke()}
   }
   stops.forEach((s,i)=>{
     const p=P3(s.lon,s.lat);if(p.c<0.03)return;
@@ -712,11 +900,11 @@ function drawGlobe(ts){
     ctx.fillStyle=col;ctx.beginPath();ctx.arc(p.x,p.y,(i===ci?4.5:3)*dpr,0,7);ctx.fill();
     if(i===ci){
       ctx.strokeStyle=C.now;ctx.globalAlpha=.55;ctx.lineWidth=1.6*dpr;ctx.beginPath();ctx.arc(p.x,p.y,(9+4*Math.sin(ts/300))*dpr,0,7);ctx.stroke();ctx.globalAlpha=1;
-      ctx.font=`600 ${11*dpr}px "JetBrains Mono",monospace`;ctx.fillStyle=C.tx;ctx.textAlign='left';ctx.fillText(s.n.toUpperCase(),p.x+13*dpr,p.y-10*dpr);
+      ctx.font=`700 ${13*dpr}px Figtree,system-ui,sans-serif`;ctx.fillStyle=C.tx;ctx.textAlign='left';ctx.lineWidth=3*dpr;ctx.strokeStyle=C.land;ctx.lineJoin='round';ctx.strokeText(s.n,p.x+13*dpr,p.y-10*dpr);ctx.fillText(s.n,p.x+13*dpr,p.y-10*dpr);
     }
   });
   ctx.restore();
-  ctx.strokeStyle='rgba(61,220,255,.4)';ctx.lineWidth=1.4*dpr;ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.stroke();
+  ctx.strokeStyle=C.landS;ctx.lineWidth=1.6*dpr;ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.stroke();
 }
 
 /* ================= GRAFY ================= */
@@ -727,13 +915,13 @@ function combo({labels,sub,max,min,rain,rainMax}){
   const x=i=>pl+iw*(i+.5)/n,y=t=>pt+ih*(1-(t-lo)/(hi-lo));
   let s=`<svg class="ch" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Graf teplot a srážek">`;
   for(let t=lo;t<=hi;t+=5)s+=`<line x1="${pl}" x2="${W-pr}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${pl-6}" y="${y(t)+3}" text-anchor="end">${t}°</text>`;
-  rain.forEach((r,i)=>{const h=Math.max(0,r/rm)*ih*.38;s+=`<rect x="${x(i)-iw/n*.22}" y="${pt+ih-h}" width="${iw/n*.44}" height="${h}" rx="3" fill="var(--acc)" opacity=".3"/>`});
+  rain.forEach((r,i)=>{const h=Math.max(0,r/rm)*ih*.38;s+=`<rect x="${x(i)-iw/n*.22}" y="${pt+ih-h}" width="${iw/n*.44}" height="${h}" rx="3" fill="var(--cool)" opacity=".28"/>`});
   const path=a=>a.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join('');
-  s+=`<path d="${path(max)}" fill="none" stroke="var(--now)" stroke-width="2.2" stroke-linejoin="round"/><path d="${path(min)}" fill="none" stroke="var(--acc)" stroke-width="2.2" stroke-linejoin="round"/>`;
-  max.forEach((v,i)=>s+=`<circle cx="${x(i)}" cy="${y(v)}" r="3" fill="var(--now)"/><text x="${x(i)}" y="${y(v)-8}" text-anchor="middle" style="fill:var(--tx)">${Math.round(v)}°</text>`);
-  min.forEach((v,i)=>s+=`<circle cx="${x(i)}" cy="${y(v)}" r="3" fill="var(--acc)"/><text x="${x(i)}" y="${y(v)+15}" text-anchor="middle">${Math.round(v)}°</text>`);
+  s+=`<path d="${path(max)}" fill="none" stroke="var(--peach)" stroke-width="2.2" stroke-linejoin="round"/><path d="${path(min)}" fill="none" stroke="var(--cool)" stroke-width="2.2" stroke-linejoin="round"/>`;
+  max.forEach((v,i)=>s+=`<circle cx="${x(i)}" cy="${y(v)}" r="3" fill="var(--peach)"/><text x="${x(i)}" y="${y(v)-8}" text-anchor="middle" style="fill:var(--tx)">${Math.round(v)}°</text>`);
+  min.forEach((v,i)=>s+=`<circle cx="${x(i)}" cy="${y(v)}" r="3" fill="var(--cool)"/><text x="${x(i)}" y="${y(v)+15}" text-anchor="middle">${Math.round(v)}°</text>`);
   labels.forEach((l,i)=>s+=`<text x="${x(i)}" y="${H-24}" text-anchor="middle" style="fill:var(--tx)">${esc(l)}</text><text x="${x(i)}" y="${H-10}" text-anchor="middle">${esc(sub[i])}</text>`);
-  return s+'</svg><div class="legendc"><span><i class="dot" style="background:var(--now)"></i>max °C</span><span><i class="dot" style="background:var(--acc)"></i>min °C</span><span><i class="dot" style="background:var(--acc);opacity:.4"></i>srážky (mm)</span></div>';
+  return s+'</svg><div class="legendc"><span><i class="dot" style="background:var(--peach)"></i>max °C</span><span><i class="dot" style="background:var(--cool)"></i>min °C</span><span><i class="dot" style="background:var(--cool);opacity:.4"></i>srážky (mm)</span></div>';
 }
 function donut(data,total){
   const R=52,Cc=2*Math.PI*R;let off=0;
@@ -753,15 +941,6 @@ function areaChart(points,limit){
   return s+'</svg>';
 }
 
-/* ================= RAZÍTKA ZEMÍ ================= */
-function stampsHtml(){
-  const ci=curIdx(),order=[],seen={};
-  S.stops.forEach((s,i)=>{if(!s.c)return;if(!seen[s.c]){seen[s.c]={c:s.c,first:i,date:s.a||''};order.push(seen[s.c])}else if(!seen[s.c].date&&s.a)seen[s.c].date=s.a});
-  const curC=S.stops[ci].c;
-  return `<div class="stamps">${order.map((o,n)=>{
-    const k=o.c===curC?'now':o.first<=ci?'done':'plan';
-    return `<div class="stamp ${k}" style="--r:${(n*37)%9-4}deg">${flag(o.c,40)}<b>${esc(o.c)}</b><small>${k==='now'?'TEĎ TADY':k==='done'?(o.date?fd(o.date):'NAVŠTÍVENO'):(o.date?fd(o.date):'V PLÁNU')}</small></div>`}).join('')}</div>`;
-}
 
 /* ================= SVÁTKY A FESTIVALY ================= */
 const eventsIn=(country,from,to)=>EVENTS.filter(e=>e.c===country&&e.from<=to&&e.to>=from);
@@ -777,7 +956,7 @@ function nextEvents(n=4){
   const cs=[...new Set(S.stops.slice(curIdx()).map(s=>s.c))].slice(0,2),lim=addDays(t,60);
   return EVENTS.filter(e=>cs.includes(e.c)&&e.to>=t&&e.from<=lim).sort((a,b)=>a.from.localeCompare(b.from)).slice(0,n).map(e=>({e,s:null}));
 }
-const evHtml=({e,s})=>`<div class="ev"><span class="tag ${e.t==='f'?'ok':''}">${e.t==='f'?'FESTIVAL':'SVÁTEK'}</span><span><b>${esc(e.n)}</b> <span style="color:var(--mut)">· ${evRange(e)} · ${esc(e.c)}${s?' · '+esc(s.n):''}${e.note?' · '+esc(e.note):''}</span></span></div>`;
+const evHtml=({e,s})=>`<div class="ev"><span class="tag ${e.t==='f'?'ok':''}">${e.t==='f'?'Festival':'Svátek'}</span><span><b>${esc(e.n)}</b> <span style="color:var(--mut)">· ${evRange(e)} · ${esc(e.c)}${s?' · '+esc(s.n):''}${e.note?' · '+esc(e.note):''}</span></span></div>`;
 
 /* ================= ČASOVÁ OSA A KALENDÁŘ ================= */
 let oTab='osa',calM=null,calSel=null;
@@ -798,8 +977,8 @@ function tlHtml(){
     const evs=s.a?eventsIn(s.c,addDays(s.a,-1),addDays(s.o||s.a,1)):[];
     const dia=S.diary.filter(d=>d.sid===s.id).length,pl=S.places.filter(p=>p.sid===s.id).length,ph=S.photos.filter(p=>p.sid===s.id);
     const bks=edit&&s.a?P.bookings.filter(b=>b.date&&b.date>=s.a&&b.date<=(s.o||s.a)):[];
-    const tr=i>0?`<div class="tr">↳ ${esc(trLabel(s.tm)||'přesun')}${s.tt?' · '+esc(s.tt):''} · ~${Math.round(km(S.stops[i-1],s)).toLocaleString('cs-CZ')} km</div>`:'';
-    return tr+`<div class="tn ${i===ci?'now':''}" style="--c:${c}"><div class="card"><div class="row" style="justify-content:space-between;flex-wrap:nowrap"><div class="row" style="gap:10px;flex-wrap:nowrap">${flag(s.c,34)}<div><b style="font-size:1.05rem">${esc(s.n)}${i===ci?'<span class="here">TEĎ</span>':''}</b><div class="lab">${esc(s.c)} · ${s.a?esc(fd(s.a))+(s.o?' → '+esc(fd(s.o)):''):'termín neurčen'}${nights!=null?' · '+nights+' nocí':''}</div></div></div><button class="btn sm" data-act="gotostop" data-id="${s.id}">Detail</button></div>
+    const tr=i>0?`<div class="tr">${ico('leg',14)} ${esc(trLabel(s.tm)||'přesun')}${s.tt?' · '+esc(s.tt):''} · ~${Math.round(km(S.stops[i-1],s)).toLocaleString('cs-CZ')} km</div>`:'';
+    return tr+`<div class="tn ${i===ci?'now':''}" style="--c:${c}"><div class="card"><div class="row" style="justify-content:space-between;flex-wrap:nowrap"><div class="row" style="gap:12px;flex-wrap:nowrap"><span class="thumb" style="--tint:${tintOf(s.c)};width:48px;height:48px">${placePhoto(s)?phImg(placePhoto(s)):esc(s.n.slice(0,1))}</span><div><b style="font-size:1.05rem;font-family:var(--disp)">${esc(s.n)}${i===ci?'<span class="here">Teď</span>':''}</b><div class="lab">${esc(s.c)} · ${s.a?esc(fd(s.a))+(s.o?' → '+esc(fd(s.o)):''):'termín neurčen'}${nights!=null?' · '+nights+' nocí':''}</div></div></div><button class="btn sm" data-act="gotostop" data-id="${s.id}">Detail</button></div>
     ${s.t?`<p style="margin:8px 0 0;color:var(--mut);font-size:.88rem">${esc(s.t)}</p>`:''}
     <div class="row" style="margin-top:8px;gap:6px">${dia?`<span class="tag">${dia}× deník</span>`:''}${pl?`<span class="tag">${pl}× místa</span>`:''}${ph.length?`<span class="tag">${ph.length}× foto</span>`:''}</div>
     ${ph.length?`<div class="row" style="margin-top:8px;gap:6px">${ph.slice(0,4).map(p=>`<img src="${esc(photoSrc(p))}" alt="" loading="lazy" style="width:54px;height:54px;object-fit:cover;border-radius:8px">`).join('')}</div>`:''}
@@ -823,7 +1002,7 @@ function calHtml(){
     ${i.evs.map(e=>evHtml({e,s:null})).join('')}${i.bk.map(b=>`<div class="ev"><span class="tag wait">REZERVACE</span><span>${esc(b.title)}</span></div>`).join('')}
     ${i.dia.map(d=>`<div class="diary"><small>Deník</small><div>${esc(d.text)}</div></div>`).join('')}
     ${i.ph.length?`<div class="row" style="margin-top:8px">${i.ph.map(p=>`<img src="${esc(photoSrc(p))}" alt="" loading="lazy" data-act="lb" data-src="${esc(photoSrc(p))}" data-cap="${esc(p.cap||'')}" style="width:72px;height:72px;object-fit:cover;border-radius:9px;cursor:zoom-in">`).join('')}</div>`:''}</div>`:'';
-  return `<div class="card"><div class="row" style="justify-content:space-between;margin-bottom:10px"><button class="btn sm" data-act="calprev" aria-label="Předchozí měsíc">‹</button><b style="text-transform:capitalize">${esc(title)}</b><button class="btn sm" data-act="calnext" aria-label="Další měsíc">›</button></div><div class="cal">${cells}</div>
+  return `<div class="card"><div class="row" style="justify-content:space-between;margin-bottom:10px"><button class="btn sm" data-act="calprev" aria-label="Předchozí měsíc">${ico('chevl',16)}</button><b style="text-transform:capitalize">${esc(title)}</b><button class="btn sm" data-act="calnext" aria-label="Další měsíc">${ico('chevr',16)}</button></div><div class="cal">${cells}</div>
    <div class="legendc"><span><i class="dot" style="background:var(--acc)"></i>příjezd / zápis</span><span><i class="dot" style="background:var(--now)"></i>festival či svátek</span></div></div>${det}
    <p class="note" style="margin-top:12px">Svátky a festivaly jsou orientační, přesné termíny si ověř.</p>`;
 }
@@ -836,7 +1015,7 @@ function uploadForm(sid){
    <div class="row"><select id="ps" class="grow">${S.stops.map(s=>`<option value="${s.id}"${s.id===(sid||sel)?' selected':''}>${esc(s.n)}</option>`).join('')}</select><input id="pc" class="grow" placeholder="Popisek (volitelné)"></div>
    <div class="row" style="margin-top:8px"><button class="btn pri" data-act="photoadd">Nahrát</button></div></div><p class="note" style="margin:8px 0 0">Fotka se zmenší na max. 1400 px a nahraje do veřejného repozitáře. Neukládej citlivé snímky (doklady apod.).</p></div>`;
 }
-const photoGrid=list=>list.length?`<div class="ph">${list.map(p=>`<figure><img src="${esc(photoSrc(p))}" alt="${esc(p.cap||'Fotka')}" loading="lazy" data-act="lb" data-src="${esc(photoSrc(p))}" data-cap="${esc(p.cap||'')}"><figcaption>${esc(p.cap||'')} ${esc(fdm(p.date))}</figcaption>${edit?`<button class="x" data-act="photodel" data-id="${p.id}" aria-label="Smazat fotku">✕</button>`:''}</figure>`).join('')}</div>`:'<p class="note">Zatím žádné fotky.</p>';
+const photoGrid=list=>list.length?`<div class="ph">${list.map(p=>`<figure><img src="${esc(photoSrc(p))}" alt="${esc(p.cap||'Fotka')}" loading="lazy" data-act="lb" data-src="${esc(photoSrc(p))}" data-cap="${esc(p.cap||'')}"><figcaption>${esc(p.cap||'')} ${esc(fdm(p.date))}</figcaption>${edit?`<button class="x" data-act="photodel" data-id="${p.id}" aria-label="Smazat fotku">${ico('x',16)}</button>`:''}</figure>`).join('')}</div>`:'<p class="note">Zatím žádné fotky.</p>';
 function vFoto(){
   const withP=S.stops.filter(s=>S.photos.some(p=>p.sid===s.id));
   if(fSel!=='Vše'&&!withP.some(s=>s.id===fSel))fSel='Vše';
@@ -854,15 +1033,24 @@ function go(v){
   try{history.replaceState(null,'','#'+v)}catch(e){}
   refresh();window.scrollTo(0,0);
 }
-const navBtn=(v,cls='')=>`<button class="${v[0]===view?'on':''}" data-act="go" data-v="${v[0]}">${ico(v[0],cls?22:20)}<span>${v[1]}</span></button>`;
+/* spodní lišta: na telefonu 4 hlavní + Více, na počítači všechny položky */
 function renderNav(){
   const a=VIEWS.filter(v=>!v[2]||edit),main=['home','trasa','osa','zeme'];
-  let h='';a.forEach((v,i)=>{if(v[0]==='rozpocet')h+='<div class="sep"></div>';if(v[0]==='nast')h+='<div class="sep"></div>';h+=navBtn(v)});
-  $('nav').innerHTML=h;
-  $('bnav').innerHTML=main.map(k=>a.find(x=>x[0]===k)).map(v=>`<button class="${v[0]===view?'on':''}" data-act="go" data-v="${v[0]}">${ico(v[0],22)}<span>${v[1]==='Časová osa'?'Osa':v[1]}</span></button>`).join('')+`<button class="${main.includes(view)?'':'on'}" data-act="more">${ico('more',22)}<span>Více</span></button>`;
+  const short=v=>v[1]==='Časová osa'?'Osa':v[1];
+  $('bnav').innerHTML=a.map(v=>`<button class="${v[0]===view?'on':''}${main.includes(v[0])?'':' dx'}" data-act="go" data-v="${v[0]}"${v[0]===view?' aria-current="page"':''}>${ico(v[0],22)}<span>${short(v)}</span></button>`).join('')+`<button class="mx${main.includes(view)?'':' on'}" data-act="more" aria-expanded="${moreOpen}">${ico('more',22)}<span>Více</span></button>`;
   $('sheet').innerHTML=a.filter(x=>!main.includes(x[0])).map(v=>`<button data-act="go" data-v="${v[0]}">${ico(v[0],22)}<span>${v[1]}</span></button>`).join('');
   $('sheet').classList.toggle('hide',!moreOpen);
-  $('foot').textContent=S.upd?'POLOHA · '+new Date(S.upd).toLocaleDateString('cs-CZ'):'';
+}
+/* ambientní pozadí podle místa, které je právě na obrazovce */
+let ambSrc='';
+function setAmb(){
+  const s=view==='trasa'?(S.stops[idx(sel)]||curStop()):curStop();
+  const src=view==='zeme'&&zSel?countryPhoto(zSel):placePhoto(s);
+  if(src===ambSrc)return;ambSrc=src;
+  const box=$('amb'),old=box.querySelector('img');
+  if(old){old.classList.remove('on');setTimeout(()=>old.remove(),1200)}
+  if(!src)return;
+  const im=new Image();im.alt='';im.onload=()=>requestAnimationFrame(()=>im.classList.add('on'));im.src=src;box.appendChild(im);
 }
 function fab(){
   const b=$('fab');b.classList.toggle('hide',!edit);
@@ -874,9 +1062,11 @@ function refresh(){
   renderNav();
   document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+view));
   ({home:vHome,trasa:vTrasa,osa:vOsa,foto:vFoto,zeme:vZeme,pocasi:vPocasi,zpravy:vZpravy,rozpocet:vRozpocet,plan:vPlan,vybava:vVybava,nast:vNast})[view]();
+  setAmb();
+  document.querySelectorAll('label.l').forEach(l=>{const n=l.nextElementSibling;if(!l.htmlFor&&n&&n.id&&/^(INPUT|SELECT|TEXTAREA)$/.test(n.tagName))l.htmlFor=n.id});
   fab();
 }
-const pageHead=(t,sub,right='')=>`<div class="pagehead"><div><h2>${t}</h2>${sub?`<small>${sub}</small>`:''}</div>${right}</div>`;
+const pageHead=(t,sub,right='')=>`<header class="pagehead"><div><h1>${t}</h1>${sub?`<p class="sub">${sub}</p>`:''}</div>${right?`<div class="hb">${right}</div>`:''}</header>`;
 const seg=(items,cur,act)=>`<div class="seg">${items.map(([k,l])=>`<button class="${k===cur?'on':''}" data-act="${act}" data-k="${k}">${l}</button>`).join('')}</div>`;
 const dateStr=s=>s.a?fd(s.a)+(s.o?' – '+fd(s.o):''):(s.d||'');
 const ago=ts=>{const m=Math.max(1,Math.round((Date.now()-ts)/6e4));return m<60?`před ${m} min`:m<1440?`před ${Math.round(m/60)} h`:`před ${Math.round(m/1440)} d`};
@@ -899,19 +1089,35 @@ function vHome(){
     <div class="card"><h3>Rezervace a rozpočet</h3>${bk.length?bk.map(b=>`<div class="item"><div class="t">${esc(b.title)}<br><small>${fd(b.date)} · ${esc(b.type)}</small></div><span class="tag ${b.status==='Potvrzeno'?'ok':'wait'}">${esc(b.status||'')}</span></div>`).join(''):'<p class="note">Žádné nadcházející rezervace.</p>'}
     <p style="margin:12px 0 6px" class="mono"><b>${czk(spent)}</b>${lim?' / '+czk(lim):''}</p>${lim?`<div class="prog ${spent>lim?'bad':spent>lim*.85?'warn':''}"><i style="width:${Math.min(100,spent/lim*100)}%"></i></div>`:''}</div></div>`;
   }
-  $('v-home').innerHTML=pageHead('Přehled',`Cancún → Buenos Aires · ${countries.length} zemí · ${st.length} zastávek`,S.upd?`<span class="pill"><i></i>LIVE · ${ago(S.upd)}</span>`:'')+
-  al.map(i=>`<div class="alert ${i.severity==='nebezpeci'?'bad':''}"><span class="dotc" style="background:var(--${i.severity==='nebezpeci'?'bad':'warn'});margin-top:7px"></span><div><b>${esc(i.title)}</b> – ${esc(i.summary)} <a href="#zpravy" data-act="go" data-v="zpravy">Více</a></div></div>`).join('')+
-  `<div class="grid2 glob"><div class="card"><div class="globewrap"><canvas id="globe" aria-label="Glóbus s trasou"></canvas></div><p class="note mono" style="text-align:center;margin:6px 0 0;font-size:.68rem">TÁHNI PRO OTOČENÍ</p></div>
-  <div class="card tele"><h3>Aktuální zastávka</h3><div class="row" style="gap:12px;flex-wrap:nowrap">${flag(cur.c,46)}<div><div class="name">${esc(cur.n)}</div><div class="lab" style="margin-top:6px">${esc(cur.c)}${cur.a?' · příjezd '+esc(fd(cur.a)):''}</div></div></div>
-   <div class="mets"><div class="met"><b>${ci+1} / ${st.length}</b><span class="lab">zastávek</span></div><div class="met"><b>${doneC.size} / ${countries.length}</b><span class="lab">zemí</span></div><div class="met"><b>${Math.round(done).toLocaleString('cs-CZ')} km</b><span class="lab">z ${Math.round(tot).toLocaleString('cs-CZ')} km</span></div><div class="met" id="hwx"><b>–</b><span class="lab">počasí</span></div></div>
-   <div class="prog" style="margin-top:14px"><i style="width:${pct}%"></i></div><div class="lab" style="margin-top:6px">${pct} % trasy${days!=null?' · '+days+'. den cesty':''}</div>
-   <div class="row" style="margin-top:14px"><button class="btn pri" data-act="go" data-v="trasa">${ico('trasa',16)}Zobrazit trasu</button><button class="btn" data-act="towx" data-id="${cur.id}">${ico('pocasi',16)}Počasí</button></div></div></div>
-  <div class="card"><h3>Celá trasa</h3><div class="strip">${st.map((s,i)=>`<button class="sc ${i<ci?'done':i===ci?'now':''}" data-act="gotostop" data-id="${s.id}">${flag(s.c,40)}<b>${esc(s.n)}</b><small>${esc(s.c)}</small></button>`).join('')}</div></div>
-  <div class="card"><h3>Pasová razítka</h3>${stampsHtml()}</div>
-  <div class="grid2"><div class="card"><h3>Události na trase</h3>${ev.length?ev.map(evHtml).join(''):'<p class="note" style="margin:0">Pro nejbližší zastávky zatím nic není. Doplň data příjezdu a odjezdu u zastávek.</p>'}<p class="note" style="margin:10px 0 0">Termíny jsou orientační.</p></div>
-  <div class="card"><h3>Rychlý přístup</h3><div class="tiles">${tiles.map(t=>`<button class="tile" data-act="go" data-v="${t[0]}"><span class="ic">${ico(t[0],20)}</span><span><b>${t[1]}</b><small>${t[2]}</small></span></button>`).join('')}</div></div></div>${extra}`;
+  const heroSrc=placePhoto(cur),routeAl=activeNews().some(i=>st.slice(ci).some(s=>s.c===i.country));
+  const status=`<div class="stat-line">${S.upd?`<span class="pill"><i></i>Živě · ${ago(S.upd)}</span>`:''}<span>${days!=null?days+'. den cesty':'Cancún → Buenos Aires'} · ${countries.length} zemí, ${st.length} zastávek</span></div>`;
+  $('v-home').innerHTML=`<header class="pagehead"><div><h1>Přehled</h1>${status}</div><div class="hb">${cbtn('map','go','Mapa trasy',' data-v="trasa"')}${cbtn('pocasi','towx','Počasí',` data-id="${cur.id}"`)}<button class="cbtn" data-act="go" data-v="zpravy" aria-label="Zprávy${routeAl?' (jsou upozornění)':''}" title="Zprávy">${ico('bell',20)}${routeAl?'<span class="bd"></span>':''}</button></div></header>`+
+  `<section class="hero" aria-label="Aktuální zastávka"><div class="stack"><div class="frame"><div class="pic" style="--tint:${tintOf(cur.c)}">${phImg(heroSrc,cur.n)}</div>
+     <div class="ov otl"><span class="gchip">${flag(cur.c,20)}${esc(cur.c)}</span></div><div class="ov otr"><span class="gchip np">Teď tady</span></div>
+     <div class="dots" aria-hidden="true">${st.map((s,i)=>`<i class="${i<ci?'d':i===ci?'n':''}"></i>`).join('')}</div></div></div>
+   <div class="hmeta"><div class="trow"><h2 class="name">${esc(cur.n)}</h2><span class="hwx" id="hwx"></span></div>
+    <div class="loc">${ico('pin',16)}${esc(cur.c)} · ${cur.a?'příjezd '+esc(fd(cur.a)):esc(cur.d||'právě tady')}</div>
+    ${cur.t?`<p class="desc">${esc(cur.t)}</p>`:''}
+    <div class="stats"><span class="stat">Zastávka ${ci+1} z ${st.length}</span><span class="stat">Země ${doneC.size} z ${countries.length}</span><span class="stat">${Math.round(done).toLocaleString('cs-CZ')} z ${Math.round(tot).toLocaleString('cs-CZ')} km</span></div>
+    <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="Průběh trasy"><i style="width:${pct}%"></i></div>
+    <div class="acts"><button class="btn pri" data-act="go" data-v="trasa">${ico('trasa',18)}Zobrazit trasu</button><button class="btn" data-act="towx" data-id="${cur.id}">${ico('pocasi',18)}Počasí</button><button class="btn" data-act="tozeme" data-k="${esc(cur.c)}">${ico('zeme',18)}O zemi</button></div>
+    ${edit?`<div class="composer"><label class="sr" for="hdtext">Zápis do deníku</label><textarea id="hdtext" rows="2" placeholder="Co se dnes stalo v ${esc(cur.n)}…"></textarea><div class="cr"><button class="cbtn sm" data-act="go" data-v="foto" aria-label="Přidat fotku" title="Přidat fotku">${ico('plus',18)}</button><button class="send" data-act="homediary" aria-label="Uložit zápis do deníku">${ico('send',20)}</button></div></div>`:''}
+   </div></section>${al.map(i=>`<div class="alert ${i.severity==='nebezpeci'?'bad':''}"><span style="color:var(--${i.severity==='nebezpeci'?'bad':'warn'});margin-top:1px">${ico('alert',22)}</span><div><b>${esc(i.title)}</b><div class="clamp2">${esc(i.summary)}</div><a href="#zpravy" data-act="go" data-v="zpravy">Podrobnosti</a></div></div>`).join('')}
+  <div class="sec-h"><h2>Celá trasa</h2><button data-act="go" data-v="trasa">Mapa</button></div>
+  <div class="rail" id="rail">${st.map((s,i)=>stopCard(s,i,ci,'gotostop')).join('')}</div>
+  <div class="grid2 glob" style="margin-top:6px"><div class="card"><h3>Kde na světě jsem</h3><div class="globewrap"><canvas id="globe" role="img" aria-label="Glóbus s trasou"></canvas></div><p class="note" style="text-align:center;margin:8px 0 0">Táhni pro otočení</p></div>
+  <div class="card"><h3>Události na trase</h3>${ev.length?ev.map(evHtml).join(''):'<p class="note" style="margin:0">Pro nejbližší zastávky zatím nic není. Doplň data příjezdu a odjezdu u zastávek.</p>'}<p class="note" style="margin:12px 0 0">Termíny jsou orientační.</p></div></div>
+  <div class="sec-h"><h2>Rychlý přístup</h2></div><div class="qa">${tiles.map(t=>`<button class="tile" data-act="go" data-v="${t[0]}"><span class="ic">${ico(t[0],16)}</span><b>${t[1]}</b></button>`).join('')}</div>
+  ${extra?`<div style="margin-top:16px">${extra}</div>`:''}`;
   globeInit();globeStart();
-  fetchWx(cur).then(c=>{const el=$('hwx');if(!el||view!=='home'||!c)return;el.innerHTML=`<b>${Math.round(c.j.current.temperature_2m)} °C</b><span class="lab">${WT(c.j.current.weather_code)}</span>`});
+  fetchWx(cur).then(c=>{const el=$('hwx');if(!el||view!=='home'||!c)return;el.innerHTML=wicon(c.j.current.weather_code,20)+Math.round(c.j.current.temperature_2m)+' °C';el.title=WT(c.j.current.weather_code)});
+}
+/* fotokarta zastávky (přehled i panel u mapy) */
+function stopCard(s,i,ci,act){
+  const src=placePhoto(s),isSel=act==='sel'&&s.id===sel;
+  const leg=act==='sel'&&i>0?`${esc(trLabel(s.tm)||'přesun')} · ~${Math.round(km(S.stops[i-1],s)).toLocaleString('cs-CZ')} km`:`${esc(s.c)}${s.a?' · '+esc(fdm(s.a)):''}`;
+  const stt=i===ci?'<span class="gchip np st">Teď</span>':i<ci?`<span class="gchip st ok" title="Navštíveno">${ico('tick',15)}</span>`:'';
+  return `<button class="pc${i<ci?' done':i===ci?' now':''}${isSel?' sel':''}" style="--tint:${tintOf(s.c)}" data-act="${act}" data-id="${s.id}"${isSel?' aria-pressed="true"':''} aria-label="${i+1}. ${esc(s.n)}, ${esc(s.c)}${i===ci?' (teď tady)':i<ci?' (navštíveno)':''}"><span class="pic">${phImg(src)}${src?'':`<span class="big" aria-hidden="true">${esc(s.n.slice(0,1))}</span>`}</span><span class="gchip np n">${i+1} / ${S.stops.length}</span>${stt}<span class="in"><b>${esc(s.n)}</b><small>${act==='sel'?'':ico('pin',12)}${leg}</small></span></button>`;
 }
 
 /* ================= TRASA (mapa) ================= */
@@ -945,7 +1151,7 @@ function drawMap(){
   if(!$('map'))return;
   if(!$('go'))buildLand();
   const st=ctryStatus();routeG=new Set(S.stops.map(p=>ctryIdx(p)).filter(g=>g>=0));
-  GEO.forEach((c,gi)=>{$('g'+gi).setAttribute('class','ctry '+(st[gi]||''))});
+  GEO.forEach((c,gi)=>{$('g'+gi).setAttribute('class','ctry '+(st[gi]||'')+(c.n==='USA'?' usa':''))});
   $('map').classList.toggle('placing',!!mode);
   drawOverlay();
 }
@@ -955,14 +1161,14 @@ function drawOverlay(){
   let s='';
   GEO.forEach((c,gi)=>{
     if(c.n==='USA'||c.n==='Falklandy')return;
-    if(routeG.has(gi)||k>=2.2)s+=`<text class="cl" x="${X(c.c[0])}" y="${Y(c.c[1])}" font-size="${(routeG.has(gi)?8.5:6.5)/k}">${esc(c.n.toUpperCase())}</text>`;
+    if(k>=2.2)s+=`<text class="cl" x="${X(c.c[0])}" y="${Y(c.c[1])}" font-size="${(routeG.has(gi)?8.5:6.5)/k}">${esc(c.n.toUpperCase())}</text>`;
   });
   s+=`<polyline class="route" points="${pts(all)}"/>`;
   if(ci>0)s+=`<polyline class="dline" points="${pts(all.slice(0,ci+1))}"/>`;
   S.stops.forEach((p,i)=>{
     const x=X(p.lon),y=Y(p.lat),isS=p.id===sel,r=(i===ci?11:9)/k;
     s+=`<g class="pin" data-id="${p.id}">`;
-    if(i===ci)s+=`<circle cx="${x}" cy="${y}" r="${16/k}" fill="var(--now)" opacity=".25"><animate attributeName="r" values="${12/k};${20/k};${12/k}" dur="2s" repeatCount="indefinite"/></circle>`;
+    if(i===ci)s+=`<circle cx="${x}" cy="${y}" r="${16/k}" fill="var(--now)" opacity=".25">${RM?'':`<animate attributeName="r" values="${12/k};${20/k};${12/k}" dur="2s" repeatCount="indefinite"/>`}</circle>`;
     s+=`<circle cx="${x}" cy="${y}" r="${17/k}" fill="transparent"/><circle cx="${x}" cy="${y}" r="${r}" fill="${col(i)}" stroke="var(--tx)" stroke-width="${isS?2.5/k:0}"/><text x="${x}" y="${y+3.5/k}" font-size="${10/k}">${i+1}</text>`;
     if(isS||i===ci)s+=`<text class="lbl" x="${x}" y="${y-16/k}" font-size="${11/k}" style="stroke-width:${3/k}px">${esc(p.n)}</text>`;
     s+=`</g>`;
@@ -1009,8 +1215,8 @@ function initMap(){
 }
 function vTrasa(){
   if(!trasaBuilt){
-    $('v-trasa').innerHTML=pageHead('Trasa','Mapa, pořadí zastávek, místa a deník')+`<div class="grid2 wide"><div class="card"><div class="mapbox"><svg id="map" viewBox="0 0 516 534" role="img" aria-label="Mapa trasy"></svg><div class="zoom"><button data-act="zi" aria-label="Přiblížit">+</button><button data-act="zo" aria-label="Oddálit">−</button><button data-act="zh" aria-label="Moje poloha" title="Moje poloha">◎</button><button data-act="zr" aria-label="Celá trasa" title="Celá trasa">⤢</button></div></div>
-    <div class="legend"><span><i class="dot" style="background:var(--done)"></i>navštíveno</span><span><i class="dot" style="background:var(--now)"></i>jsem tady</span><span><i class="dot" style="background:var(--next)"></i>plánováno</span></div></div><div id="tside"></div></div>`;
+    $('v-trasa').innerHTML=`<div class="trasa">${pageHead('Trasa','',cbtn('locate','zh','Moje poloha')+cbtn('expand','zr','Celá trasa'))}<div class="tmap"><div class="mapbox"><svg id="map" viewBox="0 0 516 534" role="img" aria-label="Mapa trasy"></svg><div class="zoom">${cbtn('plus','zi','Přiblížit')}${cbtn('minus','zo','Oddálit')}</div>
+    <div class="legend"><span><i class="dot" style="background:var(--done)"></i>navštíveno</span><span><i class="dot" style="background:var(--now)"></i>jsem tady</span><span><i class="dot" style="background:var(--next)"></i>plánováno</span></div></div></div><div id="tside" class="tsheet"></div></div>`;
     initMap();trasaBuilt=true;
   }
   drawMap();drawSide();
@@ -1028,7 +1234,7 @@ function formHtml(){
 }
 let dTab='info';
 const mapsUrl=(name,s)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name+' '+s.n+' '+s.c);
-const placeHtml=(p,s)=>`<div class="place"><span class="tag">${esc(p.type)}</span><div class="t"><b>${esc(p.name)}</b>${p.note?`<br><small style="color:var(--mut)">${esc(p.note)}</small>`:''}</div><a class="btn sm" href="${esc(safeUrl(p.url)||mapsUrl(p.name,s))}" target="_blank" rel="noopener">Mapy</a>${edit?`<button class="btn sm bad" data-act="placedel" data-id="${p.id}" aria-label="Smazat místo">✕</button>`:''}</div>`;
+const placeHtml=(p,s)=>`<div class="place"><span class="tag">${esc(p.type)}</span><div class="t"><b>${esc(p.name)}</b>${p.note?`<br><small style="color:var(--mut)">${esc(p.note)}</small>`:''}</div><a class="btn sm" href="${esc(safeUrl(p.url)||mapsUrl(p.name,s))}" target="_blank" rel="noopener">Mapy</a>${edit?`<button class="btn sm bad" data-act="placedel" data-id="${p.id}" aria-label="Smazat místo">${ico('x',16)}</button>`:''}</div>`;
 function detailHtml(s,i,ci){
   const info=INFO.find(c=>c.k===s.c);
   let body='';
@@ -1047,21 +1253,28 @@ function detailHtml(s,i,ci){
   }else{
     body=photoGrid(S.photos.filter(p=>p.sid===s.id))+uploadForm(s.id);
   }
-  return `<div class="card"><div class="row" style="gap:12px;flex-wrap:nowrap">${flag(s.c,40)}<div><b style="font-size:1.12rem">${esc(s.n)}</b><div class="lab">${esc(s.c)}${dateStr(s)?' · '+esc(dateStr(s)):''}</div></div></div>
-   <div class="row" style="margin-top:12px"><a class="btn sm" href="https://www.google.com/maps?q=${s.lat},${s.lon}" target="_blank" rel="noopener">Google Maps ↗</a>${info?`<button class="btn sm" data-act="tozeme" data-k="${esc(s.c)}">Informace o zemi</button>`:''}<button class="btn sm" data-act="towx" data-id="${s.id}">Počasí</button></div>
-   ${edit?`<div class="acts">${i!==ci?'<button class="btn pri sm" data-act="here">Jsem tady</button>':''}<button class="btn sm" data-act="edit">Upravit</button><button class="btn sm" data-act="move">Přesunout na mapě</button><button class="btn sm" data-act="up">↑</button><button class="btn sm" data-act="down">↓</button><button class="btn sm bad" data-act="del">Smazat</button></div>`:''}
-   <div style="margin-top:14px">${seg([['info','Info'],['diary','Deník'],['places','Místa'],['photos','Foto']],dTab,'dtab')}${body}</div></div>`;
+  return `<article class="detail" aria-label="Detail zastávky ${esc(s.n)}"><div class="stack"><div class="frame"><div class="pic" style="--tint:${tintOf(s.c)}">${phImg(placePhoto(s),s.n)}</div>
+     <div class="ov otl"><span class="gchip">${flag(s.c,20)}${esc(s.c)}</span></div><div class="ov otr"><a class="cbtn sm" href="https://www.google.com/maps?q=${s.lat},${s.lon}" target="_blank" rel="noopener" aria-label="Otevřít v Google Maps" title="Google Maps">${ico('ext',17)}</a></div></div></div>
+   ${seg([['info','Přehled'],['diary','Deník'],['places','Místa'],['photos','Foto']],dTab,'dtab')}
+   <div class="trow"><h2>${esc(s.n)}${i===ci?'<span class="here">Teď</span>':''}</h2><span class="lab">Zastávka ${i+1} z ${S.stops.length}</span></div>
+   <div class="loc">${ico('pin',16)}${esc(s.c)}${dateStr(s)?' · '+esc(dateStr(s)):''}</div>
+   <div class="dbody">${body}</div>
+   <div class="acts">${info?`<button class="btn sm" data-act="tozeme" data-k="${esc(s.c)}">${ico('zeme',16)}Informace o zemi</button>`:''}<button class="btn sm" data-act="towx" data-id="${s.id}">${ico('pocasi',16)}Počasí</button><a class="btn sm" href="https://www.google.com/maps?q=${s.lat},${s.lon}" target="_blank" rel="noopener">Google Maps ↗</a></div>
+   ${edit?`<div class="acts">${i!==ci?'<button class="btn pri sm" data-act="here">Jsem tady</button>':''}<button class="btn sm" data-act="edit">Upravit</button><button class="btn sm" data-act="move">Přesunout na mapě</button><button class="btn sm" data-act="up" aria-label="Posunout dřív">↑</button><button class="btn sm" data-act="down" aria-label="Posunout později">↓</button><button class="btn sm bad" data-act="del">Smazat</button></div>`:''}</article>`;
 }
 function drawSide(){
   const el=$('tside');if(!el)return;
-  const s=S.stops.find(x=>x.id===sel)||S.stops[0],i=idx(s.id),ci=curIdx();
+  const s=S.stops.find(x=>x.id===sel)||S.stops[0],i=idx(s.id),ci=curIdx(),{tot}=routeKm();
   let h='';
   if(edit)h+=`<div class="row" style="margin-bottom:12px"><button class="btn pri" data-act="addmode">${ico('pin',16)}Přidat bod na mapě</button></div>`;
   if(mode)h+=`<div class="hint">${mode==='add'?'Klepni do mapy, kam chceš přidat nový bod (vloží se za vybranou zastávku).':'Klepni do mapy na nové místo pro „'+esc(s.n)+'“.'} <button class="btn sm" data-act="cancelmode">Zrušit</button></div>`;
   if(form)h+=formHtml();
-  h+=`<div class="card"><h3>Zastávky</h3>${S.stops.map((p,n)=>`<div class="stop${p.id===sel?' sel':''}" data-act="sel" data-id="${p.id}"><div class="num" style="background:${col(n)}">${n+1}</div><div class="sbody"><b>${esc(p.n)}${n===ci?'<span class="here">TEĎ</span>':''}</b><small>${esc(p.c)}${dateStr(p)?' · '+esc(dateStr(p)):''}</small>${n>0?`<small>↳ ${esc(trLabel(p.tm))} ${esc(p.tt||'')}${p.tm||p.tt?' · ':''}~${Math.round(km(S.stops[n-1],p)).toLocaleString('cs-CZ')} km</small>`:''}</div>${flag(p.c,26)}</div>`).join('')}</div>`;
+  h+=`<div class="sec-h"><h2>Zastávky</h2><span class="lab">${S.stops.length} zastávek · ~${Math.round(tot).toLocaleString('cs-CZ')} km</span></div><div class="rail srail" id="srail">${S.stops.map((p,n)=>stopCard(p,n,ci,'sel')).join('')}</div>`;
   h+=detailHtml(s,i,ci);
+  const keep=$('srail')?$('srail').scrollLeft:null;
   el.innerHTML=h;
+  const r=$('srail'),c=r&&r.querySelector('.pc.sel');
+  if(r&&c){const want=c.offsetLeft-(r.clientWidth-c.clientWidth)/2;if(keep!=null)r.scrollLeft=keep;r.scrollTo({left:want,behavior:keep==null||RM?'auto':'smooth'})}
 }
 
 /* ================= ZEMĚ ================= */
@@ -1085,7 +1298,7 @@ function vZeme(){
   $('v-zeme').innerHTML=pageHead('Země','Historie, místa, tipy, praktické informace a svátky')+
    `<p class="note">Orientační informace od asistenta. Bezpečnostní situace, vstupní podmínky a ceny se mění – před cestou ověř doporučení MZV ČR (mzv.gov.cz) a poraď se v očkovacím centru.</p>
    <div class="chips">${INFO.map(x=>`<button class="chip${x.k===zSel?' on':''}${x.k===cc?' cur':''}" data-act="zsel" data-k="${esc(x.k)}">${flag(x.k,20)} ${esc(x.k)}</button>`).join('')}</div>
-   <div class="zhero">${flag(c.k,56)}<div><h2>${esc(c.k)}</h2><small>${esc(mena)}</small></div></div>
+   <div class="zhero stack"><div class="frame"><div class="pic" style="--tint:${tintOf(c.k)}">${phImg(countryPhoto(c.k),c.k)}</div><div class="in">${flag(c.k,48)}<div><h2>${esc(c.k)}</h2><small>${esc(mena)}</small></div></div></div></div>
    <div class="card info">${seg([['prehled','Přehled'],['mista','Místa'],['pozor','Pozor'],['tipy','Tipy'],['prakt','Praktické'],['svatky','Svátky']],zTab,'ztab')}${body}</div>`;
 }
 
@@ -1095,7 +1308,7 @@ const CCUR={Mexiko:'MXN',Guatemala:'GTQ',Salvador:'USD',Nikaragua:'NIO',Kostarik
 function wxHtml(c){
   const j=c.j,cu=j.current,d=j.daily;
   const wd=iso=>new Date(iso+'T12:00:00').toLocaleDateString('cs-CZ',{weekday:'short'});
-  return `<div class="nowwx"><div style="color:var(--now)">${wicon(cu.weather_code,54)}</div><div><div class="t">${Math.round(cu.temperature_2m)} °C</div><div>${WT(cu.weather_code)}</div></div><div class="note mono" style="margin:0;font-size:.74rem">VLHKOST ${cu.relative_humidity_2m} %<br>VÍTR ${Math.round(cu.wind_speed_10m)} KM/H<br>STAŽENO ${new Date(c.t).toLocaleTimeString('cs-CZ',{hour:'2-digit',minute:'2-digit'})}</div></div>
+  return `<div class="nowwx"><div style="color:var(--now)">${wicon(cu.weather_code,54)}</div><div><div class="t">${Math.round(cu.temperature_2m)} °C</div><div>${WT(cu.weather_code)}</div></div><div class="note" style="margin:0">Vlhkost ${cu.relative_humidity_2m} %<br>Vítr ${Math.round(cu.wind_speed_10m)} km/h<br>Staženo ${new Date(c.t).toLocaleTimeString('cs-CZ',{hour:'2-digit',minute:'2-digit'})}</div></div>
   <div style="margin-top:12px">${combo({labels:d.time.map((t,i)=>i?wd(t):'Dnes'),sub:d.precipitation_sum.map(v=>v+' mm'),max:d.temperature_2m_max,min:d.temperature_2m_min,rain:d.precipitation_sum,rainMax:Math.max(10,...d.precipitation_sum)})}</div>
   <div class="row" style="gap:14px;margin-top:6px;justify-content:space-between">${d.time.map((t,i)=>`<span style="text-align:center;color:var(--mut)">${wicon(d.weather_code[i],22)}</span>`).join('')}</div>`;
 }
@@ -1123,13 +1336,13 @@ function vZpravy(){
   const mine=all.filter(i=>i.country===cc),worstMine=mine.reduce((w,i)=>rank[i.severity]<rank[w]?i.severity:w,'info');
   const up=NEWS.updated?new Date(NEWS.updated).toLocaleString('cs-CZ',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'}):'';
   const card=i=>{const tp=NT[i.type],sv=SEV[i.severity]||SEV.info,u=safeUrl(i.url),isMine=i.country===cc,isNext=later.has(i.country)&&!isMine;
-    return `<div class="ncard ${esc(i.severity||'info')}"><div class="nic">${ico(tp[1],20)}</div><div class="nb"><div class="row" style="justify-content:space-between;gap:8px;flex-wrap:nowrap;align-items:flex-start"><b>${esc(i.title)}</b><span class="tag sev-${esc(i.severity||'info')}">${sv[1].toUpperCase()}</span></div>
-     <div class="lab" style="margin-top:4px">${flag(i.country,16)} ${esc(i.country)} · ${esc(tp[0])} · ${esc(when(i))}${isMine?' · <b style="color:var(--now)">TVOJE ZEMĚ</b>':isNext?' · DALŠÍ NA TRASE':''}</div>
+    return `<div class="ncard ${esc(i.severity||'info')}"><div class="nic">${ico(tp[1],20)}</div><div class="nb"><div class="row" style="justify-content:space-between;gap:8px;flex-wrap:nowrap;align-items:flex-start"><b>${esc(i.title)}</b><span class="tag sev-${esc(i.severity||'info')}">${sv[1]}</span></div>
+     <div class="lab" style="margin-top:4px">${flag(i.country,16)} ${esc(i.country)} · ${esc(tp[0])} · ${esc(when(i))}${isMine?' · <b style="color:var(--now-tx)">Tvoje země</b>':isNext?' · další na trase':''}</div>
      <details><summary>Podrobnosti</summary><p>${esc(i.summary||'')}</p>${u?`<a href="${esc(u)}" target="_blank" rel="noopener" style="font-size:.84rem">${esc(i.source||'Zdroj')} ↗</a>`:''}</details></div></div>`};
   const groups=[['Právě probíhá',['tc','fl','vo','wf']],['Zemětřesení · posledních 72 hodin',['eq']],['Nepokoje a blokády',['news']]];
   const body=groups.map(([title,types])=>{const g=list.filter(i=>types.includes(i.type));return g.length?`<div class="ngrp"><span class="lab">${title} · ${g.length}</span><i></i></div>${g.map(card).join('')}`:''}).join('');
-  $('v-zpravy').innerHTML=pageHead('Zprávy',all.length?`${all.length} aktivních upozornění na trase`:'Žádná aktivní upozornění',up?`<span class="lab">zkontrolováno ${esc(up)}</span>`:'')+
-   `<div class="statusbar"><span class="dotc" style="width:12px;height:12px;background:var(--${mine.length?SEV[worstMine][0]:'done'});box-shadow:0 0 10px var(--${mine.length?SEV[worstMine][0]:'done'})"></span><div>${flag(cc,18)} <b>${esc(cc)}</b> <span class="lab">· tvoje aktuální země</span><div style="font-size:.86rem;color:var(--mut)">${mine.length?mine.length+' aktivní upozornění':'Žádné aktivní upozornění'}</div></div></div>
+  $('v-zpravy').innerHTML=pageHead('Zprávy',all.length?`${all.length} ${all.length===1?'aktivní upozornění':all.length<5?'aktivní upozornění':'aktivních upozornění'} na trase`:'Žádná aktivní upozornění',up?`<span class="lab">zkontrolováno ${esc(up)}</span>`:'')+
+   `<div class="statusbar"><span class="dotc" style="width:12px;height:12px;background:var(--${mine.length?SEV[worstMine][0]:'done'})"></span><div>${flag(cc,18)} <b>${esc(cc)}</b> <span class="lab">· tvoje aktuální země</span><div style="font-size:.86rem;color:var(--mut)">${mine.length?mine.length+' aktivní upozornění':'Žádné aktivní upozornění'}</div></div></div>
    <div class="sevs">${[['nebezpeci','Nebezpečí','bad'],['pozor','Pozor','warn'],['info','Info','acc']].map(([k,l,c])=>`<button class="sevb${nSev===k?' on':''}" style="--c:var(--${c})" data-act="nsev" data-k="${k}"><b>${cnt(k)}</b><span class="lab">${l}</span></button>`).join('')}</div>
    <div class="chips"><button class="chip${nSel==='Vše'?' on':''}" data-act="nsel" data-k="Vše">Všechny země</button>${INFO.map(c=>`<button class="chip${c.k===nSel?' on':''}${c.k===cc?' cur':''}" data-act="nsel" data-k="${esc(c.k)}">${flag(c.k,18)} ${esc(c.k)}<i class="dotc" style="background:${dotc(c.k)};margin:0 0 0 2px"></i></button>`).join('')}</div>`+
    (list.length?body:`<div class="card calm">${ico('check',44)}<h3 style="margin:10px 0 4px;color:var(--tx);font-size:1.05rem;letter-spacing:0;text-transform:none;font-family:inherit">${all.length?'V tomto výběru nic není':'Na trase je klid'}</h3><p class="note" style="margin:0">${all.length?'Zkus jiný filtr nebo zemi.':'Zemětřesení, bouře ani blokády teď skript nehlásí. Zpráva se po několika dnech sama odstraní.'}</p></div>`)+
@@ -1148,7 +1361,7 @@ function vRozpocet(){
   const kat=group('cat'),byDate={};ex.forEach(e=>{byDate[e.date]=(byDate[e.date]||0)+conv(e)});
   let run=0;const cum=Object.keys(byDate).sort().map(d=>[d,run+=byDate[d]]);
   const body=bTab==='zeme'?bars(group('country'),true):bTab==='kat'?(kat.length?`<div class="row" style="gap:18px;align-items:center">${donut(kat,spent)}<div style="flex:1;min-width:160px">${kat.map(([k,v],i)=>`<div class="row" style="justify-content:space-between;font-size:.86rem;margin:4px 0"><span><i class="dot" style="background:${PAL[i%PAL.length]}"></i>${esc(k)}</span><b class="mono">${czk(v)}</b></div>`).join('')}</div></div>`:'<p class="note">Zatím žádné výdaje.</p>'):
-   (list.length?list.map(e=>`<div class="item"><div class="t"><b>${esc(e.note||e.cat)}</b><br><small>${fd(e.date)} · ${esc(e.country)} · ${esc(e.cat)}</small></div><div style="text-align:right"><b class="mono">${e.amt.toLocaleString('cs-CZ')} ${esc(e.cur)}</b>${e.cur!=='CZK'?`<br><small>≈ ${czk(conv(e))}</small>`:''}</div><button class="x" data-act="expdel" data-id="${e.id}" aria-label="Smazat">✕</button></div>`).join(''):'<p class="note">Zatím žádné výdaje.</p>');
+   (list.length?list.map(e=>`<div class="item"><div class="t"><b>${esc(e.note||e.cat)}</b><br><small>${fd(e.date)} · ${esc(e.country)} · ${esc(e.cat)}</small></div><div style="text-align:right"><b class="mono">${e.amt.toLocaleString('cs-CZ')} ${esc(e.cur)}</b>${e.cur!=='CZK'?`<br><small>≈ ${czk(conv(e))}</small>`:''}</div><button class="x" data-act="expdel" data-id="${e.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Zatím žádné výdaje.</p>');
   $('v-rozpocet').innerHTML=pageHead('Rozpočet','Výdaje na cestě v přepočtu na Kč')+
    `<div class="card"><h3>Celkem utraceno</h3><div class="mono" style="font-size:2rem;font-weight:600;color:var(--acc)">${czk(spent)}</div>
     ${lim?`<div class="prog ${spent>lim?'bad':spent>lim*.85?'warn':''}" style="margin:10px 0 6px"><i style="width:${Math.min(100,spent/lim*100)}%"></i></div><div class="lab">z ${czk(lim)} · zbývá ${czk(lim-spent)} · ${Math.round(spent/lim*100)} %</div>`:'<p class="note">Nastav celkový rozpočet níže.</p>'}
@@ -1170,7 +1383,7 @@ function vPlan(){
   let body='';
   if(pTab==='ukoly'){
     const tk=[...P.tasks].sort((a,b)=>(a.done-b.done)||(a.due||'9').localeCompare(b.due||'9'));
-    body=`<div class="card"><h3>Úkoly před cestou</h3>${tk.length?tk.map(t=>`<div class="item${t.done?' ck':''}"><input type="checkbox" data-chg="tasktog" data-id="${t.id}"${t.done?' checked':''}><div class="t">${esc(t.t)}<br><small${!t.done&&t.due&&t.due<todayISO()?' style="color:var(--bad)"':''}>${t.due?fd(t.due):'bez termínu'}</small></div><button class="x" data-act="taskdel" data-id="${t.id}" aria-label="Smazat">✕</button></div>`).join(''):'<p class="note">Zatím žádné úkoly.</p>'}</div>
+    body=`<div class="card"><h3>Úkoly před cestou</h3>${tk.length?tk.map(t=>`<div class="item${t.done?' ck':''}"><input type="checkbox" data-chg="tasktog" data-id="${t.id}"${t.done?' checked':''}><div class="t">${esc(t.t)}<br><small${!t.done&&t.due&&t.due<todayISO()?' style="color:var(--bad)"':''}>${t.due?fd(t.due):'bez termínu'}</small></div><button class="x" data-act="taskdel" data-id="${t.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Zatím žádné úkoly.</p>'}</div>
     <div class="card"><h3>Nový úkol</h3><div class="row"><input id="tt" class="grow" placeholder="Např. Koupit pojištění"><input id="td" type="date" style="width:auto"><button class="btn pri" data-act="taskadd">Přidat</button></div></div>`;
   }else if(pTab==='rez'){
     const l=P.bookings.filter(b=>bFil==='Vše'||b.type===bFil).sort((a,b)=>(a.date||'9').localeCompare(b.date||'9'));
@@ -1180,7 +1393,7 @@ function vPlan(){
      <label class="l">Název</label><input id="bn" placeholder="např. Let Cancún → Guatemala"><div class="row"><div class="grow"><label class="l">Číslo rezervace</label><input id="br"></div><div class="grow"><label class="l">Stav</label><select id="bs"><option>Čeká</option><option>Potvrzeno</option></select></div></div>
      <label class="l">Poznámka</label><input id="bo"><div class="row" style="margin-top:10px"><button class="btn pri" data-act="bkadd">Přidat</button></div></div></div>`;
   }else{
-    body=`<div class="card"><h3>Kontakty a doklady</h3><p class="note">Soukromé poznámky: čísla pojištění, kontakty na velvyslanectví apod.</p>${P.notes.length?P.notes.map(n=>`<div class="item"><div class="t"><b>${esc(n.t)}</b><br><small style="white-space:pre-wrap">${esc(n.x)}</small></div><button class="x" data-act="notedel" data-id="${n.id}" aria-label="Smazat">✕</button></div>`).join(''):'<p class="note">Zatím nic.</p>'}</div>
+    body=`<div class="card"><h3>Kontakty a doklady</h3><p class="note">Soukromé poznámky: čísla pojištění, kontakty na velvyslanectví apod.</p>${P.notes.length?P.notes.map(n=>`<div class="item"><div class="t"><b>${esc(n.t)}</b><br><small style="white-space:pre-wrap">${esc(n.x)}</small></div><button class="x" data-act="notedel" data-id="${n.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Zatím nic.</p>'}</div>
      <div class="card"><h3>Nová poznámka</h3><div class="form"><input id="nt" placeholder="Název (např. Pojišťovna)"><textarea id="nx" rows="3" placeholder="Text…"></textarea><div class="row" style="margin-top:8px"><button class="btn pri" data-act="noteadd">Přidat</button></div></div></div>`;
   }
   $('v-plan').innerHTML=pageHead('Plán a rezervace','Úkoly, rezervace a důležité kontakty (soukromé)')+seg([['ukoly','Úkoly'],['rez','Rezervace'],['kont','Kontakty']],pTab,'ptab')+body;
@@ -1200,7 +1413,7 @@ function vVybava(){
     <div class="row" style="margin-top:12px"><input id="vlim" type="number" min="0" step="0.5" class="grow" placeholder="Limit (kg)" value="${lim||''}"><button class="btn sm" data-act="vlim">Nastavit limit</button></div></div>`+
    P.pack.map(k=>{const w=k.items.reduce((a,i)=>a+i.q*i.w,0),pk=k.items.filter(i=>i.c).length;
     return `<div class="card"><div class="row" style="justify-content:space-between"><h3 style="margin:0">${esc(k.name)}</h3><span class="lab">${pk}/${k.items.length} · ${kg(w)} kg</span></div>
-    ${k.items.length?k.items.map(i=>`<div class="item${i.c?' ck':''}"><input type="checkbox" data-chg="itemtog" data-k="${k.id}" data-i="${i.id}"${i.c?' checked':''}><div class="t">${esc(i.t)}<br><small>${i.q}× · ${i.w} g</small></div><button class="x" data-act="itemdel" data-k="${k.id}" data-i="${i.id}" aria-label="Smazat">✕</button></div>`).join(''):'<p class="note">Prázdná kategorie.</p>'}
+    ${k.items.length?k.items.map(i=>`<div class="item${i.c?' ck':''}"><input type="checkbox" data-chg="itemtog" data-k="${k.id}" data-i="${i.id}"${i.c?' checked':''}><div class="t">${esc(i.t)}<br><small>${i.q}× · ${i.w} g</small></div><button class="x" data-act="itemdel" data-k="${k.id}" data-i="${i.id}" aria-label="Smazat">${ico('x',16)}</button></div>`).join(''):'<p class="note">Prázdná kategorie.</p>'}
     <div class="row" style="margin-top:8px"><button class="btn sm bad" data-act="catdel" data-k="${k.id}">Smazat kategorii</button></div></div>`}).join('')+
    `<div class="card"><h3>Přidat věc</h3><div class="form"><label class="l">Název</label><input id="vn" placeholder="např. Pláštěnka">
     <div class="row"><div class="grow"><label class="l">Kategorie</label><select id="vc">${P.pack.map(k=>`<option value="${k.id}">${esc(k.name)}</option>`).join('')}</select></div><div class="grow"><label class="l">Počet</label><input id="vq" type="number" min="1" value="1"></div><div class="grow"><label class="l">Váha 1 ks (g)</label><input id="vw" type="number" min="0" value="0"></div></div>
@@ -1210,10 +1423,8 @@ function vVybava(){
 
 /* ================= NASTAVENÍ ================= */
 function vNast(){
-  const th=LS.get('theme','dark');
   $('v-nast').innerHTML=pageHead('Nastavení','')+
-   `<div class="card"><h3>Vzhled</h3><select data-chg="theme"><option value="dark"${th==='dark'?' selected':''}>Tmavý kokpit</option><option value="light"${th==='light'?' selected':''}>Světlý</option></select></div>
-   <div class="card"><h3>Správce (GitHub)</h3><p class="note">Jen správce potřebuje token. Ostatní stránku jen čtou.${edit?' <b>Jsi přihlášen jako správce.</b>':''}</p><div class="form">
+   `<div class="card"><h3>Správce (GitHub)</h3><p class="note">Jen správce potřebuje token. Ostatní stránku jen čtou.${edit?' <b>Jsi přihlášen jako správce.</b>':''}</p><div class="form">
     <label class="l">GitHub uživatel</label><input id="gho" value="${esc(GH.owner)}"><label class="l">Veřejný repozitář (stránka)</label><input id="ghr" value="${esc(GH.repo)}">
     <label class="l">Soukromý repozitář pro rozpočet, rezervace a výbavu (volitelné)</label><input id="ghp" value="${esc(GH.pr||'')}" placeholder="např. cesta-soukrome">
     <label class="l">Přístupový token</label><input id="ght" type="password" autocomplete="off" placeholder="${TOKEN?'(uložen v tomto prohlížeči)':'github_pat_…'}">
@@ -1222,7 +1433,8 @@ function vNast(){
    ${edit?`<div class="card"><h3>Kurzy měn (Kč za 1 jednotku)</h3><p class="note">Orientační hodnoty – uprav nebo stáhni aktuální.</p><div class="row">${CUR.filter(c=>c[0]!=='CZK').map(([c])=>`<div style="width:92px"><label class="l">${c}</label><input id="rt_${c}" type="number" step="0.0001" value="${rate(c)}"></div>`).join('')}</div>
     <div class="row" style="margin-top:10px"><button class="btn pri" data-act="ratesave">Uložit kurzy</button><button class="btn" data-act="ratefetch">Stáhnout aktuální</button></div></div>
    <div class="card"><h3>Záloha dat</h3><div class="row"><button class="btn" data-act="export">Exportovat</button><label class="btn" style="cursor:pointer">Importovat<input type="file" accept="application/json" data-chg="import" style="display:none"></label></div></div>`:''}
-   <div class="card"><h3>O stránce</h3><p class="note" style="margin:0">Cancún → Buenos Aires · glóbus a mapa se zeměmi, informace o zemích, předpověď (Open-Meteo), zprávy ze skriptu. Veřejná část (trasa, poloha, deník, místa, fotky, zprávy) je viditelná všem s odkazem.</p></div>`;
+   <div class="card"><h3>O stránce</h3><p class="note" style="margin:0">Cancún → Buenos Aires · glóbus a mapa se zeměmi, informace o zemích, předpověď (Open-Meteo), zprávy ze skriptu. Veřejná část (trasa, poloha, deník, místa, fotky, zprávy) je viditelná všem s odkazem.</p></div>
+   <div class="card"><h3>Fotografie měst</h3><p class="note">Fotky zastávek jsou z Wikimedia Commons (volné licence), uložené přímo v projektu. Vlastní fotky přidáš ve Fotodeníku.</p><ul style="margin:0;padding-left:20px;font-size:.88rem">${PHOTO_CREDITS.map(([c,a,l])=>`<li><b>${esc(c)}</b>: ${esc(a)}, ${esc(l)}</li>`).join('')}</ul></div>`;
 }
 
 /* ================= UDÁLOSTI ================= */
@@ -1242,7 +1454,7 @@ const ACT={
   calnext:()=>{const [y,m]=calM.split('-').map(Number),d=new Date(y,m,1);calM=d.getFullYear()+'-'+pad2(d.getMonth()+1);refresh()},
   calsel:t=>{calSel=t.dataset.d;refresh()},
   fsel:t=>{fSel=t.dataset.k;refresh()},
-  lb:t=>{const b=$('lb');b.innerHTML=`<img src="${esc(t.dataset.src)}" alt=""><p>${esc(t.dataset.cap||'')}</p>`;b.classList.remove('hide')},
+  lb:t=>{const b=$('lb');b.innerHTML=`<img src="${esc(t.dataset.src)}" alt=""><p>${esc(t.dataset.cap||'')}</p>`;b.classList.remove('hide');b.setAttribute('tabindex','-1');b.focus()},
   lbclose:()=>$('lb').classList.add('hide'),
   zi:()=>zoomAt(1.6,VB.x+VB.w/2,VB.y+VB.h/2),
   zo:()=>zoomAt(1/1.6,VB.x+VB.w/2,VB.y+VB.h/2),
@@ -1269,6 +1481,7 @@ const ACT={
     form=null;mark('pub');refresh();
   },
   diaryadd:()=>{const v=$('dtext').value.trim();if(!v)return;S.diary.push({id:'d'+uid(),sid:sel,date:todayISO(),text:v});mark('pub');refresh()},
+  homediary:()=>{const v=$('hdtext').value.trim();if(!v)return;S.diary.push({id:'d'+uid(),sid:S.cur,date:todayISO(),text:v});mark('pub');fabMsg='Zápis přidán – ulož a zveřejni';refresh()},
   diarydel:t=>{S.diary=S.diary.filter(d=>d.id!==t.dataset.id);mark('pub');refresh()},
   placeadd:()=>{const n=$('pln').value.trim();if(!n)return;S.places.push({id:'m'+uid(),sid:sel,type:$('plt').value,name:n,note:$('plo').value.trim(),url:$('plu').value.trim()});mark('pub');refresh()},
   placerec:t=>{const s=stopOf(),i=INFO.find(c=>c.k===s.c);if(!i)return;S.places.push({id:'m'+uid(),sid:sel,type:'Zajímavost',name:i.top[+t.dataset.i],note:'',url:''});mark('pub');refresh()},
@@ -1324,7 +1537,6 @@ const CHG={
   ecsel:t=>{const c=CCUR[t.value];if(c&&$('ecu'))$('ecu').value=c},
   tasktog:t=>{const x=P.tasks.find(x=>x.id===t.dataset.id);x.done=t.checked;mark('priv');refresh()},
   itemtog:t=>{const i=P.pack.find(k=>k.id===t.dataset.k).items.find(i=>i.id===t.dataset.i);i.c=t.checked;mark('priv');refresh()},
-  theme:t=>{LS.set('theme',t.value);document.documentElement.setAttribute('data-theme',t.value);if(G.col)globeColors()},
   import:t=>{
     const f=t.files[0];if(!f)return;
     f.text().then(x=>{const j=JSON.parse(x);if(j.public&&j.public.stops){S=j.public;S.diary=S.diary||[];S.places=S.places||[];S.photos=S.photos||[];sel=S.cur;dirty.pub=true}if(j.private){P=Object.assign(P,j.private);ensureP();mark('priv')}refresh()}).catch(()=>{fabMsg='Import selhal';fab()});
@@ -1337,11 +1549,14 @@ document.addEventListener('click',e=>{
   if(t.tagName==='A')e.preventDefault();
   f(t,e);
 });
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if(!$('lb').classList.contains('hide')){ACT.lbclose();return}if(moreOpen){moreOpen=false;renderNav()}return}
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role=button][data-act]')){e.preventDefault();e.target.click()}
+});
 document.addEventListener('change',e=>{const t=e.target.closest('[data-chg]');if(t&&CHG[t.dataset.chg])CHG[t.dataset.chg](t,e)});
 
 /* ================= START ================= */
 (function init(){
-  document.documentElement.setAttribute('data-theme',LS.get('theme','dark'));
   if(TOKEN&&GH.owner&&GH.repo)edit=true;
   const h=location.hash.slice(1);if(viewOk(h))view=h;
   refresh();loadPublic();loadNews();loadPrivate();
