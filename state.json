@@ -126,15 +126,14 @@
    "t": "Konec cesty"
   }
  ],
- "diary": [],
- "places": [],
- "photos": [
+ "diary": [
   {
-   "id": "p9a0htxmvgdl1k5",
-   "sid": "s10",
-   "date": "2026-10-20",
-   "cap": "test",
-   "f": "photos/p9a0htxmvgdl1k5.jpg"
+   "id": "dehb2mo",
+   "sid": "s1",
+   "date": "2026-10-22",
+   "text": "Testovačka"
   }
- ]
+ ],
+ "places": [],
+ "photos": []
 }
