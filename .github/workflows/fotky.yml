@@ -2,7 +2,7 @@ name: Fotky míst
 on:
   push:
     branches: [main]
-    paths: [state.json]    # po každém uložení trasy z aplikace
+    paths: [state.json, fotky.py]    # po každém uložení trasy z aplikace (a po úpravě skriptu)
   schedule:
     - cron: "30 5 * * 1"   # jednou týdně znovu zkusit místa, ke kterým se fotka nenašla
   workflow_dispatch:       # ruční spuštění tlačítkem

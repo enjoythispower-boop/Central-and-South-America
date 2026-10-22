@@ -12,7 +12,8 @@ INDEX = "photos/places/auto.json"
 DIR = "photos/places/auto"
 WIDTH = 1400
 RETRY_DAYS = 7     # po kolika dnech zkusit znovu místo, ke kterému se fotka nenašla
-MAX_KM = 60        # článek musí ležet nejdál takhle daleko od bodu na mapě
+MAX_KM = 60        # ostatní články musí ležet nejdál takhle daleko od bodu na mapě
+NAME_KM = 300      # článek se stejným názvem jako místo může být dál
 # zastávky s ručně vybranou fotkou (stejné klíče jako PHOTO_BY_STOP v index.html)
 BUILTIN = {"cancun", "tulum", "ciudad de mexico", "mexico city", "antigua", "san jose", "bogota", "quito", "cusco",
            "la paz", "santiago", "buenos aires"}
@@ -53,16 +54,18 @@ def km(a, b):
     return 2 * 6371 * math.asin(math.sqrt(q))
 
 def near(pages, stop):
-    """Články, které leží u bodu na mapě (nejbližší první); rozcestníky a články bez souřadnic vynechá."""
-    out = []
+    """Články, které leží u bodu na mapě; rozcestníky a články bez souřadnic vynechá. Článek nazvaný stejně jako
+    místo má přednost a stačí mu být do NAME_KM (bod na mapě bývá zadaný jen přibližně), ostatní do MAX_KM."""
+    name, out = norm(stop["n"]), []
     for p in pages or []:
         co = (p.get("coordinates") or [None])[0]
         if p.get("missing") or not co or "disambiguation" in (p.get("pageprops") or {}):
             continue
         d = km((stop["lat"], stop["lon"]), (co["lat"], co["lon"]))
-        if d <= MAX_KM:
-            out.append((d, p))
-    return [p for d, p in sorted(out, key=lambda x: x[0])]
+        same = norm(p.get("title")).startswith(name)
+        if d <= (NAME_KM if same else MAX_KM):
+            out.append((not same, d, p))
+    return [x[2] for x in sorted(out, key=lambda x: x[:2])]
 
 def image_of(page):
     """Hlavní fotka místa: nejdřív z Wikidat (P18), jinak úvodní obrázek článku; mapy, vlajky a koláže ne."""
