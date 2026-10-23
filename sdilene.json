@@ -1,0 +1,77 @@
+{
+ "total": 0,
+ "limit": 10,
+ "rates": {},
+ "expenses": [
+  {
+   "id": "eqkijcw",
+   "date": "2026-10-14",
+   "country": "Ostatní",
+   "cat": "Doprava",
+   "amt": 9500,
+   "cur": "CZK",
+   "note": "Letenka"
+  },
+  {
+   "id": "edq592v",
+   "date": "2026-10-14",
+   "country": "Mexiko",
+   "cat": "Ubytování",
+   "amt": 50,
+   "cur": "MXN",
+   "note": "oběd"
+  },
+  {
+   "id": "e18znyo",
+   "date": "2026-11-12",
+   "country": "Ostatní",
+   "cat": "Ubytování",
+   "amt": 2600,
+   "cur": "MXN",
+   "note": "Ubytko Amsterdam"
+  }
+ ],
+ "tasks": [
+  {
+   "id": "tl1gi2y",
+   "t": "Ubytko Amsterdam",
+   "due": "",
+   "done": false
+  },
+  {
+   "id": "tancmbc",
+   "t": "Ubytko Cancun",
+   "due": "",
+   "done": false
+  },
+  {
+   "id": "t4qfb05",
+   "t": "Cesta do Amsterdamu",
+   "due": "",
+   "done": false
+  }
+ ],
+ "bookings": [],
+ "pack": [
+  {
+   "id": "k1",
+   "name": "Doklady a peníze",
+   "items": []
+  },
+  {
+   "id": "k2",
+   "name": "Oblečení",
+   "items": []
+  },
+  {
+   "id": "k3",
+   "name": "Elektronika",
+   "items": []
+  },
+  {
+   "id": "k4",
+   "name": "Ostatní",
+   "items": []
+  }
+ ]
+}
