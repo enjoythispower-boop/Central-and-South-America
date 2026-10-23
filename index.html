@@ -52,8 +52,8 @@ html{scrollbar-color:rgba(255,255,255,.18) transparent}
 
 /* skelet */
 .app{position:relative;z-index:1;min-height:100vh}
-.main{padding:22px 32px 140px;max-width:1200px;margin:0 auto}
-@media(max-width:860px){.main{padding:calc(14px + env(safe-area-inset-top,0px)) 16px 150px}}
+.main{--padt:22px;--padx:32px;padding:var(--padt) var(--padx) 140px;max-width:1200px;margin:0 auto}
+@media(max-width:860px){.main{--padt:calc(14px + env(safe-area-inset-top,0px));--padx:16px;padding-bottom:150px}}
 .view{display:none}.view.on{display:block;animation:rise .5s var(--ease)}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
@@ -238,12 +238,13 @@ label.l{display:block;font-size:.8rem;font-weight:500;color:var(--mut);margin:12
 .pin text{font-family:var(--ui);font-weight:700;fill:var(--pin-tx);text-anchor:middle;pointer-events:none}
 .pin text.lbl{font-weight:600;fill:#fff;paint-order:stroke;stroke:var(--sea)}
 @media(max-width:899px){
-  .trasa .tmap{margin:0 -16px}
-  .trasa .pagehead{position:absolute;z-index:3;left:16px;right:16px;top:0;margin:0}
+  /* mapa až k horní hraně a do stran, přes odsazení .main */
+  .trasa .tmap{margin:calc(-1 * var(--padt)) calc(-1 * var(--padx)) 0}
+  .trasa .pagehead{position:absolute;z-index:3;left:var(--padx);right:var(--padx);top:0;margin:0}
   #map{border-radius:0;border:0;aspect-ratio:auto;height:min(64vh,560px)}
-  .trasa .zoom{top:76px}
+  .trasa .zoom{top:calc(62px + var(--padt))}
   .trasa .legend{bottom:52px}
-  .tsheet{margin:-36px -16px 0;border-left:0;border-right:0;border-bottom:0;border-radius:var(--r-xl) var(--r-xl) 0 0}
+  .tsheet{margin:-36px calc(-1 * var(--padx)) 0;border-left:0;border-right:0;border-bottom:0;border-radius:var(--r-xl) var(--r-xl) 0 0}
 }
 @media(min-width:900px){
   .trasa{display:block}
