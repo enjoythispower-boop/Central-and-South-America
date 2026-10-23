@@ -278,6 +278,47 @@ label.l{display:block;font-size:.8rem;font-weight:500;color:var(--mut);margin:12
 .info h4{margin:18px 0 8px;font-size:1.02rem;font-weight:600}
 .info h4:first-child{margin-top:4px}
 .season{border-top:1px solid var(--line);padding-top:12px;margin-top:14px;font-size:.9rem;color:#E6DCD8}
+/* Země – podzáložky */
+.info h4{display:flex;gap:8px;align-items:center}.info h4 svg{color:var(--peach);flex:none}
+.zfun,.zseason,.zsos,.zalert,.zok{display:flex;gap:12px;align-items:flex-start;border-radius:var(--r-md);padding:14px 16px;margin:4px 0 14px}
+.zfun{background:var(--acc-soft);border:1px solid rgba(255,176,143,.32);color:var(--peach)}
+.zfun .lab,.zseason .lab{color:inherit}
+.zfun p,.zseason p{margin:2px 0 0;color:var(--tx);font-size:.94rem}
+.zfun svg,.zseason svg{flex:none;margin-top:2px}
+.zseason{background:rgba(142,197,255,.09);border:1px solid rgba(142,197,255,.25);color:var(--cool);margin:16px 0 0}
+.ztiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:0 0 6px}
+.zt{border-radius:var(--r-md);padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.zt svg{display:block;color:var(--peach);margin-bottom:8px}
+.zt small{display:block;color:var(--mut);font-size:.76rem}
+.zt b{display:block;font-size:.92rem;font-weight:600;line-height:1.3;margin-top:2px}
+.zstops{margin-bottom:4px}.zstops .chip svg{color:var(--ok)}
+.zlead{font-size:1.02rem;line-height:1.6;color:#EFE6E2;margin:0 0 8px}
+.zmore summary{cursor:pointer;color:var(--peach);font-weight:500;font-size:.88rem;padding:6px 0;list-style:none}
+.zmore summary::-webkit-details-marker{display:none}
+.zmore summary::after{content:" ↓"}.zmore[open] summary::after{content:" ↑"}
+.zmore[open] summary{margin-bottom:8px}.zmore p{margin:0 0 10px;color:#E6DCD8}
+.zlist,.zdict{display:grid;gap:8px}
+.zdict{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}.zdict.sm{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+@media(min-width:760px){.zlist.two{grid-template-columns:1fr 1fr}}
+.zi{display:flex;gap:12px;align-items:flex-start;border-radius:var(--r-md);padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.zi>svg{flex:none;color:var(--peach);margin-top:1px}
+.zi b{font-weight:600}
+.zi p{margin:3px 0 0;color:var(--mut);font-size:.9rem}
+.zi>div>p:only-child{margin:0;color:var(--tx);font-size:.94rem}
+.zn{flex:none;min-width:30px;font-size:1.3rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;color:var(--peach);font-variant-numeric:tabular-nums}
+.zi.on{border-color:rgba(127,221,176,.35);background:linear-gradient(180deg,rgba(127,221,176,.1),rgba(127,221,176,.03))}
+.zi.on .zn{color:var(--ok)}
+.zi.warn{border-color:rgba(246,190,99,.28);background:linear-gradient(180deg,rgba(246,190,99,.1),rgba(246,190,99,.03))}
+.zi.warn>svg{color:var(--warn)}
+.zdict div{border-radius:var(--r-md);padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.zdict b{display:block;font-weight:600}.zdict span{color:var(--mut);font-size:.86rem}
+.zalert{width:100%;text-align:left;font:inherit;color:var(--tx);cursor:pointer;align-items:center;background:var(--warn-soft);border:1px solid rgba(246,190,99,.35);transition:background .2s}
+.zalert:hover{background:rgba(246,190,99,.24)}.zalert>svg:first-child{color:var(--warn);flex:none}
+.zalert div{flex:1}.zalert small{display:block;color:var(--mut);font-size:.82rem}
+.zok{align-items:center;background:var(--ok-soft);border:1px solid rgba(127,221,176,.3);color:var(--ok);font-size:.9rem}
+.zok span{color:var(--tx)}
+.zsos{align-items:center;background:var(--bad-soft);border:1px solid rgba(255,114,114,.3);margin:14px 0 0}
+.zsos>svg{color:var(--bad);flex:none}.zsos div{flex:1}.zsos b{display:block;font-size:1.05rem;font-weight:600}
 
 /* počasí a grafy */
 .nowwx{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
@@ -445,7 +486,19 @@ tick:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
 bell:'<path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/>',
 map:'<path d="M9 4L3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5z"/><path d="M9 4v13M15 6.5v13"/>',
 send:'<path d="M12 19V5M6 11l6-6 6 6"/>',
-ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/>'
+ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/>',
+city:'<path d="M3 21h18M5 21V10l5-3v14M10 21V4l9 4v13"/><path d="M13 11h3M13 15h3"/>',
+users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14a6 6 0 013.5 6"/>',
+chat:'<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+plug:'<path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 01-12 0z"/><path d="M12 17v4"/>',
+phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A17 17 0 014 5a1 1 0 011-1z"/>',
+pass:'<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 17h6"/>',
+wifi:'<path d="M2.5 9a14 14 0 0119 0M5.5 12.5a9.5 9.5 0 0113 0M8.5 16a5 5 0 017 0"/><path d="M12 19.5h.01"/>',
+bus:'<rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3M8 14.5h.01M16 14.5h.01"/>',
+drop:'<path d="M12 3s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/>',
+bulb:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"/>',
+food:'<path d="M5 3v8a2 2 0 002 2v8M9 3v8a2 2 0 01-2 2M7 3v6"/><path d="M17 21V3c-2 1-3 4-3 8h3"/>'
 };
 const cbtn=(icon,act,label,extra='')=>`<button class="cbtn" data-act="${act}" aria-label="${label}" title="${label}"${extra}>${ico(icon,20)}</button>`;
 const ico=(k,s=20)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]||''}</svg>`;
@@ -590,6 +643,61 @@ tips:["Drahá země, ceny srovnatelné s Evropou","Z Buenos Aires jezdí trajekt
 p:["Karty běžné, bankomaty BROU a Itaú","SIM/internet: Antel; wifi dobrá","Doprava: autobusy COT, Cutcsa; trajekt Buquebus a Colonia Express z Buenos Aires","Spropitné 10 %","Voda z kohoutku je pitná"],
 s:"Léto prosinec–březen příjemné (28–30 °C) a pláže otevřené. Říjen je jarní a proměnlivý."}
 ];
+/* doplňkové údaje o zemích: hlavní město, obyvatelé, jazyk, čas, tísňová linka, vstup pro Čechy, denní rozpočet, jídla, místní slovník, zajímavost */
+const ZX={
+Mexiko:{hl:"Ciudad de México",ob:"≈ 130 milionů",ja:"španělština + 68 domorodých jazyků",cas:"UTC−6, Quintana Roo UTC−5",tel:"911",vz:"bez víza až 180 dní (určí úředník)",bd:"40–60 USD",
+jidlo:[["Tacos al pastor","vepřové z rožně s ananasem"],["Cochinita pibil","yucatánské vepřové pečené v banánovém listu"],["Mole","omáčka z chilli, koření a čokolády"],["Tlayuda","oaxacká křupavá tortilla s fazolemi a sýrem"],["Chilaquiles","snídaně z tortill v salse"]],
+sl:[["¿Qué onda?","jak to jde?"],["Chido / padre","super"],["Güey","kámo (hovorově)"],["Ahorita","hned… nebo taky někdy"]],
+fakt:"Ciudad de México stojí na vysušeném dně jezera Texcoco a místy se propadá o desítky centimetrů ročně."},
+Guatemala:{hl:"Ciudad de Guatemala",ob:"≈ 18 milionů",ja:"španělština + 21 mayských jazyků",cas:"UTC−6",tel:"110 policie · 1500 turistická asistence",vz:"bez víza 90 dní (sdíleno v zemích CA-4)",bd:"30–45 USD",
+jidlo:[["Pepián","hustý dušený pokrm s praženými semínky a chilli"],["Kak'ik","pikantní krůtí polévka Mayů Q'eqchi'"],["Tamales","kukuřičné těsto s náplní v banánovém listu"],["Rellenitos","sladké kuličky z plantainu s fazolemi"],["Café de Antigua","káva ze sopečných svahů"]],
+sl:[["Chapín","Guatemalec"],["¡Qué chilero!","to je super!"],["Patojo","kluk, dítě"],["Pisto","peníze"]],
+fakt:"Záběry povstalecké základny na Yavinu 4 ve Hvězdných válkách (1977) se točily nad pyramidami Tikalu."},
+Salvador:{hl:"San Salvador",ob:"≈ 6,3 milionu",ja:"španělština",cas:"UTC−6",tel:"911",vz:"bez víza 90 dní (sdíleno v zemích CA-4)",bd:"35–50 USD",
+jidlo:[["Pupusas","plněné kukuřičné placky s nakládaným zelím curtido"],["Yuca frita","smažený maniok s chicharrónem"],["Panes con chumpe","bageta s krůtím masem v omáčce"],["Atol de elote","teplý nápoj ze sladké kukuřice"],["Quesadilla salvadoreña","sladký sýrový koláč"]],
+sl:[["Chivo","super"],["Cipote / bicho","dítě"],["Pisto","peníze"],["Chero","kamarád"]],
+fakt:"Je nejmenší zemí pevninské Ameriky. V roce 2021 jako první na světě uzákonil bitcoin jako platidlo."},
+Nikaragua:{hl:"Managua",ob:"≈ 7 milionů",ja:"španělština, na Karibiku angličtina a miskito",cas:"UTC−6",tel:"118 policie · 128 záchranka",vz:"bez víza 90 dní (CA-4), turistická karta 10 USD",bd:"30–40 USD",
+jidlo:[["Gallo pinto","rýže s fazolemi, základ každé snídaně"],["Nacatamal","velký tamal s masem v banánovém listu"],["Vigorón","maniok, chicharrón a zelný salát"],["Quesillo","tortilla se sýrem, smetanou a cibulí"],["Indio viejo","hustý kukuřičný guláš"]],
+sl:[["Tuani","super"],["Maje","kámo"],["Chele","světlovlasý, cizinec"],["¡Dale pues!","tak jo, platí"]],
+fakt:"V jezeře Nikaragua, největším ve Střední Americe, žijí žraloci býčí. Z Karibiku připlouvají řekou San Juan."},
+Kostarika:{hl:"San José",ob:"≈ 5,2 milionu",ja:"španělština",cas:"UTC−6",tel:"911",vz:"bez víza až 180 dní, doklad o odjezdu",bd:"60–90 USD",
+jidlo:[["Gallo pinto","rýže s fazolemi a omáčkou Lizano"],["Casado","talíř s rýží, fazolemi, masem, salátem a plantainem"],["Chifrijo","rýže, fazole, chicharrón a pico de gallo"],["Olla de carne","hovězí polévka se zeleninou"],["Batido","smoothie z čerstvého ovoce"]],
+sl:[["Pura vida","pohoda, ahoj i díky"],["Mae","kámo"],["Tuanis","super"],["¡Qué chiva!","bezva!"]],
+fakt:"Kostarika v roce 1948 zrušila armádu. Na 0,03 % zemské souše tu žije asi 5 % všech známých druhů."},
+Panama:{hl:"Ciudad de Panamá",ob:"≈ 4,5 milionu",ja:"španělština",cas:"UTC−5",tel:"911",vz:"bez víza (obvykle 90 dní), doklad o odjezdu",bd:"50–70 USD",
+jidlo:[["Sancocho","kuřecí polévka s ñame a koriandrem"],["Patacones","dvakrát smažený zelený plantain"],["Ceviche","marinované ryby z trhu Mercado de Mariscos"],["Carimañolas","maniokové taštičky s masem"],["Hojaldras","smažené těsto ke snídani"]],
+sl:[["¿Qué xopá?","co je? (pozpátku „¿qué pasó?“)"],["¡Chuleta!","no páni!"],["Pelao","dítě"],["Buco","hodně"]],
+fakt:"Lodě v průplavu vystoupají zdymadly asi 26 m nad moře do jezera Gatún. Celý průjezd trvá 8–10 hodin."},
+Kolumbie:{hl:"Bogotá",ob:"≈ 53 milionů",ja:"španělština + 65 domorodých jazyků",cas:"UTC−5",tel:"123",vz:"bez víza 90 dní (lze prodloužit na 180)",bd:"35–55 USD",
+jidlo:[["Bandeja paisa","fazole, rýže, maso, chicharrón, vejce a avokádo"],["Ajiaco","bogotská kuřecí polévka ze tří druhů brambor"],["Arepa","kukuřičná placka, na pobřeží s vejcem uvnitř"],["Empanadas","smažené taštičky s pálivou omáčkou ají"],["Tinto","malá černá káva za pár pesos"]],
+sl:[["Parce / parcero","kámo"],["¡Qué chimba!","to je skvělé!"],["Bacano","super"],["¿Qué más?","jak je?"]],
+fakt:"Kolumbie má nejvíc druhů ptáků na světě, přes 1 900. To je skoro pětina všech známých druhů."},
+Peru:{hl:"Lima",ob:"≈ 34 milionů",ja:"španělština, kečuánština, ajmarština",cas:"UTC−5",tel:"105 policie · 116 hasiči",vz:"bez víza až 183 dní (určí úředník)",bd:"35–55 USD",
+jidlo:[["Ceviche","syrová ryba marinovaná v limetce"],["Lomo saltado","restované hovězí s cibulí a hranolky"],["Ají de gallina","kuře v krémové omáčce z ají amarillo"],["Anticuchos","grilovaná hovězí srdíčka na špízu"],["Pisco sour","národní koktejl"]],
+sl:[["Chévere","super"],["Pata / causa","kámo"],["Jato","dům, byt"],["¡Habla!","čau!"]],
+fakt:"V Peru roste přes 3 000 odrůd brambor. Lidé je tu v Andách pěstovali už před zhruba 8 000 lety."},
+"Bolívie":{hl:"Sucre (ústavní), La Paz (sídlo vlády)",ob:"≈ 12 milionů",ja:"37 úředních jazyků (španělština, kečuánština, ajmarština…)",cas:"UTC−4",tel:"110 policie · 118 záchranka",vz:"bez víza 90 dní v roce",bd:"25–40 USD",
+jidlo:[["Salteñas","šťavnaté pečené taštičky, jedí se dopoledne"],["Pique macho","hovězí, klobása, hranolky a chilli"],["Sopa de maní","arašídová polévka"],["Api con pastel","fialový kukuřičný nápoj se smaženým koláčem"],["Silpancho","tenký řízek na rýži s vejcem (Cochabamba)"]],
+sl:[["¡Pucha!","sakra!"],["Jallalla","ajmarsky „ať žije“, i jako pozdrav"],["Chango / changa","kluk / holka"],["Yapa","přídavek navíc při nákupu"]],
+fakt:"Salar de Uyuni je největší solná pláň světa (přes 10 000 km²) a skrývá jedny z největších zásob lithia."},
+Chile:{hl:"Santiago",ob:"≈ 20 milionů",ja:"španělština",cas:"UTC−3 v létě, UTC−4 v zimě",tel:"131 záchranka · 133 policie",vz:"bez víza 90 dní",bd:"50–80 USD",
+jidlo:[["Empanada de pino","pečená taštička s mletým masem, vejcem a olivou"],["Completo","párek v rohlíku s avokádem a majonézou"],["Pastel de choclo","kukuřičný nákyp s masem"],["Curanto","mořské plody a maso pečené v jámě (Chiloé)"],["Mote con huesillo","sladký letní nápoj se sušenou broskví"]],
+sl:[["¿Cachai?","chápeš?"],["Po","vycpávka na konci věty (sí po)"],["Bacán","super"],["Al tiro","hned"]],
+fakt:"Chile je asi 4 300 km dlouhé, ale v průměru jen 177 km široké. Atacama je nejsušší nepolární poušť světa."},
+Argentina:{hl:"Buenos Aires",ob:"≈ 46 milionů",ja:"španělština (ll a y se čtou jako „š/ž“)",cas:"UTC−3",tel:"911 · 107 záchranka",vz:"bez víza 90 dní",bd:"45–70 USD",
+jidlo:[["Asado","hovězí grilované na parrille"],["Empanadas salteñas","pečené taštičky ze severu"],["Milanesa","řízek, nejlépe „a la napolitana“"],["Choripán","klobása v housce s chimichurri"],["Alfajor","sušenky slepené dulce de leche"]],
+sl:[["Che","hele, kámo"],["Boludo","kámo i blbec, záleží na tónu"],["Copado","super"],["Quilombo","chaos, zmatek"]],
+fakt:"Aconcagua (6 961 m) je nejvyšší hora mimo Asii. Je vidět i z cesty mezi Mendozou a Santiagem."},
+Paraguay:{hl:"Asunción",ob:"≈ 6,1 milionu",ja:"španělština a guaraní (mluví jím většina lidí)",cas:"UTC−3",tel:"911",vz:"bez víza 90 dní",bd:"30–45 USD",
+jidlo:[["Chipa","sýrové pečivo z maniokové mouky"],["Sopa paraguaya","kukuřičný koláč – „polévka“, která je pevná"],["Mbejú","maniokovo-sýrová placka"],["Vori vori","polévka s kukuřičnými knedlíčky"],["Tereré","studené maté s bylinkami"]],
+sl:[["Mba'éichapa?","jak se máš? (guaraní)"],["Aguyje","děkuji (guaraní)"],["Porã","hezky, dobře"],["Jopara","mix španělštiny a guaraní"]],
+fakt:"Přehrada Itaipú na hranici s Brazílií patří k největším vodním elektrárnám světa. Paraguay vyrobí víc elektřiny, než spotřebuje."},
+Uruguay:{hl:"Montevideo",ob:"≈ 3,4 milionu",ja:"španělština",cas:"UTC−3",tel:"911",vz:"bez víza 90 dní",bd:"60–90 USD",
+jidlo:[["Chivito","obří sendvič s hovězím, šunkou, vejcem a sýrem"],["Asado","maso z parrilly, nejlépe v Mercado del Puerto"],["Choripán","klobása v housce"],["Torta frita","smažená placka na deštivé dny"],["Medio y medio","šumivé a bílé víno, místní klasika"]],
+sl:[["Ta","OK, dobře"],["Bo","hele (oslovení)"],["Gurí / gurisa","kluk / holka"],["Bárbaro","skvělé"]],
+fakt:"Uruguay pořádal a vyhrál první mistrovství světa ve fotbale (1930). Jako první země také legalizoval prodej marihuany (2013)."}
+};
 /* klima: [max °C, min °C, srážky mm] pro Říj, Lis, Pro, Led, Úno, Bře */
 const MON=["Říj","Lis","Pro","Led","Úno","Bře"];
 const WX={
@@ -607,6 +715,8 @@ Argentina:[["Buenos Aires",[[23,14,120],[26,17,100],[29,19,100],[31,21,120],[30,
 Paraguay:[["Asunción",[[30,20,140],[32,22,130],[34,23,140],[35,24,150],[34,23,130],[33,22,130]]]],
 Uruguay:[["Montevideo",[[21,13,90],[24,15,80],[27,18,80],[29,19,80],[28,19,90],[26,17,100]]]]
 };
+/* poloha klimatických míst (lat, lon) – v Počasí se ukáže to nejbližší k vybrané zastávce */
+const WXLL={"Cancún":[21.16,-86.85],"Mexico City":[19.43,-99.13],"Guatemala City / Antigua":[14.6,-90.6],"San Salvador":[13.69,-89.19],"Managua":[12.13,-86.25],"San José":[9.93,-84.08],"Panama City":[8.98,-79.52],"Bogotá":[4.71,-74.07],"Lima":[-12.05,-77.04],"Cusco":[-13.53,-71.97],"La Paz":[-16.5,-68.15],"Santiago":[-33.45,-70.67],"Torres del Paine (Patagonie)":[-51,-73],"Buenos Aires":[-34.6,-58.38],"Asunción":[-25.26,-57.58],"Montevideo":[-34.9,-56.16]};
 
 
 
@@ -1341,22 +1451,46 @@ function vZeme(){
   const cc=curCountry();
   if(!zSel)zSel=INFO.some(c=>c.k===cc)?cc:INFO[0].k;
   const c=INFO.find(x=>x.k===zSel)||INFO[0],mine=S.stops.filter(s=>s.c===c.k),[mena,nap]=c.m.split(' · ');
-  const ul=a=>'<ul>'+a.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';
+  const x=ZX[c.k]||{},ci=curIdx();
   const t0=todayISO(),evs=EVENTS.filter(e=>e.c===c.k&&e.to>=addDays(t0,-1)).sort((a,b)=>a.from.localeCompare(b.from)).slice(0,14);
   const stay=e=>mine.some(s=>s.a&&e.from<=addDays(s.o||s.a,1)&&e.to>=addDays(s.a,-1));
+  const onRoute=t=>mine.some(s=>norm(s.n).length>3&&norm(t).includes(norm(s.n)));
+  const hp=paras(c.h),news=activeNews().filter(i=>i.country===c.k),sos=(x.tel||'').match(/\d+/);
+  const tiles=[['city','Hlavní město',x.hl],['users','Obyvatel',x.ob],['chat','Jazyk',x.ja],['rozpocet','Měna',mena],['clock','Čas',x.cas],['plug','Elektřina',nap],['pass','Vstup pro Čechy',x.vz],['vybava','Rozpočet na den',x.bd&&x.bd+' (batoh)']].filter(t=>t[2]);
+  const item=(icon,h,d,cls='')=>`<div class="zi${cls}">${icon}<div>${h?`<b>${esc(h)}</b>`:''}${d?`<p>${esc(d)}</p>`:''}</div></div>`;
   const body={
-    prehled:`<div class="facts"><div class="fact"><small>Měna</small><b>${esc(mena)}</b></div><div class="fact"><small>Napětí a zásuvky</small><b>${esc(nap||'')}</b></div><div class="fact"><small>Tvoje zastávky</small><b>${mine.length?mine.map(s=>esc(s.n)).join(', '):'–'}</b></div></div>
-      <h4>Historie</h4>${paras(c.h).map(p=>`<p style="margin:0 0 10px">${esc(p)}</p>`).join('')}<div class="season"><b>Roční období:</b> ${esc(c.s)}</div>`,
-    mista:`<h4>Nejzajímavější místa</h4>${ul(c.top)}`,
-    pozor:`<h4>Kam necestovat / pozor</h4>${ul(c.avoid)}`,
-    tipy:`<h4>Tipy</h4>${ul(c.tips)}`,
-    prakt:`<h4>Praktické info</h4>${ul(c.p)}`,
-    svatky:`<h4>Svátky a festivaly</h4>${evs.length?evs.map(e=>evHtml({e,s:null}).replace('</span></div>',stay(e)?' <span class="tag wait">NA TRASE</span></span></div>':'</span></div>')).join(''):'<p class="note">Pro tuto zemi nemám další termíny.</p>'}<p class="note" style="margin-top:12px">Termíny jsou orientační, přesné datum si ověř.</p>`}[zTab];
+    prehled:`${x.fakt?`<div class="zfun">${ico('bulb',22)}<div><span class="lab">Věděl jsi?</span><p>${esc(x.fakt)}</p></div></div>`:''}
+      <div class="ztiles">${tiles.map(([i,l,v])=>`<div class="zt">${ico(i,18)}<small>${l}</small><b>${esc(v)}</b></div>`).join('')}</div>
+      ${mine.length?`<h4>${ico('pin',18)}Tvoje zastávky</h4><div class="chips zstops">${mine.map(s=>`<button class="chip${s.id===S.cur?' cur':''}" data-act="gotostop" data-id="${s.id}">${esc(s.n)}${s.a?` <span class="lab">${fdm(s.a)}</span>`:''}${idx(s.id)<ci?' '+ico('tick',14):''}</button>`).join('')}</div>`:''}
+      <h4>${ico('osa',18)}Historie</h4><p class="zlead">${esc(hp[0]||'')}</p>${hp.length>1?`<details class="zmore"><summary>Číst celou historii</summary>${hp.slice(1).map(p=>`<p>${esc(p)}</p>`).join('')}</details>`:''}
+      <div class="zseason">${wicon(1,22)}<div><span class="lab">Kdy jet</span><p>${esc(c.s)}</p></div></div>`,
+    mista:`<p class="note">Výběr toho nejlepšího v zemi. Místa, kudy vede tvoje trasa, jsou označená.</p>
+      <div class="zlist">${c.top.map((t,i)=>{const [h,d]=splitT(t),on=onRoute(t);return item(`<span class="zn">${String(i+1).padStart(2,'0')}</span>`,h,d,on?' on':'').replace('</b>',on?'</b> <span class="tag ok">Na trase</span>':'</b>')}).join('')}</div>`,
+    pozor:`${news.length?`<button class="zalert" data-act="tozpravy" data-k="${esc(c.k)}">${ico('bell',20)}<div><b>${news.length} ${news.length<5?'aktivní upozornění':'aktivních upozornění'}</b><small>Zemětřesení, bouře a blokády · zobrazit ve Zprávách</small></div>${ico('chevr',18)}</button>`:`<div class="zok">${ico('check',20)}<span>Zprávy teď pro tuto zemi nic nehlásí.</span></div>`}
+      <h4>${ico('alert',18)}Kam necestovat a na co si dát pozor</h4>
+      <div class="zlist">${c.avoid.map(t=>item(ico('alert',20),'',t,' warn')).join('')}</div>
+      ${x.tel?`<div class="zsos">${ico('phone',22)}<div><span class="lab">Tísňová linka</span><b>${esc(x.tel)}</b></div>${sos?`<a class="btn sm" href="tel:${sos[0]}">Volat ${sos[0]}</a>`:''}</div>`:''}
+      <p class="note" style="margin-top:12px">Situace se mění. Před cestou si ověř aktuální doporučení <a href="https://www.mzv.gov.cz/" target="_blank" rel="noopener">MZV ČR ↗</a>.</p>`,
+    tipy:`<div class="zlist">${c.tips.map(t=>{const [h,d]=splitT(t);return item(ico('bulb',20),h,d)}).join('')}</div>
+      ${x.jidlo?`<h4>${ico('food',18)}Co ochutnat</h4><div class="zdict">${x.jidlo.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>`:''}
+      ${x.sl?`<h4>${ico('chat',18)}Místní slovník</h4><div class="zdict sm">${x.sl.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>`:''}`,
+    prakt:`<div class="zlist two">${c.p.map(t=>{const [i,h,d]=praktOf(t);return item(ico(i,20),h,d)}).join('')}</div>
+      ${x.vz?`<div class="zfun" style="margin-top:14px">${ico('pass',22)}<div><span class="lab">Vstup pro Čechy</span><p>${esc(x.vz.charAt(0).toUpperCase()+x.vz.slice(1))}. Podmínky se mění, před odjezdem si je ověř.</p></div></div>`:''}`,
+    svatky:`<h4>${ico('star',18)}Svátky a festivaly</h4>${evs.length?evs.map(e=>evHtml({e,s:null}).replace('</span></div>',stay(e)?' <span class="tag wait">NA TRASE</span></span></div>':'</span></div>')).join(''):'<p class="note">Pro tuto zemi nemám další termíny.</p>'}<p class="note" style="margin-top:12px">Termíny jsou orientační, přesné datum si ověř.</p>`}[zTab];
+  const nz=mine.length,zs=nz===1?'zastávka':nz<5?'zastávky':'zastávek';
   $('v-zeme').innerHTML=pageHead('Země','Historie, místa, tipy, praktické informace a svátky')+
    `<div class="chips">${INFO.map(x=>`<button class="chip${x.k===zSel?' on':''}${x.k===cc?' cur':''}" data-act="zsel" data-k="${esc(x.k)}">${flag(x.k,20)} ${esc(x.k)}</button>`).join('')}</div>
-   <div class="zhero stack"><div class="frame"><div class="pic" style="--tint:${tintOf(c.k)}">${phImg(countryPhoto(c.k),c.k)}</div><div class="in">${flag(c.k,48)}<div><h2>${esc(c.k)}</h2><small>${esc(mena)}</small></div></div></div></div>
-   <div class="card info">${seg([['prehled','Přehled'],['mista','Místa'],['pozor','Pozor'],['tipy','Tipy'],['prakt','Praktické'],['svatky','Svátky']],zTab,'ztab')}${body}</div>`;
+   <div class="zhero stack"><div class="frame"><div class="pic" style="--tint:${tintOf(c.k)}">${phImg(countryPhoto(c.k),c.k)}</div><div class="in">${flag(c.k,48)}<div><h2>${esc(c.k)}</h2><small>${esc(x.hl||mena)} · ${nz?nz+' '+zs+' na trase':'mimo trasu'}</small></div></div></div></div>
+   <div class="card info">${seg([['prehled',ico('zeme',16)+'Přehled'],['mista',ico('pin',16)+'Místa'],['pozor',ico('alert',16)+'Pozor'],['tipy',ico('bulb',16)+'Tipy'],['prakt',ico('vybava',16)+'Praktické'],['svatky',ico('star',16)+'Svátky']],zTab,'ztab')}${body}</div>`;
+  /* na úzkém displeji posuň lištu podzáložek k té vybrané */
+  const sg=document.querySelector('#v-zeme .seg'),on=sg&&sg.querySelector('.on');
+  if(on)sg.scrollLeft=on.offsetLeft-(sg.clientWidth-on.offsetWidth)/2;
 }
+/* rozdělí „Název: popis“ nebo „Název – popis“ na nadpis a text */
+const splitT=t=>{const m=t.match(/^([^(]{2,60}?)(?::\s| – )(.+)$/);return m?[m[1],m[2].charAt(0).toUpperCase()+m[2].slice(1)]:[t,'']};
+/* praktické info: ikona a nadpis podle začátku věty */
+const PRAKT=[[/^(sim|internet)/i,'wifi','Internet a SIM'],[/^(peníze|platí|karty|hotovost)/i,'rozpocet','Peníze'],[/^spropitné/i,'rozpocet','Spropitné'],[/^doprava/i,'bus','Doprava'],[/^(voda|jídlo)/i,'drop','Jídlo a voda']];
+const praktOf=t=>{const k=PRAKT.find(([r])=>r.test(t)),m=t.match(/^([^:]{2,28}):\s(.+)$/),d=m?m[2]:t;return [k?k[1]:'bulb',k?k[2]:m?m[1]:'Dobré vědět',d.charAt(0).toUpperCase()+d.slice(1)]};
 
 /* ================= POČASÍ ================= */
 let wxSel=null;
@@ -1368,14 +1502,21 @@ function wxHtml(c){
   <div style="margin-top:12px">${combo({labels:d.time.map((t,i)=>i?wd(t):'Dnes'),sub:d.precipitation_sum.map(v=>v+' mm'),max:d.temperature_2m_max,min:d.temperature_2m_min,rain:d.precipitation_sum,rainMax:Math.max(10,...d.precipitation_sum)})}</div>
   <div class="row" style="gap:14px;margin-top:6px;justify-content:space-between">${d.time.map((t,i)=>`<span style="text-align:center;color:var(--mut)">${wicon(d.weather_code[i],22)}</span>`).join('')}</div>`;
 }
+/* klima nejbližšího místa s údaji, přednostně ve stejné zemi */
+function climateOf(s){
+  const all=Object.entries(WX).flatMap(([c,l])=>l.map(([loc,v])=>({c,loc,v,ll:WXLL[loc]}))),same=all.filter(a=>a.c===s.c);
+  if(!same.length&&s.lat==null)return null;
+  const dist=a=>a.ll&&s.lat!=null?Math.hypot(a.ll[0]-s.lat,(a.ll[1]-s.lon)*Math.cos(s.lat*Math.PI/180)):1e9;
+  return (same.length?same:all).slice().sort((a,b)=>dist(a)-dist(b))[0];
+}
 function vPocasi(){
   if(!wxSel||idx(wxSel)<0)wxSel=S.cur;
-  $('v-pocasi').innerHTML=pageHead('Počasí','Aktuální předpověď a klima na trase')+
-   `<div class="card"><h3>Předpověď na 7 dní</h3><select id="wxsel" data-chg="wxsel">${S.stops.map(s=>`<option value="${s.id}"${s.id===wxSel?' selected':''}>${esc(s.n)}, ${esc(s.c)}</option>`).join('')}</select><div id="wxnow" style="margin-top:14px">Načítám předpověď…</div></div>
-   <h3 class="lab" style="margin:24px 0 4px">Klima na trase · říjen 2026 až březen 2027</h3>
-   <p class="note">Klimatický průměr (max/min °C a srážky v mm za měsíc), ne předpověď.</p>`+
-   INFO.map(c=>(WX[c.k]||[]).map(([loc,v],n)=>`<div class="card" style="margin-bottom:14px"><h3 style="margin-bottom:4px">${n===0?flag(c.k,20)+' '+esc(c.k)+' · ':''}${esc(loc)}</h3>${n===0?`<p class="note" style="margin-bottom:6px">${esc(c.s)}</p>`:''}${combo({labels:MON.map((m,j)=>m+(j===0?' 26':j===3?' 27':'')),sub:v.map(x=>x[2]+' mm'),max:v.map(x=>x[0]),min:v.map(x=>x[1]),rain:v.map(x=>x[2]),rainMax:350})}</div>`).join('')).join('');
-  const s=S.stops[idx(wxSel)];
+  const s=S.stops[idx(wxSel)],cl=climateOf(s),ci=cl&&INFO.find(c=>c.k===cl.c);
+  $('v-pocasi').innerHTML=pageHead('Počasí','Aktuální předpověď a klima vybraného místa')+
+   `<div class="card"><h3>Předpověď na 7 dní</h3><select id="wxsel" data-chg="wxsel">${S.stops.map(s=>`<option value="${s.id}"${s.id===wxSel?' selected':''}>${esc(s.n)}, ${esc(s.c)}</option>`).join('')}</select><div id="wxnow" style="margin-top:14px">Načítám předpověď…</div></div>`+
+   (cl?`<h3 class="lab" style="margin:24px 0 4px">Klima · říjen 2026 až březen 2027</h3>
+   <p class="note">Klimatický průměr (max/min °C a srážky v mm za měsíc), ne předpověď.${norm(cl.loc).includes(norm(s.n))?'':` Údaje jsou z nejbližšího místa, pro které je mám.`}</p>
+   <div class="card"><h3 style="margin-bottom:4px">${flag(cl.c,20)} ${esc(cl.c)} · ${esc(cl.loc)}</h3>${ci?`<p class="note" style="margin-bottom:6px">${esc(ci.s)}</p>`:''}${combo({labels:MON.map((m,j)=>m+(j===0?' 26':j===3?' 27':'')),sub:cl.v.map(x=>x[2]+' mm'),max:cl.v.map(x=>x[0]),min:cl.v.map(x=>x[1]),rain:cl.v.map(x=>x[2]),rainMax:350})}</div>`:'');
   fetchWx(s).then(c=>{const el=$('wxnow');if(!el||view!=='pocasi'||wxSel!==s.id)return;el.innerHTML=c?wxHtml(c):'Předpověď se nepodařilo načíst (jsi offline?).'});
 }
 
@@ -1501,6 +1642,7 @@ const ACT={
   more:()=>{moreOpen=!moreOpen;renderNav()},
   gotostop:t=>{sel=t.dataset.id;go('trasa');const s=stopOf();if(s)focusOn(s.lon,s.lat,Math.max(zoomLvl(),2.5))},
   tozeme:t=>{zSel=t.dataset.k;zTab='prehled';go('zeme')},
+  tozpravy:t=>{nSel=t.dataset.k;nSev='Vše';go('zpravy')},
   towx:t=>{wxSel=t.dataset.id;go('pocasi')},
   zsel:t=>{zSel=t.dataset.k;refresh()},
   ztab:t=>{zTab=t.dataset.k;refresh()},
