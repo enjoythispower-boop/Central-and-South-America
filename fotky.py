@@ -10,7 +10,7 @@ from datetime import datetime, timezone, timedelta
 UA = {"User-Agent": "cesta-fotky/1.0 (osobni cestovni stranka; https://github.com/enjoythispower-boop/Central-and-South-America)"}
 INDEX = "photos/places/auto.json"
 DIR = "photos/places/auto"
-WIDTH = 1400
+WIDTH = 960       # standardní šířka náhledu na Commons; stačí i pro rozmazané pozadí a karty
 RETRY_DAYS = 7     # po kolika dnech zkusit znovu místo, ke kterému se fotka nenašla
 MAX_KM = 60        # ostatní články musí ležet nejdál takhle daleko od bodu na mapě
 NAME_KM = 300      # článek se stejným názvem jako místo může být dál
@@ -130,6 +130,7 @@ def fetch_photo(page, fname, stop):
         "author": clean(meta.get("Artist", {}).get("value"))[:120] or "neuveden",
         "license": clean(meta.get("LicenseShortName", {}).get("value")) or "volná licence",
         "page": info.get("descriptionurl", ""),
+        "w": WIDTH,
         "found": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
     }
 
@@ -147,6 +148,15 @@ def main():
             continue
         e = idx.get(k)
         if e and e.get("img") and os.path.exists(e["img"]):
+            if e.get("w") == WIDTH or not e.get("file"):
+                continue
+            # starší fotka ve větším rozlišení: stejný soubor se stáhne znovu, menší
+            print(f"Zmenšuji fotku: {s['n']}")
+            try:
+                idx[k] = fetch_photo({"title": e.get("article", "")}, e["file"], s)
+                changed = True
+            except Exception as ex:
+                print(f"  chyba: {ex}")
             continue
         if e and e.get("none") and (today - datetime.strptime(e["tried"], "%Y-%m-%d").date()) < timedelta(days=RETRY_DAYS):
             continue

@@ -10,13 +10,13 @@ UA = {"User-Agent": "cesta-zpravy/1.0 (osobni cestovni stranka)"}
 MAX_ITEMS = 60
 TTL = {"eq": 3, "tc": 4, "fl": 4, "vo": 4, "wf": 4, "news": 5}  # po kolika dnech zpráva zmizí (u probíhajících událostí se obnovuje)
 ISO3 = {"MEX": "Mexiko", "GTM": "Guatemala", "SLV": "Salvador", "NIC": "Nikaragua", "CRI": "Kostarika", "PAN": "Panama",
-        "COL": "Kolumbie", "PER": "Peru", "BOL": "Bolívie", "CHL": "Chile", "ARG": "Argentina", "PRY": "Paraguay", "URY": "Uruguay"}
+        "COL": "Kolumbie", "ECU": "Ekvádor", "PER": "Peru", "BOL": "Bolívie", "CHL": "Chile", "ARG": "Argentina", "PRY": "Paraguay", "URY": "Uruguay"}
 EN = {"Mexico": "Mexiko", "Guatemala": "Guatemala", "El Salvador": "Salvador", "Nicaragua": "Nikaragua", "Costa Rica": "Kostarika",
-      "Panama": "Panama", "Colombia": "Kolumbie", "Peru": "Peru", "Bolivia": "Bolívie", "Chile": "Chile", "Argentina": "Argentina",
+      "Panama": "Panama", "Colombia": "Kolumbie", "Ecuador": "Ekvádor", "Peru": "Peru", "Bolivia": "Bolívie", "Chile": "Chile", "Argentina": "Argentina",
       "Paraguay": "Paraguay", "Uruguay": "Uruguay"}
 NAMES = {  # názvy pro hledání zpráv (angl. + špan.)
     "Mexiko": ["Mexico", "México"], "Guatemala": ["Guatemala"], "Salvador": ["El Salvador"], "Nikaragua": ["Nicaragua"],
-    "Kostarika": ["Costa Rica"], "Panama": ["Panama", "Panamá"], "Kolumbie": ["Colombia"], "Peru": ["Peru", "Perú"],
+    "Kostarika": ["Costa Rica"], "Panama": ["Panama", "Panamá"], "Kolumbie": ["Colombia"], "Ekvádor": ["Ecuador"], "Peru": ["Peru", "Perú"],
     "Bolívie": ["Bolivia"], "Chile": ["Chile"], "Argentina": ["Argentina"], "Paraguay": ["Paraguay"], "Uruguay": ["Uruguay"]}
 GDACS_TYPES = {"TC": "Tropický cyklón", "FL": "Záplavy", "VO": "Sopečná aktivita", "WF": "Lesní požár"}
 LEVEL_CZ = {"Red": "červená", "Orange": "oranžová"}
@@ -96,7 +96,7 @@ def usgs(stops, cur, today):
                     "summary": f"Zemětřesení o síle M{mag:.1f}, hloubka asi {depth:.0f} km ({place}).{dist_text(lat, lon, cur)}"
                                + (" Bylo vydáno varování před tsunami." if p.get("tsunami") else ""),
                     "date": date, "url": p.get("url") or "", "source": "USGS",
-                    "type": "eq", "expires": addd(date, TTL["eq"])})
+                    "type": "eq", "expires": addd(date, TTL["eq"]), "lat": round(lat, 2), "lon": round(lon, 2)})
     return out
 
 # ---------- GDACS: cyklóny, záplavy, sopky, požáry ----------
@@ -133,7 +133,7 @@ def gdacs(stops, cur, today):
                     "title": f"{typ} – {p.get('name') or country}"[:120],
                     "summary": f"{typ}: výstraha GDACS ({LEVEL_CZ.get(level, level)}). {sev_text}.{dist_text(lat, lon, cur)} (text ze zdroje v angličtině)",
                     "date": (p.get("fromdate") or today)[:10], "url": url_rep, "source": "GDACS",
-                    "type": p.get("eventtype", "tc").lower(), "ongoing": True,
+                    "type": p.get("eventtype", "tc").lower(), "ongoing": True, "lat": round(lat, 2), "lon": round(lon, 2),
                     "expires": addd(today if current else end.strftime("%Y-%m-%d"), TTL.get(p.get("eventtype", "tc").lower(), 4))})
     return out
 
