@@ -3,21 +3,23 @@
   "article": "Mérida Mexico Temple",
   "author": "Renegade of Funk / Andy Funk",
   "file": "Merida Mexico Temple 2 by Renegade of Funk - Andy Funk cropped.jpg",
-  "found": "2026-10-22",
+  "found": "2026-10-23",
   "img": "photos/places/auto/merida.jpg",
   "license": "CC BY 2.0",
   "name": "Merida",
-  "page": "https://commons.wikimedia.org/wiki/File:Merida_Mexico_Temple_2_by_Renegade_of_Funk_-_Andy_Funk_cropped.jpg"
+  "page": "https://commons.wikimedia.org/wiki/File:Merida_Mexico_Temple_2_by_Renegade_of_Funk_-_Andy_Funk_cropped.jpg",
+  "w": 960
  },
  "oaxaca": {
   "article": "Oaxaca",
   "author": "Luisalvaz",
   "file": "Catedral de Nuestra Señora de la Asunción, Oaxaca, Oax. 2.JPG",
-  "found": "2026-10-22",
+  "found": "2026-10-23",
   "img": "photos/places/auto/oaxaca.jpg",
   "license": "CC BY-SA 4.0",
   "name": "Oaxaca",
-  "page": "https://commons.wikimedia.org/wiki/File:Catedral_de_Nuestra_Se%C3%B1ora_de_la_Asunci%C3%B3n,_Oaxaca,_Oax._2.JPG"
+  "page": "https://commons.wikimedia.org/wiki/File:Catedral_de_Nuestra_Se%C3%B1ora_de_la_Asunci%C3%B3n,_Oaxaca,_Oax._2.JPG",
+  "w": 960
  },
  "valladolid": {
   "article": "Valladolid, Yucatán",
