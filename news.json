@@ -1,18 +1,4 @@
 {
- "updated": "2026-10-24T05:24:18+00:00",
- "items": [
-  {
-   "country": "Mexiko",
-   "category": "Přírodní katastrofa",
-   "severity": "pozor",
-   "title": "Tropický cyklón – Tropical Cyclone SIMON-26",
-   "summary": "Tropický cyklón: výstraha GDACS (oranžová). Tropical Depression (maximum wind speed of 250 km/h). Vzdálenost od tvé aktuální zastávky (Cancún): asi 2430 km. (text ze zdroje v angličtině)",
-   "date": "2026-10-07",
-   "url": "https://www.gdacs.org/report.aspx?eventid=1001335&episodeid=38&eventtype=TC",
-   "source": "GDACS",
-   "type": "tc",
-   "ongoing": true,
-   "expires": "2026-10-24"
-  }
- ]
+ "updated": "2026-10-25T05:25:31+00:00",
+ "items": []
 }
