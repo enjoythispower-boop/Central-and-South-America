@@ -1,4 +1,15 @@
 {
+ "bacalar": {
+  "article": "Bacalar",
+  "author": "holachetumal",
+  "file": "Kiosko, Bacalar. - panoramio.jpg",
+  "found": "2026-10-28",
+  "img": "photos/places/auto/bacalar.jpg",
+  "license": "CC BY 3.0",
+  "name": "Bacalar",
+  "page": "https://commons.wikimedia.org/wiki/File:Kiosko,_Bacalar._-_panoramio.jpg",
+  "w": 960
+ },
  "merida": {
   "article": "Mérida Mexico Temple",
   "author": "Renegade of Funk / Andy Funk",
@@ -21,14 +32,31 @@
   "page": "https://commons.wikimedia.org/wiki/File:Catedral_de_Nuestra_Se%C3%B1ora_de_la_Asunci%C3%B3n,_Oaxaca,_Oax._2.JPG",
   "w": 960
  },
+ "puerto escondico": {
+  "name": "Puerto Escondico",
+  "none": true,
+  "tried": "2026-10-28"
+ },
+ "san cristobal de las casas": {
+  "article": "San Cristóbal de Las Casas",
+  "author": "Odysseus79",
+  "file": "San Cristóbal de Las Casas 18.jpg",
+  "found": "2026-10-28",
+  "img": "photos/places/auto/san-cristobal-de-las-casas.jpg",
+  "license": "Public domain",
+  "name": "San Cristóbal de las Casas",
+  "page": "https://commons.wikimedia.org/wiki/File:San_Crist%C3%B3bal_de_Las_Casas_18.jpg",
+  "w": 960
+ },
  "valladolid": {
   "article": "Valladolid, Yucatán",
   "author": "File:Valladolid iglesia.jpg: Haakon S. Krohn Derivated work: User:Addicted04",
   "file": "Valladolid iglesia 2.jpg",
-  "found": "2026-10-22",
+  "found": "2026-10-28",
   "img": "photos/places/auto/valladolid.jpg",
   "license": "CC BY 4.0",
   "name": "Valladolid",
-  "page": "https://commons.wikimedia.org/wiki/File:Valladolid_iglesia_2.jpg"
+  "page": "https://commons.wikimedia.org/wiki/File:Valladolid_iglesia_2.jpg",
+  "w": 960
  }
 }
