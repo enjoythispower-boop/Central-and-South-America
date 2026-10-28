@@ -1,4 +1,17 @@
 {
- "updated": "2026-10-27T05:29:49+00:00",
- "items": []
+ "updated": "2026-10-28T05:37:07+00:00",
+ "items": [
+  {
+   "country": "Mexiko",
+   "category": "Protesty a stávky",
+   "severity": "pozor",
+   "title": "Caos en la México - Toluca : bloqueo suma más de 10 horas y provocan largas filas de autos",
+   "summary": "Zpráva o protestech, blokádách nebo stávce (španělsky, zdroj planoinformativo.com). Otevři zdroj pro podrobnosti.",
+   "date": "2026-10-27",
+   "url": "https://planoinformativo.com/1177933/caos-en-la-mexico-toluca-bloqueo-suma-mas-de-10-horas-y-provocan-largas-filas-de-autos",
+   "source": "planoinformativo.com",
+   "type": "news",
+   "expires": "2026-11-01"
+  }
+ ]
 }
