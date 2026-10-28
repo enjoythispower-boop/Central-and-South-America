@@ -13,22 +13,31 @@
    "note": "Letenka"
   },
   {
-   "id": "edq592v",
-   "date": "2026-10-14",
-   "country": "Mexiko",
-   "cat": "Ubytování",
-   "amt": 50,
-   "cur": "MXN",
-   "note": "oběd"
+   "id": "e89fisi",
+   "date": "2026-10-28",
+   "country": "Ostatní",
+   "cat": "Ostatní",
+   "amt": 3790,
+   "cur": "CZK",
+   "note": "Očkování"
   },
   {
-   "id": "e18znyo",
-   "date": "2026-11-12",
+   "id": "exuoivk",
+   "date": "2026-10-28",
    "country": "Ostatní",
-   "cat": "Ubytování",
+   "cat": "Ostatní",
    "amt": 2600,
    "cur": "MXN",
-   "note": "Ubytko Amsterdam"
+   "note": "Ubytování Amsterdam"
+  },
+  {
+   "id": "ey4rmfj",
+   "date": "2026-10-28",
+   "country": "Mexiko",
+   "cat": "Ostatní",
+   "amt": 1500,
+   "cur": "CZK",
+   "note": "Cesta do Amsterdamu"
   }
  ],
  "tasks": [
@@ -48,7 +57,7 @@
    "id": "t4qfb05",
    "t": "Cesta do Amsterdamu",
    "due": "",
-   "done": false
+   "done": true
   }
  ],
  "bookings": [],
