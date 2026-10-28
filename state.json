@@ -21,6 +21,18 @@
    "t": ""
   },
   {
+   "n": "Valladolid",
+   "c": "Mexiko",
+   "a": "",
+   "o": "",
+   "t": "",
+   "tm": "",
+   "tt": "",
+   "lat": 20.69,
+   "lon": -88.2,
+   "id": "sonc9r2"
+  },
+  {
    "n": "Merida",
    "c": "Mexiko",
    "a": "",
@@ -31,6 +43,18 @@
    "lat": 20.97,
    "lon": -89.62,
    "id": "sj7y4hn"
+  },
+  {
+   "n": "Bacalar",
+   "c": "Mexiko",
+   "a": "",
+   "o": "",
+   "t": "",
+   "tm": "Autobus",
+   "tt": "",
+   "lat": 18.68,
+   "lon": -88.39,
+   "id": "sb3y9dj"
   },
   {
    "id": "s3",
@@ -52,6 +76,30 @@
    "lat": 17.06,
    "lon": -96.73,
    "id": "s49bntj"
+  },
+  {
+   "n": "Puerto Escondico",
+   "c": "Mexiko",
+   "a": "",
+   "o": "",
+   "t": "",
+   "tm": "Autobus",
+   "tt": "",
+   "lat": 16.15,
+   "lon": -96.26,
+   "id": "s4m22q2"
+  },
+  {
+   "n": "San Cristóbal de las Casas",
+   "c": "Mexiko",
+   "a": "",
+   "o": "",
+   "t": "",
+   "tm": "Autobus",
+   "tt": "",
+   "lat": 16.73,
+   "lon": -92.64,
+   "id": "spr3c9z"
   },
   {
    "id": "s4",
