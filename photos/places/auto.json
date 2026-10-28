@@ -48,6 +48,17 @@
   "none": true,
   "tried": "2026-10-28"
  },
+ "puerto escondido": {
+  "article": "Puerto Escondido",
+  "author": "Nimodo at de.wikipedia",
+  "file": "Mexico-PuertoEscondido-Airview.jpg",
+  "found": "2026-10-28",
+  "img": "photos/places/auto/puerto-escondido.jpg",
+  "license": "Public domain",
+  "name": "Puerto Escondido",
+  "page": "https://commons.wikimedia.org/wiki/File:Mexico-PuertoEscondido-Airview.jpg",
+  "w": 960
+ },
  "san cristobal de las casas": {
   "article": "San Cristóbal de Las Casas",
   "author": "Odysseus79",
