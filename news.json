@@ -1,4 +1,19 @@
 {
- "updated": "2026-11-03T05:48:05+00:00",
- "items": []
+ "updated": "2026-11-04T05:52:46+00:00",
+ "items": [
+  {
+   "country": "Kolumbie",
+   "category": "Přírodní katastrofa",
+   "severity": "info",
+   "title": "Zemětřesení M5.4 – 24 km NNW of Rioblanco, Colombia",
+   "summary": "Zemětřesení o síle M5.4, hloubka asi 10 km (24 km NNW of Rioblanco, Colombia). Vzdálenost od tvé aktuální zastávky (Tulum): asi 2230 km.",
+   "date": "2026-11-03",
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tv4i",
+   "source": "USGS",
+   "type": "eq",
+   "expires": "2026-11-06",
+   "lat": 3.74,
+   "lon": -75.72
+  }
+ ]
 }
