@@ -1,15 +1,27 @@
 {
- "updated": "2026-11-10T08:34:32+00:00",
+ "updated": "2026-11-10T13:20:53+00:00",
  "items": [
   {
    "country": "Mexiko",
    "category": "Protesty a stávky",
    "severity": "pozor",
-   "title": "Inicia la Semana con Bloqueos y Caos Vial en Distintos Puntos del Valle de México | En Punto | VIDEO",
+   "title": "Bloqueo en CDMX Hoy: ¿Dónde Está Cerrado por Conductores de Aplicación?",
    "summary": "Zpráva z médií (španělsky, zdroj N+). Otevři zdroj pro podrobnosti.",
    "date": "2026-11-10",
-   "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNOXQtVjBWY1hYTjJORHp2NDB3QTR3cjlHNVdGdnNodk9fZ3BZckJXMTc4OE5lUXlObFJGU2V0eUt3VThLTFhXOWdNWVBIQkdmby1ldU5DQ0hranV2Sm9mQ3ZSVDJtVURrN2d6a1J1VmE0MkhvMWZCM0FVVGFubnExTVROSXNNbTZQeV84RkhTVXlyQjktYmsyWlFscnBrdWIxd1JKa0tsOTIxSVpkY09heGxGNWdINFdncVdxNU5BWnFjQUdnbk9rTlRmQzdvTGpLRFVoLXhVU2Z1TlNqUmlSRzI1dXpfRC1yOU5kdG16eGpDUzVfUTBwNw?oc=5",
+   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQZnNiNEVTQUlTV1FaaTA5cGltR1ZFRk1uSTg2ZGU3Z2plaGVpNUY0REJZbm1uYlFaTm03MjdjQ2NvLVFVOUxlRVNYb2NZRFprdzRsVDZuNm4zZVVXVUVjUkYwNVNGeWNrencwUzVSeFN4elhxUGFnOVFaY0JJTU8tM0ZuMEU0b2tIdnZnMERZMGhwNmhwcjI4RktzWkdDVmg1cmRnaU84Y3Rkb0JRdk1kTGJ0MUhjSmFnb0tWNUdDTnVQOUFISThEdQ?oc=5",
    "source": "N+",
+   "type": "news",
+   "expires": "2026-11-15"
+  },
+  {
+   "country": "Mexiko",
+   "category": "Protesty a stávky",
+   "severity": "info",
+   "title": "Protestas obligan al OAJ a retirar evaluación de trabajadores judiciales",
+   "summary": "Zpráva z médií (španělsky, zdroj abcnoticias.mx). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-10",
+   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPeEhPTFZkRF9NeVVkdEFZX29MZ0ZhSFhnLWxXb3dGVWs0QzcyWUN3c1FEMnhFZDE1Y2V2ZElyM1U1cXphM2piU05mdlZYRXlFSXNpeHdLWXkxTEFKQlNkMGdEV1RYUWgyQkJ2LW9fLU5QaTkxdzhFVEQycUIyemNTd05OSjlUbnJPQ2F1U2RuUnl1RVR4SzBVOFI2RnhlZUxsbmxzdVBZTDE4dG1qaVZiUlFhVXpVNFdveVJfRC0zT1RjQ0FxVWc?oc=5",
+   "source": "abcnoticias.mx",
    "type": "news",
    "expires": "2026-11-15"
   },
@@ -52,6 +64,66 @@
   {
    "country": "Chile",
    "category": "Protesty a stávky",
+   "severity": "pozor",
+   "title": "Paro de camioneros se extiende por las regiones con bloqueos en rutas y acceso a terminales portuarios",
+   "summary": "Zpráva z médií (španělsky, zdroj Diario Financiero). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-10",
+   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNMUZfT21RX20zREpmRExBNVJlal9MU2U1c1lTbFFDdmI2dG1iMFBJaVJ3enE0MXlxWkdleWhOQWFzQnBlSU1JS2lMRVprRlJRVGN3Q1RtTGpQbGRBQXhmR3N5bmwyZGVCVkpmdWFEcEpXWGF5ekQ0Vm5wckZpeHotaTlLN1JmZFM4WFRtUDU4T3RPNF9aNEJ5QmhZWHlQbDh2eXc?oc=5",
+   "source": "Diario Financiero",
+   "type": "news",
+   "expires": "2026-11-15"
+  },
+  {
+   "country": "Chile",
+   "category": "Protesty a stávky",
+   "severity": "info",
+   "title": "Camioneros se toman las carreteras en Chile y comienzan paro nacional por alza en los combustibles",
+   "summary": "Zpráva z médií (španělsky, zdroj ADN Radio). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-10",
+   "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOSXYwdzZWRXA4RFI2ZWFjWk5xLXJwNlR5TEJlYkFZNUNxWDhoT0NqcFNiaWxobHpCS2ZxM2p6Z19rdVJWT29mMWhmNFd2RGk0THJVMWppbVBsS3hFa0F4aEpvVFZQdmZGZ2JTSHVLQ2xWSTNjRXRsWmNLRTNCdFRPU053WWRRb25pZ2JqRnBmazlvTWk4dUV6dXlXb0tFeGFOUU5FcXhTSVpvc000VWVxZ0tWellvSFpGaXFyM3pSQllXQVpTSk1jMFJlY3ZaRnPSAeMBQVVfeXFMTTF3OUtjdk44TnpXTTkzX09seWNCS2FhS1VycWU3QmJqR2tjTWs0QUtUd3VHeW92NFRaZmVRSXBWemgzMVJhRGNhMlg2VGF1UWRDYl84Y0lzSmFpejBYZEpWLUxIbWlDOXd1RHVYcVF6aXFkVElYeXJwSlh6eTk5M2tmRFZpRUlrVkwwZ2VpbUNwaTRNWENpQ2tBTkRpeENpbm9LV1ZtVFo0Y0xTSy0yUVZucGpIVjc2V1k4MHBYeTJ1MUgtZnVmd1VLRGRKMEgyMmhzOVVhNFAzYzRzVC1PaUV1Tms?oc=5",
+   "source": "ADN Radio",
+   "type": "news",
+   "expires": "2026-11-15"
+  },
+  {
+   "country": "Chile",
+   "category": "Protesty a stávky",
+   "severity": "info",
+   "title": "Gobierno advierte despeje de carreteras si continúa el paro de camioneros: \"Habrá que hacerlo\"",
+   "summary": "Zpráva z médií (španělsky, zdroj BioBioChile). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-10",
+   "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOV0gyek1LZzdFdzByVGFuOHZnclFGeXh6MHlraEoyUVI2M1JYMmhYMW03Rk1lQjdZQ2k5NDFGeDF0bGdaSWx6X2RUcC1RLWFEVEh3MG83LWVZNHFNcXc2TE16T0hoQ2ZfU0kyVlZWbjkyeFFuWFRfbVN6dmFLd0dzSl91elF5UEpMUkVPT2M3RFFKSTJQQVNlei1GQnpkQU1pREZjZVByRjdNWlZPYWxLNG13aDl0RUVWZE01akVVY1ltSkRWUGhtVUU2SHozWDBpOFNadHIwdnk1Sjk5QU9oVE83LTlHLXRkNkZpZlRMMGx5dXAwMlE?oc=5",
+   "source": "BioBioChile",
+   "type": "news",
+   "expires": "2026-11-15"
+  },
+  {
+   "country": "Argentina",
+   "category": "Protesty a stávky",
+   "severity": "info",
+   "title": "CONADU Histórica y ADUNC anunciaron un paro nacional universitario",
+   "summary": "Zpráva z médií (španělsky, zdroj Neuquén News). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-10",
+   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPSncwazMtT1RsSUY5VWNqbW11OTQ0MWNiVmd1eXN2MDJJcFJyU1RfWmFPYk9EZkk2VTdHMjRtak8zbGdEbTF1V3RITTRjV3hfX19SdXZiMGlUNTV6dHh0elZPVkxySEhHaUdXX1lGUmYzTUowdUVOYzJNN0VTQUZuYzByUC11M1dXU1d5OEc4Mk8tY1QxLUc0dmVaOHZWWUkzcVdxQUNKSUpPb29ibXc?oc=5",
+   "source": "Neuquén News",
+   "type": "news",
+   "expires": "2026-11-15"
+  },
+  {
+   "country": "Mexiko",
+   "category": "Protesty a stávky",
+   "severity": "pozor",
+   "title": "Inicia la Semana con Bloqueos y Caos Vial en Distintos Puntos del Valle de México | En Punto | VIDEO",
+   "summary": "Zpráva z médií (španělsky, zdroj N+). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-10",
+   "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNOXQtVjBWY1hYTjJORHp2NDB3QTR3cjlHNVdGdnNodk9fZ3BZckJXMTc4OE5lUXlObFJGU2V0eUt3VThLTFhXOWdNWVBIQkdmby1ldU5DQ0hranV2Sm9mQ3ZSVDJtVURrN2d6a1J1VmE0MkhvMWZCM0FVVGFubnExTVROSXNNbTZQeV84RkhTVXlyQjktYmsyWlFscnBrdWIxd1JKa0tsOTIxSVpkY09heGxGNWdINFdncVdxNU5BWnFjQUdnbk9rTlRmQzdvTGpLRFVoLXhVU2Z1TlNqUmlSRzI1dXpfRC1yOU5kdG16eGpDUzVfUTBwNw?oc=5",
+   "source": "N+",
+   "type": "news",
+   "expires": "2026-11-15"
+  },
+  {
+   "country": "Chile",
+   "category": "Protesty a stávky",
    "severity": "info",
    "title": "Paro camionero divide al transporte en Chile: Fuerza del Norte confirma movilización mientras grandes gremios rechazan s",
    "summary": "Zpráva z médií (španělsky, zdroj Diario Frutícola). Otevři zdroj pro podrobnosti.",
@@ -74,14 +146,14 @@
    "expires": "2026-11-14"
   },
   {
-   "country": "Mexiko",
+   "country": "Guatemala",
    "category": "Protesty a stávky",
    "severity": "pozor",
-   "title": "Agenda CDMX: marchas, bloqueos y concentraciones previstas para este lunes 9 de noviembre",
-   "summary": "Zpráva z médií (španělsky, zdroj El Sol de México). Otevři zdroj pro podrobnosti.",
+   "title": "Bloqueos en Guatemala: transportistas paralizan accesos clave para exigir rebaja en los combustibles",
+   "summary": "Zpráva z médií (španělsky, zdroj El Nacional — La voz de todos). Otevři zdroj pro podrobnosti.",
    "date": "2026-11-09",
-   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNR3Vycjhtb1RFamtZM3ZVTnZuUW9BTndJTXRlcUgybDRNaUxZLThlVmFPNkw0MG9LUWR2cGljbmpad29TcWJseUludkwxWDRHWmF2ZzhtaDdwa2hmVWY4VkUzTjU3aG5SNjFhazhkaW1mbXNuekJnN2oyQS1NcERfS29rUEJKMmp4NXJTc3Vyb0E5dlZXS3dWcnhjTWRjeUFVVjZNQTAxWkxmdW9jVC1sUkpEcVNBc29EUnBPMG5MU3dUTnJCUzZFLUdMODNmQ1Fu?oc=5",
-   "source": "El Sol de México",
+   "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNd1NjZlRZelN2U3pLWW9HWnNMNEhCWGU1TWFWSnpVZElRc05QUHJDaFVqZVlGaDZrTGMwV1g3LS02UW8xaVhXZDhadDFSazlWZk01MG51ZmIxalhob3lvcTJ5c2dZd1A2QWxvRUx2V0V0SzhmaHVpMWdtcnF2YjRoSGMxVFlKVnIzekpEY0ZwUEc1OXpuMFVaUUJUQUdpQk0tSmszTjVQWXJ1OXl6TUtoNld0NkVFLTU0dDA3S3VnandxUXZMNE16ZXc2d9IB0AFBVV95cUxNWTllVzM2WHZxdWRpNWhkcVpmLXAteTh2Rl9wUDN3a1JLbXhFWUhBWWV4NV9XcnpRald3bVZjX1BJTzAzQU5wUHpEazBGMEtNWW9BS1ozUjNCZllYeFpkTFJrVHFiMFBtcEIzX0dKLVVIZWFUT0k5dEhRVDdiM2dGc1RwWkFDeGx0Zjg0bW15MkpOaklwRG9UUVBVbVdZWkpIZ2tnQjlJbzJNSjVlNFI1eFE2SnIyRjRXWDhLX0l5SUtmaGNibTg5UVA0WWoxclhC?oc=5",
+   "source": "El Nacional — La voz de todos",
    "type": "news",
    "expires": "2026-11-14"
   },
@@ -136,12 +208,12 @@
   {
    "country": "Ekvádor",
    "category": "Protesty a stávky",
-   "severity": "pozor",
-   "title": "Ecuador: más de 2.200 detenidos en la primera semana del toque de queda contra el crimen organizado",
-   "summary": "Zpráva z médií (španělsky, zdroj ICNDiario). Otevři zdroj pro podrobnosti.",
+   "severity": "info",
+   "title": "Presidente de Ecuador enfrenta protestas mientras demócratas amenazan frenar alianza militar con EE.UU. por “deterioro d",
+   "summary": "Zpráva z médií (španělsky, zdroj La Tercera). Otevři zdroj pro podrobnosti.",
    "date": "2026-11-09",
-   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQcXMzOFRzQ1V5UTBzU3JVQk0wSlE4UzVsbGZFTkhhNXh2NVJaOXgtQWNxVVQ4ODlDNVVtQ0pQaTVnaGJmc19ZU0p4eHB3dDhscUtqdzV2YW5JSEU1aDBua0Jyem5BNnlETGpqRkhVdy1oeFA5NXYxcS1QaUV6Rmp1ODVfZVBNTUxIaFU2NzEwZzRHRzdMTENUQlRLVDZoZFo3VDVGc09NMWlXbmlaNC13TF9udFZtc09ETDFadUdIWkRLNk5iZlYwSA?oc=5",
-   "source": "ICNDiario",
+   "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOeW9VMDBndE52bllzcEVRRVpieW9LOUlNNUg0cmp5T1BmeFVtZ2ZpQm44eFNhNi1qTG52QS1CMjdoMGhuanVkeUo4Wl9yeThwQVRvcENjd2JvcG5uRWNFWHFuaGJfZVNmVHpxczBXRmlCejQ3VnlVU3hvSWZNTTEzTzJUSFNtTmxRdk1mSWxQT09vTWd6elpMOTdsQURPbjQ0XzhVeFh2Qlh4WHJ6RW1Ka0VVdlBId2hZd3ZoSEJwVEd1NTlsdUY4bVFIY3JKekpsRlJqOWFGRXlEV3lRSkxjdWxqWlVVMEN6RThENWJ6Qk1MS0c3c1JjczJUMXbSAZ4CQVVfeXFMT2o2YjV0R3RvVTJZWDJ6ZDJrd191cXNKM0dHdmZYVEYzYVFtOG1kak5ydTNidElnTk1CNWk1SzYtRDFtZjI2OFByZGFGQ2V3UFlycXdUSm5EWWpvTmJfSXRpVnhJSnNRdG93T2wyNDhidlFPaGlTWDRzdkQ3ZnMyLVZiZlMtSlBrQzM0dTJvXzdOeU1uYnYwY2gycjVyTERfa0NkbmkzU0FBWlBtdWIybG5lM0xNdUNUN2dLc2RUSm96ZGYwTHhacnV1ZmdlWllhQmVXVENrQ2JaNXpaY2NiWFU2UXBSZ3ZoeElyN0p4ZG1uM2FPZ1dmVFRKRUVnTlhsTFNCZkpsWlhjNXlJWnFFcl8waHZTRjBiQ3BWbDRKZw?oc=5",
+   "source": "La Tercera",
    "type": "news",
    "expires": "2026-11-14"
   },
@@ -154,6 +226,18 @@
    "date": "2026-11-09",
    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNTWgxc0NPakFWNVYxQll5SFpWbnB2S1d2M3QtaHNQdDJ6aEQwczdieHBNYmdUSWNHaEhtV2JkWFEtR3VwaVpSUm51N2NCMVU2cEVQVTJHSlZ0TmpvcVVfWEtUd25Ua1hBTkdMcHJxZ0dma2NzNDN6S2VXbE5vbjlBS19mYW1lbVJQaUpWcGMxdGJwdXdPVERQY3g5X3MzUQ?oc=5",
    "source": "Perú 21",
+   "type": "news",
+   "expires": "2026-11-14"
+  },
+  {
+   "country": "Peru",
+   "category": "Protesty a stávky",
+   "severity": "info",
+   "title": "VIDEO | Transportistas de carga anuncian paro nacional de 72 horas",
+   "summary": "Zpráva z médií (španělsky, zdroj Radio RSD). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-09",
+   "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNeVV0TnVZdktteEliUm9BQXhzX242bmVHRnJuZW5YSFozLVFKYnlHZkNxTzVrcy1QNk9aa25xYjdINVZpV1lDS0JNekIwZy12SE9uSHUzWGNlY2FOTVlVNDZtZHhfM2hhUnZQZzk5ZVpUOEJoWk5ZZGx0RE9adXcyLVUxWlFlVGo4WjNnaG9WTERjeW1qUUNQUQ?oc=5",
+   "source": "Radio RSD",
    "type": "news",
    "expires": "2026-11-14"
   },
@@ -182,30 +266,6 @@
    "expires": "2026-11-14"
   },
   {
-   "country": "Chile",
-   "category": "Protesty a stávky",
-   "severity": "info",
-   "title": "Chile enfrenta una nueva amenaza de paro camionero que pone en alerta al agroexportador",
-   "summary": "Zpráva z médií (španělsky, zdroj AgroLatam). Otevři zdroj pro podrobnosti.",
-   "date": "2026-11-09",
-   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOOGx3bWxodW1oc1VVaFdSaWRJZDdQeTZ0YWQwNld3OEE5WEZqaE1XLUtTTUtJOHFEd09SS0JLaV9EQ1BocnBlSGFXQnpZUU9hVFVCcERYTFRaTk80ZE5ySDR6QnF2Y0I0UGpsSkJGTVJtMWtPZ3lZczBFQnVhbm8wWUVnbE03bk5zZ2c1blJJNWh3LWVBbnFDZEhmNFk5TGJ2WWxYMmM2cmJtTlNTUHpJU21qQzVpaEJBZUREMnRZUUpITWs1N29aODFlZVBzNWxXNTFV?oc=5",
-   "source": "AgroLatam",
-   "type": "news",
-   "expires": "2026-11-14"
-  },
-  {
-   "country": "Chile",
-   "category": "Protesty a stávky",
-   "severity": "info",
-   "title": "Paro de camioneros en Chile: gremios se dividen por alza del diésel y Gobierno busca evitar paralización",
-   "summary": "Zpráva z médií (španělsky, zdroj Radio Pauta 100.5). Otevři zdroj pro podrobnosti.",
-   "date": "2026-11-09",
-   "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPTjNRWElMbnpNeHNkckluRW54ZkF1Xy1lekt5WW1mTzZySGhEdXAzSU5ZV1lZQTFHak11dkROb0FyRGFBMkZLTnZ0RDl4RU1xOTlxbUJ6QWx5RWJLU3Y5RVZ4Zkc0dTNYOTBhN2FwMWdMbXY4VFRKcEszM3VNNWpjamtCOWx0Y01GQ0xnc3dNdVVyTjNvYXM5N0hkVmk3LXhBRkQxT3RYSmg2NFBLMkUtUDdGNGtlazdmaVFjU25UbERyYk5qR3d2UElSTUgwZ0gzS0FCYUxONGcxQWhSTmtpajczMW5jMDdxRFowUA?oc=5",
-   "source": "Radio Pauta 100.5",
-   "type": "news",
-   "expires": "2026-11-14"
-  },
-  {
    "country": "Argentina",
    "category": "Protesty a stávky",
    "severity": "info",
@@ -228,6 +288,54 @@
    "source": "GOV.UK (FCDO)",
    "type": "adv",
    "expires": "2026-11-16"
+  },
+  {
+   "country": "Mexiko",
+   "category": "Protesty a stávky",
+   "severity": "pozor",
+   "title": "Agenda CDMX: marchas, bloqueos y concentraciones previstas para este lunes 9 de noviembre",
+   "summary": "Zpráva z médií (španělsky, zdroj El Sol de México). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-09",
+   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNR3Vycjhtb1RFamtZM3ZVTnZuUW9BTndJTXRlcUgybDRNaUxZLThlVmFPNkw0MG9LUWR2cGljbmpad29TcWJseUludkwxWDRHWmF2ZzhtaDdwa2hmVWY4VkUzTjU3aG5SNjFhazhkaW1mbXNuekJnN2oyQS1NcERfS29rUEJKMmp4NXJTc3Vyb0E5dlZXS3dWcnhjTWRjeUFVVjZNQTAxWkxmdW9jVC1sUkpEcVNBc29EUnBPMG5MU3dUTnJCUzZFLUdMODNmQ1Fu?oc=5",
+   "source": "El Sol de México",
+   "type": "news",
+   "expires": "2026-11-14"
+  },
+  {
+   "country": "Ekvádor",
+   "category": "Protesty a stávky",
+   "severity": "pozor",
+   "title": "Ecuador: más de 2.200 detenidos en la primera semana del toque de queda contra el crimen organizado",
+   "summary": "Zpráva z médií (španělsky, zdroj ICNDiario). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-09",
+   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQcXMzOFRzQ1V5UTBzU3JVQk0wSlE4UzVsbGZFTkhhNXh2NVJaOXgtQWNxVVQ4ODlDNVVtQ0pQaTVnaGJmc19ZU0p4eHB3dDhscUtqdzV2YW5JSEU1aDBua0Jyem5BNnlETGpqRkhVdy1oeFA5NXYxcS1QaUV6Rmp1ODVfZVBNTUxIaFU2NzEwZzRHRzdMTENUQlRLVDZoZFo3VDVGc09NMWlXbmlaNC13TF9udFZtc09ETDFadUdIWkRLNk5iZlYwSA?oc=5",
+   "source": "ICNDiario",
+   "type": "news",
+   "expires": "2026-11-14"
+  },
+  {
+   "country": "Chile",
+   "category": "Protesty a stávky",
+   "severity": "info",
+   "title": "Chile enfrenta una nueva amenaza de paro camionero que pone en alerta al agroexportador",
+   "summary": "Zpráva z médií (španělsky, zdroj AgroLatam). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-09",
+   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOOGx3bWxodW1oc1VVaFdSaWRJZDdQeTZ0YWQwNld3OEE5WEZqaE1XLUtTTUtJOHFEd09SS0JLaV9EQ1BocnBlSGFXQnpZUU9hVFVCcERYTFRaTk80ZE5ySDR6QnF2Y0I0UGpsSkJGTVJtMWtPZ3lZczBFQnVhbm8wWUVnbE03bk5zZ2c1blJJNWh3LWVBbnFDZEhmNFk5TGJ2WWxYMmM2cmJtTlNTUHpJU21qQzVpaEJBZUREMnRZUUpITWs1N29aODFlZVBzNWxXNTFV?oc=5",
+   "source": "AgroLatam",
+   "type": "news",
+   "expires": "2026-11-14"
+  },
+  {
+   "country": "Chile",
+   "category": "Protesty a stávky",
+   "severity": "info",
+   "title": "Paro de camioneros en Chile: gremios se dividen por alza del diésel y Gobierno busca evitar paralización",
+   "summary": "Zpráva z médií (španělsky, zdroj Radio Pauta 100.5). Otevři zdroj pro podrobnosti.",
+   "date": "2026-11-09",
+   "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPTjNRWElMbnpNeHNkckluRW54ZkF1Xy1lekt5WW1mTzZySGhEdXAzSU5ZV1lZQTFHak11dkROb0FyRGFBMkZLTnZ0RDl4RU1xOTlxbUJ6QWx5RWJLU3Y5RVZ4Zkc0dTNYOTBhN2FwMWdMbXY4VFRKcEszM3VNNWpjamtCOWx0Y01GQ0xnc3dNdVVyTjNvYXM5N0hkVmk3LXhBRkQxT3RYSmg2NFBLMkUtUDdGNGtlazdmaVFjU25UbERyYk5qR3d2UElSTUgwZ0gzS0FCYUxONGcxQWhSTmtpajczMW5jMDdxRFowUA?oc=5",
+   "source": "Radio Pauta 100.5",
+   "type": "news",
+   "expires": "2026-11-14"
   },
   {
    "country": "Kolumbie",
