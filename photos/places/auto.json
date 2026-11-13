@@ -54,6 +54,17 @@
   "page": "https://commons.wikimedia.org/wiki/File:Catedral_de_Nuestra_Se%C3%B1ora_de_la_Asunci%C3%B3n,_Oaxaca,_Oax._2.JPG",
   "w": 960
  },
+ "panama city": {
+  "article": "Panama City",
+  "author": "JAVR2020",
+  "file": "Panorámica nocturna de la ciudad de Panamá.jpg",
+  "found": "2026-11-13",
+  "img": "photos/places/auto/panama-city.jpg",
+  "license": "CC BY-SA 4.0",
+  "name": "Panama City",
+  "page": "https://commons.wikimedia.org/wiki/File:Panor%C3%A1mica_nocturna_de_la_ciudad_de_Panam%C3%A1.jpg",
+  "w": 960
+ },
  "puerto escondico": {
   "name": "Puerto Escondico",
   "none": true,
