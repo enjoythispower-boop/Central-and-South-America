@@ -160,58 +160,16 @@
    "t": ""
   },
   {
-   "id": "s6",
-   "n": "Bogotá",
-   "c": "Kolumbie",
-   "lat": 4.71,
-   "lon": -74.07,
-   "d": "",
-   "t": ""
-  },
-  {
-   "id": "s7",
-   "n": "Quito",
-   "c": "Ekvádor",
-   "lat": -0.18,
-   "lon": -78.47,
-   "d": "",
-   "t": ""
-  },
-  {
-   "id": "s8",
-   "n": "Cusco",
-   "c": "Peru",
-   "lat": -13.53,
-   "lon": -71.97,
-   "d": "",
-   "t": ""
-  },
-  {
-   "id": "s9",
-   "n": "La Paz",
-   "c": "Bolívie",
-   "lat": -16.49,
-   "lon": -68.12,
-   "d": "",
-   "t": ""
-  },
-  {
-   "id": "s10",
-   "n": "Santiago",
-   "c": "Chile",
-   "lat": -33.45,
-   "lon": -70.67,
-   "d": "",
-   "t": ""
-  },
-  {
-   "id": "s11",
-   "n": "Buenos Aires",
-   "c": "Argentina",
-   "lat": -34.6,
-   "lon": -58.38,
-   "d": "cíl cesty",
-   "t": "Konec cesty"
+   "n": "Panama City",
+   "c": "Panama",
+   "a": "",
+   "o": "",
+   "t": "",
+   "tm": "",
+   "tt": "",
+   "lat": 8.99,
+   "lon": -79.52,
+   "id": "sis9qqm"
   }
  ],
  "diary": [
