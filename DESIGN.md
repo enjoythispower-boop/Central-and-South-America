@@ -1,5 +1,5 @@
 ---
-name: Cancún → Buenos Aires
+name: Mexiko a Střední Amerika
 description: A personal overland trip tracker that lives inside the warm, blurred light of the current stop.
 colors:
   night-ground: "#0C0A0E"
@@ -172,7 +172,7 @@ components:
     textColor: "{colors.done-white}"
 ---
 
-# Design System: Cancún → Buenos Aires
+# Design System: Mexiko a Střední Amerika
 
 ## Overview
 

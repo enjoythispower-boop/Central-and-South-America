@@ -10,7 +10,7 @@ web
 The owner, travelling overland from Cancún (Mexico) to Buenos Aires (Argentina), using it mostly on a phone on the road, often with poor connectivity. Family and friends follow along from home to see where the traveller is and what is happening on the route. Audience is Czech-speaking.
 
 ## Product Purpose
-A personal trip tracker for one long Central and South America route. It holds the itinerary and current stop, a trip log, and daily route alerts for the countries and stops ahead. Success: the traveller can check status and plan the next leg quickly, and followers can see progress without asking.
+"Mexiko a Střední Amerika": a personal trip tracker for one long Central and South America route. It holds the itinerary and current stop, a trip log, and daily route alerts for the countries and stops ahead. Success: the traveller can check status and plan the next leg quickly, and followers can see progress without asking.
 
 ## Positioning
 Built around one specific route and one person's real progress, with route-aware alerts (distance from the current stop) rather than generic country news. Not a general travel planner or map app.

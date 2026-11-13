@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0C0A0E">
 <meta name="color-scheme" content="dark">
-<title>Cancún → Buenos Aires</title>
+<title>Mexiko a Střední Amerika</title>
+<meta name="apple-mobile-web-app-title" content="Mexiko a Střední Amerika">
+<meta name="application-name" content="Mexiko a Střední Amerika">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23FF9A5C%22/%3E%3Cstop offset=%221%22 stop-color=%22%23FF4F9A%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%22100%22 height=%22100%22 rx=%2230%22 fill=%22%230C0A0E%22/%3E%3Ccircle cx=%2250%22 cy=%2244%22 r=%2218%22 fill=%22url(%23g)%22/%3E%3Cpath d=%22M50 86 31 56h38z%22 fill=%22url(%23g)%22/%3E%3C/svg%3E">
 <style>
 @font-face{font-family:'Figtree';font-style:normal;font-weight:400 800;font-display:swap;src:url(fonts/figtree-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
@@ -844,6 +846,8 @@ function pubOut(){const o=JSON.parse(JSON.stringify(S));delete o.pack;return o}
 const isGH=/\.github\.io$/.test(location.hostname);
 let GH={owner:isGH?location.hostname.split('.')[0]:'',repo:isGH?(location.pathname.split('/')[1]||location.hostname):'',pr:'',file:'state.json'};
 GH={...GH,...(LS.get('gh_cfg',{})||{})};
+// Na GitHub Pages má přednost vlastník a repozitář z adresy (po přejmenování repa zůstává v gh_cfg starý název)
+if(isGH){GH.owner=location.hostname.split('.')[0];GH.repo=location.pathname.split('/')[1]||location.hostname}
 let TOKEN=LS.get('gh_token','')||'';
 const apiU=(repo,p)=>`https://api.github.com/repos/${GH.owner}/${repo}/contents/${p}`;
 async function ghRead(repo,file,auth){
@@ -1314,7 +1318,7 @@ function vHome(){
     <p style="margin:12px 0 6px" class="mono"><b>${czk(spent)}</b>${lim?' / '+czk(lim):''}</p>${lim?`<div class="prog ${spent>lim?'bad':spent>lim*.85?'warn':''}"><i style="width:${Math.min(100,spent/lim*100)}%"></i></div>`:''}</div></div>`;
   }
   const heroSrc=placePhoto(cur),routeAl=activeNews().some(i=>st.slice(ci).some(s=>s.c===i.country));
-  const status=`<div class="stat-line">${S.upd?`<span class="pill"><i></i>Živě · ${ago(S.upd)}</span>`:''}<span>${days!=null?days+'. den cesty':'Cancún → Buenos Aires'} · ${countries.length} zemí, ${st.length} zastávek</span></div>`;
+  const status=`<div class="stat-line">${S.upd?`<span class="pill"><i></i>Živě · ${ago(S.upd)}</span>`:''}<span>${days!=null?days+'. den cesty':'Mexiko a Střední Amerika'} · ${countries.length} zemí, ${st.length} zastávek</span></div>`;
   $('v-home').innerHTML=`<header class="pagehead"><div><h1>Přehled</h1>${status}</div><div class="hb">${cbtn('map','go','Mapa trasy',' data-v="trasa"')}${cbtn('pocasi','towx','Počasí',` data-id="${cur.id}"`)}<button class="cbtn" data-act="go" data-v="zpravy" aria-label="Zprávy${routeAl?' (jsou upozornění)':''}" title="Zprávy">${ico('bell',20)}${routeAl?'<span class="bd"></span>':''}</button></div></header>`+
   `<section class="hero" aria-label="Aktuální zastávka"><div class="stack"><div class="frame"><div class="pic" style="--tint:${tintOf(cur.c)}">${phImg(heroSrc,cur.n)}</div>
      <div class="ov otl"><span class="gchip">${flag(cur.c,20)}${esc(cur.c)}</span></div><div class="ov otr"><span class="gchip np">Teď tady</span></div>
@@ -1713,7 +1717,7 @@ function vNast(){
    ${edit?`<div class="card"><h3>Kurzy měn (Kč za 1 jednotku)</h3><p class="note">Orientační hodnoty – uprav nebo stáhni aktuální.</p><div class="row">${CUR.filter(c=>c[0]!=='CZK').map(([c])=>`<div style="width:92px"><label class="l">${c}</label><input id="rt_${c}" type="number" step="0.0001" value="${rate(c)}"></div>`).join('')}</div>
     <div class="row" style="margin-top:10px"><button class="btn pri" data-act="ratesave">Uložit kurzy</button><button class="btn" data-act="ratefetch">Stáhnout aktuální</button></div></div>
    <div class="card"><h3>Záloha dat</h3><div class="row"><button class="btn" data-act="export">Exportovat</button><label class="btn" style="cursor:pointer">Importovat<input type="file" accept="application/json" data-chg="import" style="display:none"></label></div></div>`:''}
-   <div class="card"><h3>O stránce</h3><p class="note" style="margin:0">Cancún → Buenos Aires · glóbus a mapa se zeměmi, informace o zemích, předpověď (Open-Meteo), zprávy ze skriptu. Veřejná část (trasa, poloha, deník, místa, fotky, zprávy) je viditelná všem s odkazem.</p></div>
+   <div class="card"><h3>O stránce</h3><p class="note" style="margin:0">Mexiko a Střední Amerika · glóbus a mapa se zeměmi, informace o zemích, předpověď (Open-Meteo), zprávy ze skriptu. Veřejná část (trasa, poloha, deník, místa, fotky, zprávy) je viditelná všem s odkazem.</p></div>
    <div class="card"><h3>Fotografie měst</h3><p class="note">Fotky zastávek jsou z Wikimedia Commons (volné licence), uložené přímo v projektu. Vlastní fotky přidáš ve Fotodeníku.</p><ul style="margin:0;padding-left:20px;font-size:.88rem">${PHOTO_CREDITS.map(([c,a,l])=>`<li><b>${esc(c)}</b>: ${esc(a)}, ${esc(l)}</li>`).join('')}${Object.values(AUTOPH).filter(a=>a&&a.img).map(a=>`<li><b>${esc(a.name)}</b>: <a href="${esc(a.page)}" target="_blank" rel="noopener">${esc(a.author)}</a>, ${esc(a.license)} <span class="note">(dohledáno automaticky)</span></li>`).join('')}</ul></div>`;
 }
 

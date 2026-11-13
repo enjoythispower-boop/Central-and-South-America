@@ -7,7 +7,7 @@ Používá jen standardní knihovnu Pythonu."""
 import json, math, os, re, time, unicodedata, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timezone, timedelta
 
-UA = {"User-Agent": "cesta-fotky/1.0 (osobni cestovni stranka; https://github.com/enjoythispower-boop/Central-and-South-America)"}
+UA = {"User-Agent": "cesta-fotky/1.0 (osobni cestovni stranka; https://github.com/enjoythispower-boop/Mexiko-a-Stredni-Amerika)"}
 INDEX = "photos/places/auto.json"
 DIR = "photos/places/auto"
 WIDTH = 960       # standardní šířka náhledu na Commons; stačí i pro rozmazané pozadí a karty
