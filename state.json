@@ -127,6 +127,30 @@
    "t": ""
   },
   {
+   "n": "San Salvador",
+   "c": "Salvador",
+   "a": "",
+   "o": "",
+   "t": "",
+   "tm": "",
+   "tt": "",
+   "lat": 13.69,
+   "lon": -89.19,
+   "id": "s0n98sa"
+  },
+  {
+   "n": "Managua",
+   "c": "Nikaragua",
+   "a": "",
+   "o": "",
+   "t": "",
+   "tm": "",
+   "tt": "",
+   "lat": 12.13,
+   "lon": -86.25,
+   "id": "sbgswyq"
+  },
+  {
    "id": "s5",
    "n": "San José",
    "c": "Kostarika",
