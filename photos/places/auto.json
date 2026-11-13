@@ -21,6 +21,17 @@
   "page": "https://commons.wikimedia.org/wiki/File:Flores_Island.jpg",
   "w": 960
  },
+ "managua": {
+  "article": "Managua",
+  "author": "Jairo Cajina",
+  "file": "Avenida Bolivar A Chavez.jpg",
+  "found": "2026-11-13",
+  "img": "photos/places/auto/managua.jpg",
+  "license": "CC BY-SA 4.0",
+  "name": "Managua",
+  "page": "https://commons.wikimedia.org/wiki/File:Avenida_Bolivar_A_Chavez.jpg",
+  "w": 960
+ },
  "merida": {
   "article": "Mérida Mexico Temple",
   "author": "Renegade of Funk / Andy Funk",
@@ -68,6 +79,17 @@
   "license": "Public domain",
   "name": "San Cristóbal de las Casas",
   "page": "https://commons.wikimedia.org/wiki/File:San_Crist%C3%B3bal_de_Las_Casas_18.jpg",
+  "w": 960
+ },
+ "san salvador": {
+  "article": "San Salvador",
+  "author": "Frankjh",
+  "file": "Monumento al Salvador del Mundo 1.jpg",
+  "found": "2026-11-13",
+  "img": "photos/places/auto/san-salvador.jpg",
+  "license": "CC BY-SA 3.0",
+  "name": "San Salvador",
+  "page": "https://commons.wikimedia.org/wiki/File:Monumento_al_Salvador_del_Mundo_1.jpg",
   "w": 960
  },
  "valladolid": {
