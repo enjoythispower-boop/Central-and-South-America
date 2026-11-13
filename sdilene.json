@@ -2,85 +2,117 @@
  "total": 0,
  "limit": 10,
  "rates": {},
- "expenses": [
-  {
-   "id": "eqkijcw",
-   "date": "2026-10-14",
-   "country": "Ostatní",
-   "cat": "Doprava",
-   "amt": 9500,
-   "cur": "CZK",
-   "note": "Letenka"
-  },
-  {
-   "id": "e89fisi",
-   "date": "2026-10-28",
-   "country": "Ostatní",
-   "cat": "Ostatní",
-   "amt": 3790,
-   "cur": "CZK",
-   "note": "Očkování"
-  },
-  {
-   "id": "exuoivk",
-   "date": "2026-10-28",
-   "country": "Ostatní",
-   "cat": "Ostatní",
-   "amt": 2600,
-   "cur": "MXN",
-   "note": "Ubytování Amsterdam"
-  },
-  {
-   "id": "ey4rmfj",
-   "date": "2026-10-28",
-   "country": "Mexiko",
-   "cat": "Ostatní",
-   "amt": 1500,
-   "cur": "CZK",
-   "note": "Cesta do Amsterdamu"
-  }
- ],
- "tasks": [
-  {
-   "id": "tl1gi2y",
-   "t": "Ubytko Amsterdam",
-   "due": "",
-   "done": true
-  },
-  {
-   "id": "tancmbc",
-   "t": "Ubytko Cancun",
-   "due": "",
-   "done": false
-  },
-  {
-   "id": "t4qfb05",
-   "t": "Cesta do Amsterdamu",
-   "due": "",
-   "done": true
-  }
- ],
+ "expenses": [],
+ "tasks": [],
  "bookings": [],
  "pack": [
   {
-   "id": "k1",
+   "id": "kge82sg",
    "name": "Doklady a peníze",
-   "items": []
+   "items": [
+    {
+     "id": "iia9251",
+     "t": "Pas",
+     "c": false,
+     "q": 1,
+     "w": 0
+    },
+    {
+     "id": "iuqvtpq",
+     "t": "Platební karty",
+     "c": false,
+     "q": 1,
+     "w": 0
+    },
+    {
+     "id": "i384tt4",
+     "t": "Hotovost (USD)",
+     "c": false,
+     "q": 1,
+     "w": 0
+    },
+    {
+     "id": "ihlv5bc",
+     "t": "Pojištění",
+     "c": false,
+     "q": 1,
+     "w": 0
+    }
+   ]
   },
   {
-   "id": "k2",
+   "id": "k40qa6e",
    "name": "Oblečení",
-   "items": []
+   "items": [
+    {
+     "id": "iglnj39",
+     "t": "Lehká bunda",
+     "c": false,
+     "q": 1,
+     "w": 0
+    },
+    {
+     "id": "i7klky1",
+     "t": "Pohodlné boty",
+     "c": false,
+     "q": 1,
+     "w": 0
+    },
+    {
+     "id": "iwwg4i6",
+     "t": "Plavky",
+     "c": false,
+     "q": 1,
+     "w": 0
+    }
+   ]
   },
   {
-   "id": "k3",
+   "id": "kk4vwri",
    "name": "Elektronika",
-   "items": []
+   "items": [
+    {
+     "id": "ipdsswj",
+     "t": "Telefon + nabíječka",
+     "c": false,
+     "q": 1,
+     "w": 0
+    },
+    {
+     "id": "is5354t",
+     "t": "Powerbanka",
+     "c": false,
+     "q": 1,
+     "w": 0
+    },
+    {
+     "id": "ig1r6js",
+     "t": "Univerzální adaptér",
+     "c": false,
+     "q": 1,
+     "w": 0
+    }
+   ]
   },
   {
-   "id": "k4",
+   "id": "kabz0mj",
    "name": "Ostatní",
-   "items": []
+   "items": [
+    {
+     "id": "ipn8yzj",
+     "t": "Opalovací krém",
+     "c": false,
+     "q": 1,
+     "w": 0
+    },
+    {
+     "id": "ixuy7ac",
+     "t": "Lékárnička",
+     "c": false,
+     "q": 1,
+     "w": 0
+    }
+   ]
   }
  ]
 }
