@@ -6,10 +6,14 @@
    "id": "s1",
    "n": "Cancún",
    "c": "Mexiko",
-   "lat": 21.16,
+   "lat": 21.17,
    "lon": -86.85,
    "d": "příletový den",
-   "t": "Začátek cesty"
+   "t": "Začátek cesty",
+   "a": "2026-11-14",
+   "o": "2026-11-17",
+   "tm": "",
+   "tt": ""
   },
   {
    "id": "s2",
